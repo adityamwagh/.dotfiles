@@ -1,0 +1,129 @@
+# Contour Terminal Configuration
+# Config file location: ~/.config/contour/contour.yml
+
+platform_plugin: auto
+
+renderer:
+  backend: OpenGL
+  tile_hashtable_slots: 4096
+
+word_delimiters: " /\\()\"'-.,:;<>~!@#$%^&*+=[]{}~?|│"
+default_profile: main
+reflow_on_resize: true
+
+# Mouse modifiers
+bypass_mouse_protocol_modifier: Shift
+mouse_block_selection_modifier: Control
+on_mouse_select: CopyToSelectionClipboard
+
+# Profiles
+profiles:
+  main:
+    # Shell
+    shell: "/usr/bin/zsh"
+    arguments: ["-l"]
+
+    # Font configuration
+    font:
+      size: 14
+      dpi_scale: 1.0
+      locator: native
+      text_shaping:
+        engine: native
+      builtin_box_drawing: true
+      render_mode: gray
+      strict_spacing: true
+      regular:
+        family: "SourceCodeVF"
+        weight: regular
+        slant: normal
+        features: []
+      bold:
+        family: "SourceCodeVF"
+        weight: bold
+      emoji: "emoji"
+
+    # Bell notifications
+    bell:
+      sound: "default"
+      alert: true
+
+    # Mouse settings
+    mouse:
+      hide_while_typing: true
+
+    # Cursor
+    cursor:
+      shape: "block"
+      blinking: false
+
+    # Background
+    background:
+      opacity: 1.0
+      blur: false
+
+    # Status line
+    status_line:
+      display: none
+
+    # Color scheme - Everforest Dark
+    colors:
+      default:
+        background: '#2b3339'
+        foreground: '#d3c6aa'
+      cursor:
+        default: '#d3c6aa'
+      selection:
+        background: '#503946'
+        foreground: '#d3c6aa'
+      normal:
+        black: '#4b565c'
+        red: '#e67e80'
+        green: '#a7c080'
+        yellow: '#dbbc7f'
+        blue: '#7fbbb3'
+        magenta: '#d699b6'
+        cyan: '#83c092'
+        white: '#d3c6aa'
+      bright:
+        black: '#4b565c'
+        red: '#e67e80'
+        green: '#a7c080'
+        yellow: '#dbbc7f'
+        blue: '#7fbbb3'
+        magenta: '#d699b6'
+        cyan: '#83c092'
+        white: '#d3c6aa'
+
+# Input mappings
+input_mapping:
+  # Copy/Paste with Ctrl+Shift
+  - { mods: [Control, Shift], key: C, action: CopySelection }
+  - { mods: [Control, Shift], key: V, action: PasteClipboard }
+
+  # Middle-click to paste selection
+  - { mods: [], mouse: Middle, action: PasteSelection }
+
+  # Search (Ctrl+Shift+F to start, F3/Shift+F3 to navigate)
+  - { mods: [Control, Shift], key: F, action: SearchReverse }
+  - { mods: [], key: F3, action: FocusNextSearchMatch }
+  - { mods: [Shift], key: F3, action: FocusPreviousSearchMatch }
+  - { mods: [Control, Shift], key: H, action: NoSearchHighlight }
+
+  # Font size controls
+  - { mods: [Control], key: '+', action: IncreaseFontSize }
+  - { mods: [Control], key: '-', action: DecreaseFontSize }
+  - { mods: [Control], key: '0', action: ResetFontSize }
+
+  # Scrolling
+  - { mods: [Shift], key: PageUp, action: ScrollPageUp }
+  - { mods: [Shift], key: PageDown, action: ScrollPageDown }
+  - { mods: [Control, Shift], key: Home, action: ScrollToTop }
+  - { mods: [Control, Shift], key: End, action: ScrollToBottom }
+
+  # Tab management
+  - { mods: [Control, Shift], key: T, action: CreateNewTab }
+  - { mods: [Control, Shift], key: W, action: CloseTab }
+
+  # Config reload
+  - { mods: [Control, Shift], key: R, action: ReloadConfig }

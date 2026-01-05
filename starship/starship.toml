@@ -1,0 +1,48 @@
+add_newline = false
+
+[os]
+format   = "[$os](style)"
+disabled = false
+style    = "bold yellow"
+
+[shell]
+disabled       = false
+bash_indicator = "bash"
+[sudo]
+style    = 'bold red'
+disabled = false
+
+[username]
+disabled    = false
+format      = "[$user]($style)[@](bold dimmed)"
+style_user  = "bold green"
+style_root  = "bold red"
+show_always = true
+
+[hostname]
+disabled = false
+ssh_only = false
+format   = "[$ssh_symbol]($style)[$hostname]($style) "
+style    = "bold cyan"
+
+[directory]
+format            = "[$path]($style) "
+disabled          = false
+truncation_length = 5
+style             = "bold blue"
+
+[custom.gh_auth]
+command        = "awk '/^[[:space:]]*user:/ {print $2; exit}' ~/.config/gh/hosts.yml 2>/dev/null || echo 'unknown'"
+when           = "command -v gh >/dev/null 2>&1 && [ -f ~/.config/gh/hosts.yml ]"
+format         = "[gh:](bold black)[$output](bold green) "
+ignore_timeout = true
+
+[env_var.ENVIRONMENT]
+format   = "[\\[](bold white)[$env_value](bold $style)[\\]](bold white) "
+disabled = false
+variable = "ENVIRONMENT"
+style    = "yellow"
+
+[character]
+success_symbol = "[❱](bold yellow)[❱](bold green)[❱](bold red)"
+error_symbol   = "[❱](bold yellow)[❱](bold green)[❱](bold red)"

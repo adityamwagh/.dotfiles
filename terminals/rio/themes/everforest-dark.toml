@@ -1,0 +1,45 @@
+[colors]
+
+# Normal
+foreground = '#d3c6aa'
+background = '#2b3339'
+black      = '#4b565c'
+blue       = '#7fbbb3'
+cursor     = '#d3c6aa'
+cyan       = '#83c092'
+green      = '#a7c080'
+magenta    = '#d699b6'
+red        = '#e67e80'
+white      = '#d3c6aa'
+yellow     = '#dbbc7f'
+
+# UI colors
+tabs                   = '#2b3339'
+tabs-foreground        = '#d3c6aa'
+tabs-active            = '#a7c080'
+tabs-active-highlight  = '#a7c080'
+tabs-active-foreground = '#2b3339'
+selection-foreground   = '#d3c6aa'
+selection-background   = '#503946'
+
+# Dim colors
+dim-black      = '#4b565c'
+dim-blue       = '#7fbbb3'
+dim-cyan       = '#83c092'
+dim-foreground = '#d3c6aa'
+dim-green      = '#a7c080'
+dim-magenta    = '#d699b6'
+dim-red        = '#e67e80'
+dim-white      = '#d3c6aa'
+dim-yellow     = '#dbbc7f'
+
+# Light colors
+light-black      = '#4b565c'
+light-blue       = '#7fbbb3'
+light-cyan       = '#83c092'
+light-foreground = '#d3c6aa'
+light-green      = '#a7c080'
+light-magenta    = '#d699b6'
+light-red        = '#e67e80'
+light-white      = '#d3c6aa'
+light-yellow     = '#dbbc7f'

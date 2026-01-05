@@ -1,0 +1,111 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "debugger": {
+    "dock": "left"
+  },
+  "project_panel": {
+    "dock": "left",
+    "indent_size": 15,
+    "entry_spacing": "standard"
+  },
+  "restore_on_startup": "last_workspace",
+  "resize_all_panels_in_dock": [],
+  "agent": {
+    "inline_assistant_model": {
+      "model": "deepseek-chat",
+      "provider": "deepseek"
+    },
+    "model_parameters": []
+  },
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "dockerfile": true,
+    "everforest-theme": true,
+    "ghostty": true,
+    "git-firefly": true,
+    "github-actions": true,
+    "html": true,
+    "just": true,
+    "liquid": true,
+    "lua": true,
+    "make": true,
+    "neocmake": true,
+    "nix": true,
+    "python-requirements": true,
+    "rainbow-csv": true,
+    "scss": true,
+    "toml": true
+  },
+  "auto_signature_help": true,
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 0
+    }
+  },
+  "base_keymap": "VSCode",
+  "buffer_font_family": "Iosevka Extended",
+  "buffer_font_weight": 400,
+  "buffer_font_size": 14,
+  "close_on_file_delete": true,
+  "icon_theme": {
+    "dark": "Material Icon Theme",
+    "light": "Zed (Default)",
+    "mode": "system"
+  },
+  "redact_private_values": false,
+  "tabs": {
+    "activate_on_close": "history",
+    "close_position": "right",
+    "file_icons": true,
+    "git_status": true,
+    "show_close_button": "always",
+    "show_diagnostics": "all"
+  },
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_branch_name": true,
+    "show_project_items": true,
+    "show_onboarding_banner": true,
+    "show_user_picture": true,
+    "show_sign_in": true,
+    "show_menus": true
+  },
+  "terminal": {
+    "cursor_shape": "bar",
+    "blinking": "on"
+  },
+  "theme": {
+    "dark": "Everforest Dark Hard",
+    "light": "Catppuccin Latte - No Italics",
+    "mode": "system"
+  },
+  "toolbar": {
+    "agent_review": true,
+    "breadcrumbs": true,
+    "code_actions": true,
+    "quick_actions": true,
+    "selections_menu": true
+  },
+  "ui_font_family": ".SystemUIFont",
+  "use_auto_surround": true,
+  "use_autoclose": true,
+  "use_system_window_tabs": true,
+  "status_bar": {
+    "active_language_button": true,
+    "cursor_position_button": true,
+    "line_endings_button": true
+  },
+  "line_indicator_format": "long",
+  "preferred_line_length": 88,
+  "scroll_beyond_last_line": "off",
+  "soft_wrap": "preferred_line_length",
+  "wrap_guides": [88, 120]
+}

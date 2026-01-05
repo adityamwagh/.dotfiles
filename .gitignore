@@ -1,0 +1,28 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node modules (if any)
+node_modules/
+
+# Pre-commit cache
+.pre-commit-cache/
+
+# nix
+hardware-configuration.nix

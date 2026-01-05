@@ -1,0 +1,37 @@
+padding-x           = 12
+padding-y           = [12, 12]
+theme               = "everforest-dark"
+confirm-before-quit = false
+hide-mouse-cursor-when-typing = true
+
+[fonts]
+family = "SourceCodeVF"
+size = 14
+
+[[fonts.extras]]
+family = "Symbols Nerd Font"
+
+[adaptive-theme]
+light = "catppuccin-latte"
+dark  = "everforest-dark"
+
+[bell]
+visual = false
+audio = true
+
+[keyboard]
+use-kitty-keyboard-protocol = true
+
+# Keybindings
+[bindings]
+keys = [
+  { key = "c", with = "control | shift", action = "Copy" },
+  { key = "v", with = "control | shift", action = "Paste" },
+  { key = "f", with = "control | shift", action = "SearchForward" },
+  { key = "t", with = "control | shift", action = "CreateTab" },
+  { key = "w", with = "control | shift", action = "CloseTab" },
+  { key = "n", with = "control | shift", action = "CreateWindow" },
+  { key = "+", with = "control", action = "IncreaseFontSize" },
+  { key = "-", with = "control", action = "DecreaseFontSize" },
+  { key = "0", with = "control", action = "ResetFontSize" },
+]

@@ -1,0 +1,17 @@
+theme = dark:Everforest Dark, light:Catppuccin Latte
+window-padding-balance = true
+font-family = SourceCodeVF
+# font-size = 12
+window-padding-x = 12, 12
+window-padding-y = 12, 12
+window-decoration = server
+adjust-underline-position = 4
+cursor-opacity = 1
+shell-integration = zsh
+font-synthetic-style = false
+font-thicken = false
+gtk-toolbar-style = raised
+desktop-notifications = true
+# Bell behavior: visual bell in title, attention bounce, no audio
+bell-features = title,attention
+fullscreen = true

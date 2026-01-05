@@ -1,0 +1,84 @@
+# Dotbot Configuration
+# This file manages symlinks for dotfiles and configuration directories
+
+# ============================================================================
+# Default Settings
+# ============================================================================
+# Configure default behavior for all link operations
+- defaults:
+      link:
+          relink: true # Remove existing symlinks before creating new ones
+          create: true # Create parent directories if they don't exist
+          force: true # Overwrite existing files/directories
+          stdout: true # Show command output
+          stderr: true # Show error output
+
+# ============================================================================
+# Clean Existing Symlinks
+# ============================================================================
+# Remove old symlinks before creating new ones to ensure a clean slate
+- clean:
+      # Shell configuration files
+      - ~/.zshrc
+      - ~/.zprofile
+      - ~/.bashrc
+      - ~/.bash_profile
+      - ~/.bash_logout
+      - ~/.profile
+
+      # Editor configurations
+      - ~/.config/helix
+      - ~/.config/helix/**
+      - ~/.config/nvim
+      - ~/.config/nvim/**
+      - ~/.config/zed/keymap.json
+      - ~/.config/zed/settings.json
+      - ~/.config/zed/tasks.json
+
+      # Terminal configurations
+      - ~/.config/ghostty
+      - ~/.config/ghostty/**
+      - ~/.config/rio
+      - ~/.config/rio/**
+      - ~/.config/kitty
+      - ~/.config/kitty/**
+      - ~/.config/contour
+      - ~/.config/contour/**
+      - ~/.wezterm.lua
+
+      # Other tools
+      - ~/.config/starship.toml
+      - ~/.gitconfig
+
+# ============================================================================
+# Create Symlinks
+# ============================================================================
+# Link dotfiles and configuration directories to their target locations
+- link:
+      # Shell configurations
+      ~/.zshrc: shells/zsh/.zshrc
+      ~/.zprofile: shells/zsh/.zprofile
+      ~/.bashrc: shells/bash/.bashrc
+      ~/.bash_profile: shells/bash/.bash_profile
+      ~/.profile: shells/.profile
+
+      # Editor configurations
+      ~/.config/helix: editors/helix
+      ~/.config/nvim: editors/nvim
+      ~/.config/zed/keymap.json: editors/zed/keymap.json
+      ~/.config/zed/settings.json: editors/zed/settings.json
+      ~/.config/zed/tasks.json: editors/zed/tasks.json
+
+      # Terminal configurations
+      ~/.config/ghostty: terminals/ghostty
+      ~/.config/rio: terminals/rio
+      ~/.config/kitty: terminals/kitty
+      ~/.config/contour: terminals/contour
+      ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
+
+      # Prompt configuration
+      ~/.config/starship.toml: starship/starship.toml
+
+      # Git configuration
+      ~/.gitconfig: .gitconfig
+
