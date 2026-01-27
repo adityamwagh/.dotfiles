@@ -1,10 +1,9 @@
-theme = dark:Everforest Dark, light:Catppuccin Latte
+theme = dark:"Gruvbox Dark Hard", light:"Gruvbox Light Soft"
 window-padding-balance = true
-font-family = SourceCodeVF
-# font-size = 12
+font-family = Iosevka Extended
 window-padding-x = 12, 12
 window-padding-y = 12, 12
-window-decoration = server
+# window-decoration = server
 adjust-underline-position = 4
 cursor-opacity = 1
 shell-integration = zsh

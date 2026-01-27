@@ -4,7 +4,8 @@ local wezterm = require("wezterm")
 local config_dir = wezterm.home_dir .. "/.dotfiles/terminals/wezterm/"
 
 -- Load custom themes
-local everforest_dark_hard = dofile(config_dir .. "themes/everforest-dark-hard.lua")
+local gruvbox_dark_hard = dofile(config_dir .. "themes/gruvbox-dark-hard.lua")
+local gruvbox_light_soft = dofile(config_dir .. "themes/gruvbox-light-soft.lua")
 
 -- Detect system appearance (light/dark)
 local appearance = wezterm.gui.get_appearance()
@@ -17,11 +18,10 @@ local is_dark = appearance:find("Dark")
 
 return {
 	-- Dynamic theme switching
-	color_scheme = is_dark and nil or "Catppuccin Latte",
-	colors = is_dark and everforest_dark_hard or nil,
+	colors = is_dark and gruvbox_dark_hard or gruvbox_light_soft,
 	-- Fonts
 	font = wezterm.font_with_fallback({
-		{ family = "SourceCodeVF", weight = "Regular", italic = false },
+		{ family = "Iosevka Extended", weight = "Regular", italic = false },
 		{ family = "Symbols Nerd Font" },
 	}),
 	font_size = 14,
@@ -30,7 +30,7 @@ return {
 			intensity = "Bold",
 			italic = false,
 			font = wezterm.font_with_fallback({
-				{ family = "SourceCodeVF", weight = "Bold" },
+				{ family = "Iosevka Extended", weight = "Bold" },
 				{ family = "Symbols Nerd Font" },
 			}),
 		},
@@ -38,7 +38,7 @@ return {
 			intensity = "Normal",
 			italic = false,
 			font = wezterm.font_with_fallback({
-				{ family = "SourceCodeVF", italic = false },
+				{ family = "Iosevka Extended", italic = false },
 				{ family = "Symbols Nerd Font" },
 			}),
 		},
@@ -46,7 +46,7 @@ return {
 			intensity = "Bold",
 			italic = false,
 			font = wezterm.font_with_fallback({
-				{ family = "SourceCodeVF", weight = "Bold", italic = false },
+				{ family = "Iosevka Extended", weight = "Bold", italic = false },
 				{ family = "Symbols Nerd Font" },
 			}),
 		},

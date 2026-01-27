@@ -1,0 +1,53 @@
+[General]
+current=Dark
+notify=2
+schedule=2
+schedule-type=time
+start-hidden=2
+time-dark=16:00:00
+time-light=09:00:00
+
+[ColorScheme]
+dark=Gruvbox Dark Hard
+enabled=false
+light=Gruvbox Light Soft
+
+[GTKTheme]
+dark=Breeze
+enabled=false
+light=Breeze
+
+[IconTheme]
+dark=Gruvbox
+enabled=true
+light=Gruvbox
+
+[KFileDialog%20Settings]
+Recent%20Files%5B%24e%5D=light.sh, file:$HOME/.config/koi/dark.sh, file:$HOME/.config/koi/light.sh
+Recent%20URLs%5B%24e%5D=file:$HOME/.config/koi/, file:$HOME/
+detailViewIconSize=16
+
+[KonsoleProfile]
+dark=Dark
+enabled=true
+light=Light
+
+[KvantumStyle]
+dark=
+enabled=false
+light=
+
+[PlasmaStyle]
+dark=BreezeDark
+enabled=true
+light=Breeze
+
+[Script]
+dark=/home/aditya/.config/koi/dark.sh
+enabled=true
+light=/home/aditya/.config/koi/light.sh
+
+[Wallpaper]
+dark=
+enabled=false
+light=

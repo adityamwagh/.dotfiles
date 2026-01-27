@@ -196,12 +196,37 @@ else
 fi
 
 if [ -n "${CONSOLAS_TMP_DIR}" ]; then
-    CONSOLAS_OUT_DIR="${CONSOLAS_TMP_DIR}/${CONSOLAS_VARIANT}"
     header "Installing ${CONSOLAS_VARIANT}..."
     mkdir -p "${FONT_DIR}"
-    find "${CONSOLAS_OUT_DIR}" -maxdepth 1 -name "*.ttf" -exec cp {} "${FONT_DIR}/" \;
-    has fc-cache && fc-cache -f
-    ok "${CONSOLAS_VARIANT} installed"
+    
+    # Try the expected directory first
+    CONSOLAS_OUT_DIR="${CONSOLAS_TMP_DIR}/${CONSOLAS_VARIANT}"
+    FONTS_COPIED=0
+    
+    if [ -d "${CONSOLAS_OUT_DIR}" ]; then
+        # Count how many TTF files we'll copy
+        TTF_COUNT=$(find "${CONSOLAS_OUT_DIR}" -maxdepth 1 -name "*.ttf" 2>/dev/null | wc -l)
+        if [ "$TTF_COUNT" -gt 0 ]; then
+            find "${CONSOLAS_OUT_DIR}" -maxdepth 1 -name "*.ttf" -exec cp {} "${FONT_DIR}/" \;
+            FONTS_COPIED=$TTF_COUNT
+        fi
+    else
+        # If the specific directory doesn't exist, search the whole repo for TTF files
+        warn "Directory ${CONSOLAS_VARIANT} not found, searching repository..."
+        TTF_COUNT=$(find "${CONSOLAS_TMP_DIR}" -name "*.ttf" 2>/dev/null | wc -l)
+        if [ "$TTF_COUNT" -gt 0 ]; then
+            find "${CONSOLAS_TMP_DIR}" -name "*.ttf" -exec cp {} "${FONT_DIR}/" \;
+            FONTS_COPIED=$TTF_COUNT
+        fi
+    fi
+    
+    # Check if any fonts were actually copied
+    if [ "$FONTS_COPIED" -gt 0 ]; then
+        has fc-cache && fc-cache -f
+        ok "${CONSOLAS_VARIANT} installed ($FONTS_COPIED font$( [ "$FONTS_COPIED" -ne 1 ] && echo s))"
+    else
+        warn "No ${CONSOLAS_VARIANT} fonts found in repository"
+    fi
 fi
 
 if [ -n "${CONSOLAS_TMP_DIR}" ]; then
@@ -229,7 +254,62 @@ fi
 # Dotbot (symlinks)
 header "Setting up symlinks..."
 git -C dotbot submodule sync --quiet --recursive
-git submodule update --init --recursive dotbot
+git submodule update --init --recursive --remote dotbot
 "${BASEDIR}/dotbot/bin/dotbot" -d "${BASEDIR}" -c "install.conf.yaml" "$@"
+
+# --- Change default shell to zsh ---
+if has zsh; then
+    # Prefer system zsh over homebrew zsh for better root shell compatibility
+    # Check for system zsh first (usually /usr/bin/zsh or /bin/zsh)
+    if [ -f /usr/bin/zsh ]; then
+        ZSH_PATH="/usr/bin/zsh"
+    elif [ -f /bin/zsh ]; then
+        ZSH_PATH="/bin/zsh"
+    else
+        # Fall back to whatever zsh is found in PATH (likely homebrew)
+        ZSH_PATH="$(command -v zsh)"
+        warn "Using homebrew zsh ($ZSH_PATH). Note: root shells may not have access to this."
+    fi
+    
+    if [ "$(uname)" = "Linux" ]; then
+        CURRENT_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+    else
+        # macOS
+        CURRENT_SHELL="$(dscl . -read /Users/$USER UserShell 2>/dev/null | cut -d' ' -f2)"
+    fi
+    
+    if [ "$CURRENT_SHELL" != "$ZSH_PATH" ]; then
+        header "Changing default shell to zsh..."
+        
+        # On Linux, ensure the shell is in /etc/shells (required by chsh)
+        SHELL_ADDED=true
+        if [ "$(uname)" = "Linux" ] && [ -f /etc/shells ]; then
+            if ! grep -Fxq "$ZSH_PATH" /etc/shells; then
+                warn "Adding $ZSH_PATH to /etc/shells (requires sudo)..."
+                if echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null 2>&1; then
+                    ok "Added $ZSH_PATH to /etc/shells"
+                else
+                    warn "Failed to add shell to /etc/shells. Skipping shell change."
+                    warn "You can manually add it with: echo '$ZSH_PATH' | sudo tee -a /etc/shells"
+                    SHELL_ADDED=false
+                fi
+            fi
+        fi
+        
+        # Only try to change shell if it was successfully added to /etc/shells (or on macOS)
+        if [ "$SHELL_ADDED" = "true" ]; then
+            warn "You may be prompted for your password."
+            if chsh -s "$ZSH_PATH"; then
+                ok "Default shell changed to zsh. Please log out and back in for changes to take effect."
+            else
+                warn "Failed to change default shell. You can change it manually later with: chsh -s $ZSH_PATH"
+            fi
+        fi
+    else
+        ok "zsh is already the default shell"
+    fi
+else
+    warn "zsh is not installed. Skipping shell change."
+fi
 
 printf "\n%b\n\n" "${Bold}${Green}✓ Installation complete!${Reset}"

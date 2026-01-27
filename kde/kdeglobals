@@ -1,0 +1,176 @@
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=56,56,56
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.65
+ContrastEffect=1
+Enable=
+IntensityAmount=0.1
+IntensityEffect=2
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=112,111,110
+ColorAmount=0.025
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=2
+Enable=true
+IntensityAmount=0
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=60,56,54
+BackgroundNormal=29,32,33
+DecorationFocus=142,192,124
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=146,131,116
+ForegroundLink=131,165,152
+ForegroundNegative=204,36,29
+ForegroundNeutral=215,153,33
+ForegroundNormal=235,219,178
+ForegroundPositive=152,151,26
+ForegroundVisited=211,134,155
+
+[Colors:Complementary]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:Header]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:Header][Inactive]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:Selection]
+BackgroundAlternate=131,165,152
+BackgroundNormal=60,56,54
+DecorationFocus=142,192,124
+DecorationHover=131,165,152
+ForegroundActive=235,219,178
+ForegroundInactive=235,219,178
+ForegroundLink=131,165,152
+ForegroundNegative=204,36,29
+ForegroundNeutral=215,153,33
+ForegroundNormal=235,219,178
+ForegroundPositive=152,151,26
+ForegroundVisited=211,134,155
+
+[Colors:Tooltip]
+BackgroundAlternate=60,56,54
+BackgroundNormal=29,32,33
+DecorationFocus=142,192,124
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=146,131,116
+ForegroundLink=131,165,152
+ForegroundNegative=204,36,29
+ForegroundNeutral=215,153,33
+ForegroundNormal=235,219,178
+ForegroundPositive=152,151,26
+ForegroundVisited=211,134,155
+
+[Colors:View]
+BackgroundAlternate=60,56,54
+BackgroundNormal=29,32,33
+DecorationFocus=142,192,124
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=146,131,116
+ForegroundLink=131,165,152
+ForegroundNegative=204,36,29
+ForegroundNeutral=215,153,33
+ForegroundNormal=235,219,178
+ForegroundPositive=152,151,26
+ForegroundVisited=211,134,155
+
+[Colors:Window]
+BackgroundAlternate=60,56,54
+BackgroundNormal=29,32,33
+DecorationFocus=142,192,124
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=146,131,116
+ForegroundLink=131,165,152
+ForegroundNegative=204,36,29
+ForegroundNeutral=215,153,33
+ForegroundNormal=235,219,178
+ForegroundPositive=152,151,26
+ForegroundVisited=211,134,155
+
+[General]
+ColorScheme=Gruvbox Dark Hard
+fixed=Iosevka Extended,10,-1,5,50,0,0,0,0,0
+font=Selawik,10,-1,5,50,0,0,0,0,0
+menuFont=Selawik,10,-1,5,50,0,0,0,0,0
+smallestReadableFont=Selawik,8,-1,5,50,0,0,0,0,0
+toolBarFont=Selawik,10,-1,5,50,0,0,0,0,0
+
+[KDE]
+LookAndFeelPackage=org.kde.breeze.desktop
+widgetStyle=Breeze
+
+[KFileDialog Settings]
+Allow Expansion=true
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=false
+Show Speedbar=true
+Show hidden files=true
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=162
+View Style=DetailTree
+
+[Toolbar style]
+ToolButtonStyle=TextUnderIcon
+
+[WM]
+activeBackground=29,32,33
+activeBlend=235,219,178
+activeFont=Selawik,10,-1,5,50,0,0,0,0,0
+activeForeground=235,219,178
+inactiveBackground=29,32,33
+inactiveBlend=60,56,54
+inactiveForeground=146,131,116

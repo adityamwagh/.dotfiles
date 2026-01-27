@@ -38,8 +38,24 @@ alias bashrc='$EDITOR ~/.bashrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias nvimc='$EDITOR ~/.config/nvim/'
 
+# App config aliases
+alias helixconf='$EDITOR ~/.config/helix/config.toml'
+alias zedconf='$EDITOR ~/.config/zed/settings.json'
+alias ghosttyconf='$EDITOR ~/.config/ghostty/config'
+alias kittyconf='$EDITOR ~/.config/kitty/kitty.conf'
+alias rioconf='$EDITOR ~/.config/rio/config.toml'
+alias contourconf='$EDITOR ~/.config/contour/contour.yml'
+alias weztermconf='$EDITOR ~/.wezterm.lua'
+alias konsolerc='$EDITOR ~/.config/konsolerc'
+alias konsoleprofiles='$EDITOR ~/.local/share/konsole/'
+alias konsolecolors='$EDITOR ~/.local/share/konsole/'
+alias kdeglobals='$EDITOR ~/.config/kdeglobals'
+alias plasmarc='$EDITOR ~/.config/plasmarc'
+alias starshipconf='$EDITOR ~/.config/starship.toml'
+alias koiscripts='$EDITOR ~/.config/koi/'
+
 # Pre-commit alias
-alias pcra='pre-commit run --show-diff-on-failure --color=always --all-files'
+alias pcra='pre-commit run --color=always --all-files'
 alias pci='pre-commit install'
 
 # Git aliases

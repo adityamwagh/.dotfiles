@@ -1,0 +1,19 @@
+[Desktop Entry]
+DefaultProfile=Dark.profile
+
+[General]
+ConfigVersion=1
+
+[KonsoleWindow]
+AllowMenuAccelerators=true
+ShowWindowTitleOnTitleBar=true
+
+[MainWindow]
+1536x960 screen: Height=633
+1536x960 screen: Width=1302
+RestorePositionForNextInstance=false
+State=AAAA/wAAAAD9AAAAAQAAAAAAAAEYAAAB3vwCAAAAAvsAAAAcAFMAUwBIAE0AYQBuAGEAZwBlAHIARABvAGMAawAAAAAA/////wAAAQ0BAAAD+wAAACIAUQB1AGkAYwBrAEMAbwBtAG0AYQBuAGQAcwBEAG8AYwBrAAAAAC4AAAHeAAABdgEAAAMAAAUWAAACNwAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAACAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAAAAAAAAAABwAcwBlAHMAcwBpAG8AbgBUAG8AbwBsAGIAYQByAQAAALX/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+
+[UiSettings]
+ColorScheme=

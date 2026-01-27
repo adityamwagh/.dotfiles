@@ -1,19 +1,19 @@
 padding-x           = 12
 padding-y           = [12, 12]
-theme               = "everforest-dark"
+theme               = "gruvbox-dark-hard"
 confirm-before-quit = false
 hide-mouse-cursor-when-typing = true
 
 [fonts]
-family = "SourceCodeVF"
+family = "Iosevka Extended"
 size = 14
 
 [[fonts.extras]]
 family = "Symbols Nerd Font"
 
 [adaptive-theme]
-light = "catppuccin-latte"
-dark  = "everforest-dark"
+light = "gruvbox-light-soft"
+dark  = "gruvbox-dark-hard"
 
 [bell]
 visual = false

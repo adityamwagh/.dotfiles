@@ -27,24 +27,47 @@
       - ~/.profile
 
       # Editor configurations
-      - ~/.config/helix
-      - ~/.config/helix/**
-      - ~/.config/nvim
-      - ~/.config/nvim/**
+      - ~/.config/helix/config.toml
+      - ~/.config/nvim/init.lua
+      - ~/.config/nvim/lazy-lock.json
+      - ~/.config/nvim/.stylua.toml
+      - ~/.config/nvim/lua/core/keymaps.lua
+      - ~/.config/nvim/lua/core/lazy.lua
+      - ~/.config/nvim/lua/core/options.lua
+      - ~/.config/nvim/lua/plugins/comments.lua
+      - ~/.config/nvim/lua/plugins/completions.lua
+      - ~/.config/nvim/lua/plugins/formatting.lua
+      - ~/.config/nvim/lua/plugins/init.lua
+      - ~/.config/nvim/lua/plugins/lsp.lua
+      - ~/.config/nvim/lua/plugins/motions.lua
+      - ~/.config/nvim/lua/plugins/themes.lua
+      - ~/.config/nvim/lua/plugins/ui.lua
       - ~/.config/zed/keymap.json
       - ~/.config/zed/settings.json
       - ~/.config/zed/tasks.json
 
       # Terminal configurations
-      - ~/.config/ghostty
-      - ~/.config/ghostty/**
-      - ~/.config/rio
-      - ~/.config/rio/**
-      - ~/.config/kitty
-      - ~/.config/kitty/**
-      - ~/.config/contour
-      - ~/.config/contour/**
+      - ~/.config/ghostty/config
+      - "~/.config/ghostty/themes/Gruvbox Dark Hard"
+      - "~/.config/ghostty/themes/Gruvbox Light Soft"
+      - ~/.config/rio/config.toml
+      - ~/.config/rio/themes/gruvbox-dark-hard.toml
+      - ~/.config/rio/themes/gruvbox-light-soft.toml
+      - ~/.config/kitty/kitty.conf
+      - ~/.config/kitty/themes/gruvbox-dark-hard.conf
+      - ~/.config/kitty/themes/gruvbox-light-soft.conf
+      - ~/.config/contour/contour.yml
       - ~/.wezterm.lua
+      - ~/.config/konsolerc
+      - ~/.config/konsole/style.css
+      - ~/.local/share/konsole/Light.profile
+      - ~/.local/share/konsole/Dark.profile
+      - "~/.local/share/konsole/Gruvbox Dark Hard.colorscheme"
+      - "~/.local/share/konsole/Gruvbox Light Soft.colorscheme"
+      - "~/.local/share/color-schemes/Gruvbox Dark Hard.colors"
+      - "~/.local/share/color-schemes/Gruvbox Light Soft.colors"
+      - ~/.config/kdeglobals
+      - ~/.config/plasmarc
 
       # Other tools
       - ~/.config/starship.toml
@@ -63,18 +86,51 @@
       ~/.profile: shells/.profile
 
       # Editor configurations
-      ~/.config/helix: editors/helix
-      ~/.config/nvim: editors/nvim
+      ~/.config/helix/config.toml: editors/helix/config.toml
+      ~/.config/nvim/init.lua: editors/nvim/init.lua
+      ~/.config/nvim/lazy-lock.json: editors/nvim/lazy-lock.json
+      ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
+      ~/.config/nvim/lua/core/keymaps.lua: editors/nvim/lua/core/keymaps.lua
+      ~/.config/nvim/lua/core/lazy.lua: editors/nvim/lua/core/lazy.lua
+      ~/.config/nvim/lua/core/options.lua: editors/nvim/lua/core/options.lua
+      ~/.config/nvim/lua/plugins/comments.lua: editors/nvim/lua/plugins/comments.lua
+      ~/.config/nvim/lua/plugins/completions.lua: editors/nvim/lua/plugins/completions.lua
+      ~/.config/nvim/lua/plugins/formatting.lua: editors/nvim/lua/plugins/formatting.lua
+      ~/.config/nvim/lua/plugins/init.lua: editors/nvim/lua/plugins/init.lua
+      ~/.config/nvim/lua/plugins/lsp.lua: editors/nvim/lua/plugins/lsp.lua
+      ~/.config/nvim/lua/plugins/motions.lua: editors/nvim/lua/plugins/motions.lua
+      ~/.config/nvim/lua/plugins/themes.lua: editors/nvim/lua/plugins/themes.lua
+      ~/.config/nvim/lua/plugins/ui.lua: editors/nvim/lua/plugins/ui.lua
       ~/.config/zed/keymap.json: editors/zed/keymap.json
       ~/.config/zed/settings.json: editors/zed/settings.json
       ~/.config/zed/tasks.json: editors/zed/tasks.json
 
       # Terminal configurations
-      ~/.config/ghostty: terminals/ghostty
-      ~/.config/rio: terminals/rio
-      ~/.config/kitty: terminals/kitty
-      ~/.config/contour: terminals/contour
+      ~/.config/ghostty/config: terminals/ghostty/config
+      "~/.config/ghostty/themes/Gruvbox Dark Hard": "terminals/ghostty/themes/Gruvbox Dark Hard"
+      "~/.config/ghostty/themes/Gruvbox Light Soft": "terminals/ghostty/themes/Gruvbox Light Soft"
+      ~/.config/kitty/kitty.conf: terminals/kitty/kitty.conf
+      ~/.config/kitty/themes/gruvbox-dark-hard.conf: terminals/kitty/themes/gruvbox-dark-hard.conf
+      ~/.config/kitty/themes/gruvbox-light-soft.conf: terminals/kitty/themes/gruvbox-light-soft.conf
+      ~/.config/rio/config.toml: terminals/rio/config.toml
+      ~/.config/rio/themes/gruvbox-dark-hard.toml: terminals/rio/themes/gruvbox-dark-hard.toml
+      ~/.config/rio/themes/gruvbox-light-soft.toml: terminals/rio/themes/gruvbox-light-soft.toml
+      ~/.config/contour/contour.yml: terminals/contour/contour.yml
       ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
+
+      # Konsole configurations
+      ~/.config/konsolerc: terminals/konsole/konsolerc
+      ~/.config/konsole/style.css: terminals/konsole/style.css
+      ~/.local/share/konsole/Light.profile: terminals/konsole/profiles/Light.profile
+      ~/.local/share/konsole/Dark.profile: terminals/konsole/profiles/Dark.profile
+      "~/.local/share/konsole/Gruvbox Dark Hard.colorscheme": "terminals/konsole/colorschemes/Gruvbox Dark Hard.colorscheme"
+      "~/.local/share/konsole/Gruvbox Light Soft.colorscheme": "terminals/konsole/colorschemes/Gruvbox Light Soft.colorscheme"
+
+      # KDE Plasma configurations
+      ~/.config/kdeglobals: kde/kdeglobals
+      ~/.config/plasmarc: kde/plasmarc
+      "~/.local/share/color-schemes/Gruvbox Dark Hard.colors": "kde/color-schemes/Gruvbox Dark Hard.colors"
+      "~/.local/share/color-schemes/Gruvbox Light Soft.colors": "kde/color-schemes/Gruvbox Light Soft.colors"
 
       # Prompt configuration
       ~/.config/starship.toml: starship/starship.toml
@@ -82,3 +138,9 @@
       # Git configuration
       ~/.gitconfig: .gitconfig
 
+      # Theme configuration
+      ~/.config/opencode/opencode.json: opencode/opencode.json
+      ~/.config/opencode/themes/gruvbox-dark-hard.json: opencode/themes/gruvbox-dark-hard.json
+      ~/.config/opencode/themes/gruvbox-light-soft.json: opencode/themes/gruvbox-light-soft.json
+      ~/.config/koi/light.sh: koi/light.sh
+      ~/.config/koi/dark.sh: koi/dark.sh

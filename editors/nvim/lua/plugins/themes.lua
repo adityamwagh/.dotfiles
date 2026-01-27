@@ -1,6 +1,5 @@
 return {
-    { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
-    { "neanias/everforest-nvim", priority = 1000 },
+    { "ellisonleao/gruvbox.nvim", priority = 1000 },
     {
         "f-person/auto-dark-mode.nvim",
         opts = {
@@ -8,11 +7,17 @@ return {
             fallback = "light",
             set_dark_mode = function()
                 vim.opt.background = "dark"
-                vim.cmd.colorscheme("everforest")
+                require("gruvbox").setup({
+                    contrast = "hard",
+                })
+                vim.cmd.colorscheme("gruvbox")
             end,
             set_light_mode = function()
                 vim.opt.background = "light"
-                vim.cmd.colorscheme("catppuccin-latte")
+                require("gruvbox").setup({
+                    contrast = "soft",
+                })
+                vim.cmd.colorscheme("gruvbox")
             end,
         },
     },
