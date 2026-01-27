@@ -1,0 +1,26 @@
+# Managed by brew bundle
+
+tap "anomalyco/tap"
+
+brew "bat"
+brew "eza"
+brew "fd"
+brew "fzf"
+brew "gh"
+brew "helix"
+brew "opencode"
+brew "ripgrep"
+brew "ruff"
+brew "starship"
+brew "stylua"
+brew "uv"
+brew "zoxide"
+brew "zsh-fast-syntax-highlighting"
+
+cask "codex"
+cask "font-cascadia-code"
+cask "font-et-book"
+cask "font-inter"
+cask "font-iosevka"
+cask "font-source-code-pro"
+cask "font-symbols-only-nerd-font"

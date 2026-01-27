@@ -1,22 +1,84 @@
-#!/usr/bin/env bash
+#!/bin/sh
 set -e
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASEDIR="$(cd "$(dirname "$0")" && pwd)"
 cd "${BASEDIR}"
 
 # Colors
-CYAN='\033[36m' GREEN='\033[32m' YELLOW='\033[33m' RED='\033[31m'
-BOLD='\033[1m' DIM='\033[2m' RESET='\033[0m'
+Red="$(printf '\033[31m')"
+Green="$(printf '\033[32m')"
+Yellow="$(printf '\033[33m')"
+Cyan="$(printf '\033[36m')"
+Bold="$(printf '\033[1m')"
+Dim="$(printf '\033[2m')"
+Reset="$(printf '\033[0m')"
 
-header() { echo -e "\n${BOLD}${CYAN}$1${RESET}"; }
-ok() { echo -e "${GREEN}✓ $1${RESET}"; }
-warn() { echo -e "${YELLOW}⚠ $1${RESET}"; }
-run() { echo -e "${DIM}\$ $*${RESET}"; "$@"; }
+header() { printf "\n%b\n" "${Bold}${Cyan}$1${Reset}"; }
+ok() { printf "%b\n" "${Green}✓ $1${Reset}"; }
+warn() { printf "%b\n" "${Yellow}⚠ $1${Reset}"; }
+run() {
+    printf "%b\n" "${Dim}\$ $*${Reset}"
+    "$@"
+}
 has() { command -v "$1" &>/dev/null; }
+usage() {
+    cat <<'EOF'
+Usage: install [options] [dotbot args]
 
-echo -e "\n${BOLD}${CYAN}Dotfiles Installation${RESET}"
+Options:
+  -h, --help     Show this help and exit
 
-# --- System packages (Linux only) ---
-if [[ "$(uname)" == "Linux" ]] && has apt; then
+Environment:
+  NERDIFY=1      Enable Nerd Fonts patching for Consolas
+EOF
+}
+
+for arg in "$@"; do
+    case "$arg" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+    esac
+done
+report_brew_bundle() {
+    brewfile="$1"
+    tmp_formula="$(mktemp)"
+    tmp_cask="$(mktemp)"
+    brew list --versions >"$tmp_formula"
+    brew list --cask --versions >"$tmp_cask"
+
+    while IFS= read -r line; do
+        case "$line" in
+        brew\ \"*\")
+            name="${line#*\"}"
+            name="${name%%\"*}"
+            version="$(awk -v n="$name" '$1==n{print $2}' "$tmp_formula")"
+            if [ -n "$version" ]; then
+                ok "$name installed ($version)"
+            else
+                warn "$name not installed"
+            fi
+            ;;
+        cask\ \"*\")
+            name="${line#*\"}"
+            name="${name%%\"*}"
+            version="$(awk -v n="$name" '$1==n{print $2}' "$tmp_cask")"
+            if [ -n "$version" ]; then
+                ok "$name installed ($version)"
+            else
+                warn "$name not installed"
+            fi
+            ;;
+        esac
+    done <"$brewfile"
+
+    rm -f "$tmp_formula" "$tmp_cask"
+}
+
+printf "\n%b\n" "${Bold}${Cyan}Dotfiles Installation${Reset}"
+
+# System packages (Linux only)
+if [ "$(uname)" = "Linux" ] && has apt; then
     has nala || {
         header "Installing nala..."
         sudo -v
@@ -35,58 +97,77 @@ if [[ "$(uname)" == "Linux" ]] && has apt; then
     fi
 fi
 
-# --- Homebrew ---
+# Homebrew
 if ! has brew; then
     header "Installing Homebrew..."
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 # Source brew for this session
-if [[ "$(uname)" == "Darwin" ]]; then
+if [ "$(uname)" = "Darwin" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 else
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 ok "Homebrew ready"
 
-# --- Homebrew packages ---
-# Check if key packages missing before running install
-if ! has fzf || ! has starship || ! has eza; then
-    header "Installing Homebrew packages..."
-    [[ "$(uname)" == "Darwin" ]] && run brew install git curl wget neovim htop tree jq
-    run brew install fzf zoxide starship eza bat ripgrep fd gh helix pre-commit uv ruff stylua
-    run brew install font-cascadia-code font-iosevka font-symbols-only-nerd-font || true
+# Homebrew packages
+if [ -f "${BASEDIR}/Brewfile" ]; then
+    header "Installing Homebrew bundle..."
+    run brew bundle --file "${BASEDIR}/Brewfile"
+    header "Homebrew package versions"
+    report_brew_bundle "${BASEDIR}/Brewfile"
 else
-    ok "Homebrew packages already installed"
+    warn "Brewfile not found; skipping Homebrew bundle"
 fi
 
-# --- Rust ---
+# Rust
 has rustc && ok "Rust already installed" || {
     header "Installing Rust..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
+    . "$HOME/.cargo/env"
 }
 
-# --- Bun ---
+# Bun
 has bun && ok "Bun already installed" || {
     header "Installing Bun..."
     curl -fsSL https://bun.sh/install | bash
 }
 
-# --- Check Python/Node ---
+# Check Python/Node
 has python3 && ok "Python installed" || warn "Python not found"
-has node && ok "Node.js installed" || warn "Node.js not found (install via nvm)"
+has node && ok "Node.js installed" || warn "Node.js not found (install via system packages or nvm)"
 
-# --- SourceCodeVF font ---
-FONT_URL="https://github.com/adobe-fonts/source-code-pro/releases/download/2.042R-u%2F1.062R-i%2F1.026R-vf/VF-source-code-VF-1.026R.zip"
-if [[ "$(uname)" == "Linux" ]]; then
+# Opencode
+has opencode && ok "Opencode installed" || {
+    header "Installing Opencode..."
+    if has clang || has gcc; then
+        run brew install anomalyco/tap/opencode
+    else
+        warn "Opencode needs a compiler (clang or gcc); install via system packages, then rerun"
+    fi
+}
+
+# pre-commit
+if has uv; then
+    has pre-commit && ok "pre-commit installed" || {
+        header "Installing pre-commit (uv)..."
+        run uv tool install pre-commit
+    }
+else
+    warn "uv not found; skipping pre-commit install"
+fi
+
+# Selawik font
+FONT_URL="https://github.com/microsoft/Selawik/releases/download/1.01/Selawik_Release.zip"
+if [ "$(uname)" = "Linux" ]; then
     FONT_DIR="$HOME/.local/share/fonts"
 else
     FONT_DIR="$HOME/Library/Fonts"
 fi
-if fc-list 2>/dev/null | grep -q "SourceCodeVF"; then
-    ok "SourceCodeVF font installed"
+if fc-list 2>/dev/null | grep -q "Selawik"; then
+    ok "Selawik font installed"
 else
-    header "Installing SourceCodeVF font..."
+    header "Installing Selawik font..."
     mkdir -p "$FONT_DIR"
     TMP=$(mktemp -d)
     curl -sL "$FONT_URL" -o "$TMP/font.zip"
@@ -94,13 +175,61 @@ else
     find "$TMP" -name "*.otf" -o -name "*.ttf" | xargs -I{} cp {} "$FONT_DIR/"
     rm -rf "$TMP"
     has fc-cache && fc-cache -f
-    ok "SourceCodeVF font installed"
+    ok "Selawik font installed"
 fi
 
-# --- Dotbot (symlinks) ---
+# Consolas fonts (ligaturized + nerdified)
+CONSOLAS_REPO_URL="https://github.com/adityamwagh/consolas-nerd-font"
+if [ "${NERDIFY:-}" = "1" ]; then
+    CONSOLAS_VARIANT="Consolas LNF"
+else
+    CONSOLAS_VARIANT="Consolas L"
+fi
+
+CONSOLAS_TMP_DIR=""
+if has git; then
+    header "Fetching Consolas fonts..."
+    CONSOLAS_TMP_DIR="$(mktemp -d)"
+    run git clone --depth 1 "${CONSOLAS_REPO_URL}" "${CONSOLAS_TMP_DIR}"
+else
+    warn "git not found; skipping Consolas fonts"
+fi
+
+if [ -n "${CONSOLAS_TMP_DIR}" ]; then
+    CONSOLAS_OUT_DIR="${CONSOLAS_TMP_DIR}/${CONSOLAS_VARIANT}"
+    header "Installing ${CONSOLAS_VARIANT}..."
+    mkdir -p "${FONT_DIR}"
+    find "${CONSOLAS_OUT_DIR}" -maxdepth 1 -name "*.ttf" -exec cp {} "${FONT_DIR}/" \;
+    has fc-cache && fc-cache -f
+    ok "${CONSOLAS_VARIANT} installed"
+fi
+
+if [ -n "${CONSOLAS_TMP_DIR}" ]; then
+    rm -rf "${CONSOLAS_TMP_DIR}"
+fi
+
+# Segoe UI (Linux)
+if [ "$(uname)" = "Linux" ]; then
+    SEGOE_URL="https://github.com/mrbvrz/segoe-ui-linux/archive/refs/heads/master.zip"
+    if fc-list 2>/dev/null | grep -q "Segoe UI"; then
+        ok "Segoe UI font installed"
+    else
+        header "Installing Segoe UI font..."
+        mkdir -p "$FONT_DIR"
+        TMP=$(mktemp -d)
+        curl -sL "$SEGOE_URL" -o "$TMP/segoe.zip"
+        unzip -q "$TMP/segoe.zip" -d "$TMP"
+        find "$TMP" -name "*.otf" -o -name "*.ttf" | xargs -I{} cp {} "$FONT_DIR/"
+        rm -rf "$TMP"
+        has fc-cache && fc-cache -f
+        ok "Segoe UI font installed"
+    fi
+fi
+
+# Dotbot (symlinks)
 header "Setting up symlinks..."
 git -C dotbot submodule sync --quiet --recursive
 git submodule update --init --recursive dotbot
 "${BASEDIR}/dotbot/bin/dotbot" -d "${BASEDIR}" -c "install.conf.yaml" "$@"
 
-echo -e "\n${BOLD}${GREEN}✓ Installation complete!${RESET}\n"
+printf "\n%b\n\n" "${Bold}${Green}✓ Installation complete!${Reset}"
