@@ -6,152 +6,183 @@
 # ============================================================================
 # Configure default behavior for all link operations
 - defaults:
-      link:
-          relink: true # Remove existing symlinks before creating new ones
-          create: true # Create parent directories if they don't exist
-          force: true # Overwrite existing files/directories
-          stdout: true # Show command output
-          stderr: true # Show error output
+    link:
+      relink: true # Remove existing symlinks before creating new ones
+      create: true # Create parent directories if they don't exist
+      force: true # Overwrite existing files/directories
+      stdout: true # Show command output
+      stderr: true # Show error output
 
 # ============================================================================
 # Clean Existing Symlinks
 # ============================================================================
 # Remove old symlinks before creating new ones to ensure a clean slate
 - clean:
-      # Shell configuration files
-      - ~/.zshrc
-      - ~/.zprofile
-      - ~/.bashrc
-      - ~/.bash_profile
-      - ~/.bash_logout
-      - ~/.profile
+    # Shell configuration files
+    - ~/.zshrc
+    - ~/.zprofile
+    - ~/.bashrc
+    - ~/.bash_profile
+    - ~/.bash_logout
+    - ~/.profile
 
-      # Editor configurations
-      - ~/.config/helix/config.toml
-      - ~/.config/nvim/init.lua
-      - ~/.config/nvim/lazy-lock.json
-      - ~/.config/nvim/.stylua.toml
-      - ~/.config/nvim/lua/core/keymaps.lua
-      - ~/.config/nvim/lua/core/lazy.lua
-      - ~/.config/nvim/lua/core/options.lua
-      - ~/.config/nvim/lua/plugins/comments.lua
-      - ~/.config/nvim/lua/plugins/completions.lua
-      - ~/.config/nvim/lua/plugins/formatting.lua
-      - ~/.config/nvim/lua/plugins/init.lua
-      - ~/.config/nvim/lua/plugins/lsp.lua
-      - ~/.config/nvim/lua/plugins/motions.lua
-      - ~/.config/nvim/lua/plugins/themes.lua
-      - ~/.config/nvim/lua/plugins/ui.lua
-      - ~/.config/zed/keymap.json
-      - ~/.config/zed/settings.json
-      - ~/.config/zed/tasks.json
+    # Editor configurations
+    - ~/.config/helix/config.toml
+    - ~/.config/nvim/init.lua
+    - ~/.config/nvim/lazy-lock.json
+    - ~/.config/nvim/.stylua.toml
+    - ~/.config/nvim/lua/core/keymaps.lua
+    - ~/.config/nvim/lua/core/lazy.lua
+    - ~/.config/nvim/lua/core/options.lua
+    - ~/.config/nvim/lua/plugins/comments.lua
+    - ~/.config/nvim/lua/plugins/completions.lua
+    - ~/.config/nvim/lua/plugins/formatting.lua
+    - ~/.config/nvim/lua/plugins/init.lua
+    - ~/.config/nvim/lua/plugins/lsp.lua
+    - ~/.config/nvim/lua/plugins/motions.lua
+    - ~/.config/nvim/lua/plugins/themes.lua
+    - ~/.config/nvim/lua/plugins/ui.lua
+    - ~/.config/zed/keymap.json
+    - ~/.config/zed/settings.json
+    - ~/.config/zed/tasks.json
 
-      # Terminal configurations
-      - ~/.config/ghostty/config
-      - "~/.config/ghostty/themes/Gruvbox Dark Hard"
-      - "~/.config/ghostty/themes/Gruvbox Light Soft"
-      - ~/.config/rio/config.toml
-      - ~/.config/rio/themes/gruvbox-dark-hard.toml
-      - ~/.config/rio/themes/gruvbox-light-soft.toml
-      - ~/.config/kitty/kitty.conf
-      - ~/.config/kitty/themes/gruvbox-dark-hard.conf
-      - ~/.config/kitty/themes/gruvbox-light-soft.conf
-      - ~/.config/contour/contour.yml
-      - ~/.wezterm.lua
-      - ~/.config/konsolerc
-      - ~/.config/konsole/style.css
-      - ~/.local/share/konsole/Light.profile
-      - ~/.local/share/konsole/Dark.profile
-      - "~/.local/share/konsole/Gruvbox Dark Hard.colorscheme"
-      - "~/.local/share/konsole/Gruvbox Light Soft.colorscheme"
-      - "~/.local/share/color-schemes/Gruvbox Dark Hard.colors"
-      - "~/.local/share/color-schemes/Gruvbox Light Soft.colors"
+    # Terminal configurations
+    - ~/.config/ghostty/config
+    - "~/.config/ghostty/themes/Gruvbox Dark Hard"
+    - "~/.config/ghostty/themes/Gruvbox Light Soft"
+    - ~/.config/rio/config.toml
+    - ~/.config/rio/themes/gruvbox-dark-hard.toml
+    - ~/.config/rio/themes/gruvbox-light-soft.toml
+    - ~/.config/kitty/kitty.conf
+    - ~/.config/kitty/themes/gruvbox-dark-hard.conf
+    - ~/.config/kitty/themes/gruvbox-light-soft.conf
+    - ~/.config/contour/contour.yml
+    - ~/.wezterm.lua
+    - ~/.config/konsolerc
+    - ~/.config/konsole/style.css
+    - ~/.local/share/konsole/Light.profile
+    - ~/.local/share/konsole/Dark.profile
+    - "~/.local/share/konsole/Gruvbox Dark Hard.colorscheme"
+    - "~/.local/share/konsole/Gruvbox Light Soft.colorscheme"
+    - "~/.local/share/color-schemes/Gruvbox Dark Hard.colors"
+    - "~/.local/share/color-schemes/Gruvbox Light Soft.colors"
 
-      # KDE app configs
-      - ~/.config/kglobalshortcutsrc
-      - ~/.config/kwinrc
-      - ~/.config/dolphinrc
-      - ~/.config/spectaclerc
-      - ~/.config/kcminputrc
-      - ~/.config/krunnerrc
+    # KDE app configs
+    - ~/.config/kglobalshortcutsrc
+    - ~/.config/kwinrc
+    - ~/.config/dolphinrc
+    - ~/.config/spectaclerc
+    - ~/.config/kcminputrc
+    - ~/.config/krunnerrc
 
-      # Other tools
-      - ~/.config/starship.toml
-      - ~/.gitconfig
+    # Other tools
+    - ~/.config/starship.toml
+    - ~/.gitconfig
+
+# ============================================================================
+# Remove Regular Files (if they exist, but NOT if they're symlinks)
+# ============================================================================
+# This ensures symlinks can be created even if regular files exist
+# Only removes files that are NOT symlinks (to avoid deleting repo files)
+- shell:
+    - command: |
+        remove_if_regular() {
+          for f in "$@"; do
+            [ -f "$f" ] && [ ! -L "$f" ] && rm -f "$f"
+          done
+        }
+        remove_if_regular ~/.config/helix/config.toml
+        remove_if_regular ~/.config/nvim/init.lua ~/.config/nvim/lazy-lock.json ~/.config/nvim/.stylua.toml
+        remove_if_regular ~/.config/nvim/lua/core/keymaps.lua ~/.config/nvim/lua/core/lazy.lua ~/.config/nvim/lua/core/options.lua
+        remove_if_regular ~/.config/nvim/lua/plugins/comments.lua ~/.config/nvim/lua/plugins/completions.lua
+        remove_if_regular ~/.config/nvim/lua/plugins/formatting.lua ~/.config/nvim/lua/plugins/init.lua
+        remove_if_regular ~/.config/nvim/lua/plugins/lsp.lua ~/.config/nvim/lua/plugins/motions.lua
+        remove_if_regular ~/.config/nvim/lua/plugins/themes.lua ~/.config/nvim/lua/plugins/ui.lua
+        remove_if_regular ~/.config/ghostty/config
+        remove_if_regular ~/.config/ghostty/themes/"Gruvbox Dark Hard" ~/.config/ghostty/themes/"Gruvbox Light Soft"
+        remove_if_regular ~/.config/kitty/kitty.conf
+        remove_if_regular ~/.config/kitty/themes/gruvbox-dark-hard.conf ~/.config/kitty/themes/gruvbox-light-soft.conf
+        remove_if_regular ~/.config/rio/config.toml
+        remove_if_regular ~/.config/rio/themes/gruvbox-dark-hard.toml ~/.config/rio/themes/gruvbox-light-soft.toml
+        remove_if_regular ~/.config/contour/contour.yml
+        remove_if_regular ~/.config/opencode/opencode.json ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json
+        true
+      description: Removing regular files that block symlink creation
+      quiet: true
 
 # ============================================================================
 # Create Symlinks
 # ============================================================================
 # Link dotfiles and configuration directories to their target locations
 - link:
-      # Shell configurations
-      ~/.zshrc: shells/zsh/.zshrc
-      ~/.zprofile: shells/zsh/.zprofile
-      ~/.bashrc: shells/bash/.bashrc
-      ~/.bash_profile: shells/bash/.bash_profile
-      ~/.profile: shells/.profile
+    # Shell configurations
+    ~/.zshrc: shells/zsh/.zshrc
+    ~/.zprofile: shells/zsh/.zprofile
+    ~/.bashrc: shells/bash/.bashrc
+    ~/.bash_profile: shells/bash/.bash_profile
+    ~/.profile: shells/.profile
 
-      # Editor configurations
-      ~/.config/helix/config.toml: editors/helix/config.toml
-      ~/.config/nvim/init.lua: editors/nvim/init.lua
-      ~/.config/nvim/lazy-lock.json: editors/nvim/lazy-lock.json
-      ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
-      ~/.config/nvim/lua/core/keymaps.lua: editors/nvim/lua/core/keymaps.lua
-      ~/.config/nvim/lua/core/lazy.lua: editors/nvim/lua/core/lazy.lua
-      ~/.config/nvim/lua/core/options.lua: editors/nvim/lua/core/options.lua
-      ~/.config/nvim/lua/plugins/comments.lua: editors/nvim/lua/plugins/comments.lua
-      ~/.config/nvim/lua/plugins/completions.lua: editors/nvim/lua/plugins/completions.lua
-      ~/.config/nvim/lua/plugins/formatting.lua: editors/nvim/lua/plugins/formatting.lua
-      ~/.config/nvim/lua/plugins/init.lua: editors/nvim/lua/plugins/init.lua
-      ~/.config/nvim/lua/plugins/lsp.lua: editors/nvim/lua/plugins/lsp.lua
-      ~/.config/nvim/lua/plugins/motions.lua: editors/nvim/lua/plugins/motions.lua
-      ~/.config/nvim/lua/plugins/themes.lua: editors/nvim/lua/plugins/themes.lua
-      ~/.config/nvim/lua/plugins/ui.lua: editors/nvim/lua/plugins/ui.lua
-      ~/.config/zed/keymap.json: editors/zed/keymap.json
-      ~/.config/zed/settings.json: editors/zed/settings.json
-      ~/.config/zed/tasks.json: editors/zed/tasks.json
+    # Editor configurations
+    ~/.config/helix/config.toml: editors/helix/config.toml
+    ~/.config/nvim/init.lua: editors/nvim/init.lua
+    ~/.config/nvim/lazy-lock.json: editors/nvim/lazy-lock.json
+    ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
+    ~/.config/nvim/lua/core/keymaps.lua: editors/nvim/lua/core/keymaps.lua
+    ~/.config/nvim/lua/core/lazy.lua: editors/nvim/lua/core/lazy.lua
+    ~/.config/nvim/lua/core/options.lua: editors/nvim/lua/core/options.lua
+    ~/.config/nvim/lua/plugins/comments.lua: editors/nvim/lua/plugins/comments.lua
+    ~/.config/nvim/lua/plugins/completions.lua: editors/nvim/lua/plugins/completions.lua
+    ~/.config/nvim/lua/plugins/formatting.lua: editors/nvim/lua/plugins/formatting.lua
+    ~/.config/nvim/lua/plugins/init.lua: editors/nvim/lua/plugins/init.lua
+    ~/.config/nvim/lua/plugins/lsp.lua: editors/nvim/lua/plugins/lsp.lua
+    ~/.config/nvim/lua/plugins/motions.lua: editors/nvim/lua/plugins/motions.lua
+    ~/.config/nvim/lua/plugins/themes.lua: editors/nvim/lua/plugins/themes.lua
+    ~/.config/nvim/lua/plugins/ui.lua: editors/nvim/lua/plugins/ui.lua
+    ~/.config/zed/keymap.json: editors/zed/keymap.json
+    ~/.config/zed/settings.json: editors/zed/settings.json
+    ~/.config/zed/tasks.json: editors/zed/tasks.json
 
-      # Terminal configurations
-      ~/.config/ghostty/config: terminals/ghostty/config
-      "~/.config/ghostty/themes/Gruvbox Dark Hard": "terminals/ghostty/themes/Gruvbox Dark Hard"
-      "~/.config/ghostty/themes/Gruvbox Light Soft": "terminals/ghostty/themes/Gruvbox Light Soft"
-      ~/.config/kitty/kitty.conf: terminals/kitty/kitty.conf
-      ~/.config/kitty/themes/gruvbox-dark-hard.conf: terminals/kitty/themes/gruvbox-dark-hard.conf
-      ~/.config/kitty/themes/gruvbox-light-soft.conf: terminals/kitty/themes/gruvbox-light-soft.conf
-      ~/.config/rio/config.toml: terminals/rio/config.toml
-      ~/.config/rio/themes/gruvbox-dark-hard.toml: terminals/rio/themes/gruvbox-dark-hard.toml
-      ~/.config/rio/themes/gruvbox-light-soft.toml: terminals/rio/themes/gruvbox-light-soft.toml
-      ~/.config/contour/contour.yml: terminals/contour/contour.yml
-      ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
+    # Terminal configurations
+    ~/.config/ghostty/config: terminals/ghostty/config
+    "~/.config/ghostty/themes/Gruvbox Dark Hard": "terminals/ghostty/themes/Gruvbox Dark Hard"
+    "~/.config/ghostty/themes/Gruvbox Light Soft": "terminals/ghostty/themes/Gruvbox Light Soft"
+    ~/.config/kitty/kitty.conf: terminals/kitty/kitty.conf
+    ~/.config/kitty/themes/gruvbox-dark-hard.conf: terminals/kitty/themes/gruvbox-dark-hard.conf
+    ~/.config/kitty/themes/gruvbox-light-soft.conf: terminals/kitty/themes/gruvbox-light-soft.conf
+    ~/.config/rio/config.toml: terminals/rio/config.toml
+    ~/.config/rio/themes/gruvbox-dark-hard.toml: terminals/rio/themes/gruvbox-dark-hard.toml
+    ~/.config/rio/themes/gruvbox-light-soft.toml: terminals/rio/themes/gruvbox-light-soft.toml
+    ~/.config/contour/contour.yml: terminals/contour/contour.yml
+    ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
 
-      # Konsole configurations
-      ~/.config/konsolerc: terminals/konsole/konsolerc
-      ~/.config/konsole/style.css: terminals/konsole/style.css
-      ~/.local/share/konsole/Light.profile: terminals/konsole/profiles/Light.profile
-      ~/.local/share/konsole/Dark.profile: terminals/konsole/profiles/Dark.profile
-      "~/.local/share/konsole/Gruvbox Dark Hard.colorscheme": "terminals/konsole/colorschemes/Gruvbox Dark Hard.colorscheme"
-      "~/.local/share/konsole/Gruvbox Light Soft.colorscheme": "terminals/konsole/colorschemes/Gruvbox Light Soft.colorscheme"
+    # Konsole configurations
+    ~/.config/konsolerc: terminals/konsole/konsolerc
+    ~/.config/konsole/style.css: terminals/konsole/style.css
+    ~/.local/share/konsole/Light.profile: terminals/konsole/profiles/Light.profile
+    ~/.local/share/konsole/Dark.profile: terminals/konsole/profiles/Dark.profile
+    "~/.local/share/konsole/Gruvbox Dark Hard.colorscheme": "terminals/konsole/colorschemes/Gruvbox Dark Hard.colorscheme"
+    "~/.local/share/konsole/Gruvbox Light Soft.colorscheme": "terminals/konsole/colorschemes/Gruvbox Light Soft.colorscheme"
 
-      # KDE Plasma configurations
-      # Note: kdeglobals and plasmarc are NOT symlinked - Koi modifies them directly
-      "~/.local/share/color-schemes/Gruvbox Dark Hard.colors": "kde/color-schemes/Gruvbox Dark Hard.colors"
-      "~/.local/share/color-schemes/Gruvbox Light Soft.colors": "kde/color-schemes/Gruvbox Light Soft.colors"
-      # KDE app configs (compatible between Plasma 5.27 and 6.x)
-      ~/.config/kglobalshortcutsrc: kde/configs/kglobalshortcutsrc
-      ~/.config/kwinrc: kde/configs/kwinrc
-      ~/.config/dolphinrc: kde/configs/dolphinrc
-      ~/.config/spectaclerc: kde/configs/spectaclerc
-      ~/.config/kcminputrc: kde/configs/kcminputrc
-      ~/.config/krunnerrc: kde/configs/krunnerrc
+    # KDE Plasma configurations
+    # Note: kdeglobals and plasmarc are NOT symlinked - Koi modifies them directly
+    "~/.local/share/color-schemes/Gruvbox Dark Hard.colors": "kde/color-schemes/Gruvbox Dark Hard.colors"
+    "~/.local/share/color-schemes/Gruvbox Light Soft.colors": "kde/color-schemes/Gruvbox Light Soft.colors"
+    # KDE app configs (compatible between Plasma 5.27 and 6.x)
+    ~/.config/kglobalshortcutsrc: kde/configs/kglobalshortcutsrc
+    ~/.config/kwinrc: kde/configs/kwinrc
+    ~/.config/dolphinrc: kde/configs/dolphinrc
+    ~/.config/spectaclerc: kde/configs/spectaclerc
+    ~/.config/kcminputrc: kde/configs/kcminputrc
+    ~/.config/krunnerrc: kde/configs/krunnerrc
 
-      # Prompt configuration
-      ~/.config/starship.toml: starship/starship.toml
+    # Prompt configuration
+    ~/.config/starship.toml: starship/starship.toml
 
-      # Git configuration
-      ~/.gitconfig: .gitconfig
+    # Git configuration
+    ~/.gitconfig: .gitconfig
 
-      # Theme configuration
-      ~/.config/opencode/opencode.json: opencode/opencode.json
-      ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json: opencode/themes/gruvbox-dark-hard-light-soft.json
-      ~/.config/koi/light.sh: koi/light.sh
-      ~/.config/koi/dark.sh: koi/dark.sh
+    # Theme configuration
+    ~/.config/opencode/opencode.json: opencode/opencode.json
+    ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json: opencode/themes/gruvbox-dark-hard-light-soft.json
+    ~/.config/koi/light.sh: koi/light.sh
+    ~/.config/koi/dark.sh: koi/dark.sh
