@@ -140,7 +140,6 @@
 
       # Theme configuration
       ~/.config/opencode/opencode.json: opencode/opencode.json
-      ~/.config/opencode/themes/gruvbox-dark-hard.json: opencode/themes/gruvbox-dark-hard.json
-      ~/.config/opencode/themes/gruvbox-light-soft.json: opencode/themes/gruvbox-light-soft.json
+      ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json: opencode/themes/gruvbox-dark-hard-light-soft.json
       ~/.config/koi/light.sh: koi/light.sh
       ~/.config/koi/dark.sh: koi/dark.sh
