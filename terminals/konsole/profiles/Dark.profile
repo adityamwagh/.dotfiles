@@ -6,5 +6,8 @@ Font=Iosevka Extended,11,-1,5,50,0,0,0,0,0
 CursorShape=1
 
 [General]
+Command=/bin/zsh
 Name=Dark
-Parent=FALLBACK/
+
+[Scrolling]
+HistoryMode=2

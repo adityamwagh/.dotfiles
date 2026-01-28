@@ -1,5 +1,5 @@
 [Desktop Entry]
-DefaultProfile=Dark.profile
+DefaultProfile=Light.profile
 
 [General]
 ConfigVersion=1
@@ -11,9 +11,10 @@ ShowWindowTitleOnTitleBar=true
 [MainWindow]
 1536x960 screen: Height=633
 1536x960 screen: Width=1302
-RestorePositionForNextInstance=false
+RestorePositionForNextInstance[$d]
 State=AAAA/wAAAAD9AAAAAQAAAAAAAAEYAAAB3vwCAAAAAvsAAAAcAFMAUwBIAE0AYQBuAGEAZwBlAHIARABvAGMAawAAAAAA/////wAAAQ0BAAAD+wAAACIAUQB1AGkAYwBrAEMAbwBtAG0AYQBuAGQAcwBEAG8AYwBrAAAAAC4AAAHeAAABdgEAAAMAAAUWAAACSwAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAACAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAAAAAAAAAABwAcwBlAHMAcwBpAG8AbgBUAG8AbwBsAGIAYQByAQAAAOn/////AAAAAAAAAAA=
 ToolBarsMovable=Disabled
 
-[UiSettings]
-ColorScheme=
+[TabBar]
+NewTabBehavior=PutNewTabAfterCurrentTab
+TabBarVisibility=ShowTabBarWhenNeeded

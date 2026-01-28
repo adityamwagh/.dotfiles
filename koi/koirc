@@ -48,6 +48,6 @@ enabled=true
 light=/home/aditya/.config/koi/light.sh
 
 [Wallpaper]
-dark=
-enabled=false
-light=
+dark=/home/aditya/.work-dotfiles/personal/wallpapers/gruvbox-lines/dark/3840x2160-dark-lines.png
+enabled=true
+light=/home/aditya/.work-dotfiles/personal/wallpapers/gruvbox-lines/light/3840x2160-light-lines.png
