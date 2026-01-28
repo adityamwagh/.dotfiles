@@ -251,6 +251,47 @@ if [ "$(uname)" = "Linux" ]; then
     fi
 fi
 
+# Gruvbox Plus Icon Theme (Linux only)
+if [ "$(uname)" = "Linux" ]; then
+    ICONS_DIR="$HOME/.local/share/icons"
+    GRUVBOX_ICONS_REPO="https://github.com/SylEleuth/gruvbox-plus-icon-pack.git"
+    FOLDER_COLOR_SCRIPT_URL="https://github.com/SylEleuth/gruvbox-plus-icon-pack/releases/download/v6.2.0/folders-color-chooser.sh"
+    
+    if [ -d "$ICONS_DIR/Gruvbox-Plus-Dark" ] && [ -d "$ICONS_DIR/Gruvbox-Plus-Light" ]; then
+        ok "Gruvbox Plus icons installed"
+    else
+        header "Installing Gruvbox Plus icon theme..."
+        mkdir -p "$ICONS_DIR"
+        TMP=$(mktemp -d)
+        
+        if git clone --depth 1 "$GRUVBOX_ICONS_REPO" "$TMP/gruvbox-plus" 2>/dev/null; then
+            # Move icon themes to icons directory
+            cp -r "$TMP/gruvbox-plus/Gruvbox-Plus-Dark" "$ICONS_DIR/"
+            cp -r "$TMP/gruvbox-plus/Gruvbox-Plus-Light" "$ICONS_DIR/"
+            
+            # Download and run folder color chooser script to set green folders
+            if curl -sL "$FOLDER_COLOR_SCRIPT_URL" -o "$ICONS_DIR/folders-color-chooser.sh"; then
+                chmod +x "$ICONS_DIR/folders-color-chooser.sh"
+                cd "$ICONS_DIR"
+                ./folders-color-chooser.sh -c green >/dev/null 2>&1 || true
+                cd "$BASEDIR"
+            fi
+            
+            # Update icon cache
+            has gtk-update-icon-cache && {
+                gtk-update-icon-cache -f "$ICONS_DIR/Gruvbox-Plus-Dark" 2>/dev/null || true
+                gtk-update-icon-cache -f "$ICONS_DIR/Gruvbox-Plus-Light" 2>/dev/null || true
+            }
+            
+            ok "Gruvbox Plus icons installed (green folders)"
+        else
+            warn "Failed to clone Gruvbox Plus icons"
+        fi
+        
+        rm -rf "$TMP"
+    fi
+fi
+
 # Dotbot (symlinks)
 header "Setting up symlinks..."
 git -C dotbot submodule sync --quiet --recursive

@@ -66,8 +66,6 @@
       - "~/.local/share/konsole/Gruvbox Light Soft.colorscheme"
       - "~/.local/share/color-schemes/Gruvbox Dark Hard.colors"
       - "~/.local/share/color-schemes/Gruvbox Light Soft.colors"
-      - ~/.config/kdeglobals
-      - ~/.config/plasmarc
 
       # Other tools
       - ~/.config/starship.toml
@@ -127,8 +125,7 @@
       "~/.local/share/konsole/Gruvbox Light Soft.colorscheme": "terminals/konsole/colorschemes/Gruvbox Light Soft.colorscheme"
 
       # KDE Plasma configurations
-      ~/.config/kdeglobals: kde/kdeglobals
-      ~/.config/plasmarc: kde/plasmarc
+      # Note: kdeglobals and plasmarc are NOT symlinked - Koi modifies them directly
       "~/.local/share/color-schemes/Gruvbox Dark Hard.colors": "kde/color-schemes/Gruvbox Dark Hard.colors"
       "~/.local/share/color-schemes/Gruvbox Light Soft.colors": "kde/color-schemes/Gruvbox Light Soft.colors"
 
@@ -141,5 +138,8 @@
       # Theme configuration
       ~/.config/opencode/opencode.json: opencode/opencode.json
       ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json: opencode/themes/gruvbox-dark-hard-light-soft.json
+      ~/.config/opencode/themes/gruvbox-dark-hard.json: opencode/themes/gruvbox-dark-hard.json
+      ~/.config/opencode/themes/gruvbox-light-soft.json: opencode/themes/gruvbox-light-soft.json
+      ~/.config/koirc: koi/koirc
       ~/.config/koi/light.sh: koi/light.sh
       ~/.config/koi/dark.sh: koi/dark.sh

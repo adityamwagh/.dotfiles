@@ -16,3 +16,11 @@ CURSOR_SETTINGS="${HOME}/.config/Cursor/User/settings.json"
 # Helix
 HELIX_CONFIG="${HOME}/.config/helix/config.toml"
 [ -f "$HELIX_CONFIG" ] && sed -i 's/theme = "[^"]*"/theme = "gruvbox_light_soft"/' "$HELIX_CONFIG" && pgrep -x hx >/dev/null && pkill -USR1 -x hx
+
+# OpenCode
+# Note: OpenCode doesn't support SIGUSR1 for theme reloading (feature requested in issue #815)
+# We modify the config file; changes apply on next launch or via /theme command in TUI
+OPENCODE_CONFIG="${HOME}/.config/opencode/opencode.json"
+if [ -f "$OPENCODE_CONFIG" ]; then
+  sed -i 's/"theme":\s*"[^"]*"/"theme": "gruvbox-light-soft"/' "$OPENCODE_CONFIG"
+fi

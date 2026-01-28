@@ -3,13 +3,13 @@ current=Dark
 notify=2
 schedule=2
 schedule-type=time
-start-hidden=2
+start-hidden=0
 time-dark=16:00:00
 time-light=09:00:00
 
 [ColorScheme]
 dark=Gruvbox Dark Hard
-enabled=false
+enabled=true
 light=Gruvbox Light Soft
 
 [GTKTheme]
@@ -18,9 +18,9 @@ enabled=false
 light=Breeze
 
 [IconTheme]
-dark=Gruvbox
+dark=Gruvbox-Plus-Dark
 enabled=true
-light=Gruvbox
+light=Gruvbox-Plus-Light
 
 [KFileDialog%20Settings]
 Recent%20Files%5B%24e%5D=light.sh, file:$HOME/.config/koi/dark.sh, file:$HOME/.config/koi/light.sh
@@ -38,9 +38,9 @@ enabled=false
 light=
 
 [PlasmaStyle]
-dark=BreezeDark
+dark=default
 enabled=true
-light=Breeze
+light=default
 
 [Script]
 dark=/home/aditya/.config/koi/dark.sh
