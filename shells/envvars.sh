@@ -44,3 +44,4 @@ esac
 
 # Load local environment variables (secrets, machine-specific config)
 [ -f "$HOME/.env" ] && . "$HOME/.env"
+export LIBVA_DRIVER_NAME=iHD

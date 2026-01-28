@@ -67,6 +67,14 @@
       - "~/.local/share/color-schemes/Gruvbox Dark Hard.colors"
       - "~/.local/share/color-schemes/Gruvbox Light Soft.colors"
 
+      # KDE app configs
+      - ~/.config/kglobalshortcutsrc
+      - ~/.config/kwinrc
+      - ~/.config/dolphinrc
+      - ~/.config/spectaclerc
+      - ~/.config/kcminputrc
+      - ~/.config/krunnerrc
+
       # Other tools
       - ~/.config/starship.toml
       - ~/.gitconfig
@@ -128,6 +136,13 @@
       # Note: kdeglobals and plasmarc are NOT symlinked - Koi modifies them directly
       "~/.local/share/color-schemes/Gruvbox Dark Hard.colors": "kde/color-schemes/Gruvbox Dark Hard.colors"
       "~/.local/share/color-schemes/Gruvbox Light Soft.colors": "kde/color-schemes/Gruvbox Light Soft.colors"
+      # KDE app configs (compatible between Plasma 5.27 and 6.x)
+      ~/.config/kglobalshortcutsrc: kde/configs/kglobalshortcutsrc
+      ~/.config/kwinrc: kde/configs/kwinrc
+      ~/.config/dolphinrc: kde/configs/dolphinrc
+      ~/.config/spectaclerc: kde/configs/spectaclerc
+      ~/.config/kcminputrc: kde/configs/kcminputrc
+      ~/.config/krunnerrc: kde/configs/krunnerrc
 
       # Prompt configuration
       ~/.config/starship.toml: starship/starship.toml
@@ -138,8 +153,5 @@
       # Theme configuration
       ~/.config/opencode/opencode.json: opencode/opencode.json
       ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json: opencode/themes/gruvbox-dark-hard-light-soft.json
-      ~/.config/opencode/themes/gruvbox-dark-hard.json: opencode/themes/gruvbox-dark-hard.json
-      ~/.config/opencode/themes/gruvbox-light-soft.json: opencode/themes/gruvbox-light-soft.json
-      ~/.config/koirc: koi/koirc
       ~/.config/koi/light.sh: koi/light.sh
       ~/.config/koi/dark.sh: koi/dark.sh

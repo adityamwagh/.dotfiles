@@ -1,0 +1,14 @@
+[$Version]
+update_info=spectacle_clipboard.upd:clipboard-settings-change,spectacle_rememberregion.upd:spectacle-migrate-rememberregion
+
+[FileDialogSize]
+2 screens: Height=631
+2 screens: Width=932
+
+[GuiConfig]
+captureMode=0
+
+[KFileDialog Settings]
+Recent Files[$e]=Screenshot_20260119_141712.png,file:$HOME/Pictures/Screenshot_20260119_141712.png
+Recent URLs[$e]=file:$HOME/Pictures/
+detailViewIconSize=16

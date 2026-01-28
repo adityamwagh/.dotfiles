@@ -36,8 +36,14 @@ bindkey -e
 [ -f "$HOME/.dotfiles/shells/aliases.sh" ] && . "$HOME/.dotfiles/shells/aliases.sh"
 
 # Load and initialise completion system (after PATH is set)
+# Only regenerate completion dump once per day for faster startup
 fpath+=~/.zfunc
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # Source tool and application initializations
 [ -f "$HOME/.dotfiles/shells/tools.sh" ] && . "$HOME/.dotfiles/shells/tools.sh"
