@@ -103,11 +103,6 @@ fi
 # System aliases
 alias sudo='sudo '
 
-# Safety aliases for destructive operations
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-
 # System package manager aliases
 if command -v apt >/dev/null 2>&1; then
     alias dnf='nala'

@@ -80,37 +80,6 @@
     - ~/.gitconfig
 
 # ============================================================================
-# Remove Regular Files (if they exist, but NOT if they're symlinks)
-# ============================================================================
-# This ensures symlinks can be created even if regular files exist
-# Only removes files that are NOT symlinks (to avoid deleting repo files)
-- shell:
-    - command: |
-        remove_if_regular() {
-          for f in "$@"; do
-            [ -f "$f" ] && [ ! -L "$f" ] && rm -f "$f"
-          done
-        }
-        remove_if_regular ~/.config/helix/config.toml
-        remove_if_regular ~/.config/nvim/init.lua ~/.config/nvim/lazy-lock.json ~/.config/nvim/.stylua.toml
-        remove_if_regular ~/.config/nvim/lua/core/keymaps.lua ~/.config/nvim/lua/core/lazy.lua ~/.config/nvim/lua/core/options.lua
-        remove_if_regular ~/.config/nvim/lua/plugins/comments.lua ~/.config/nvim/lua/plugins/completions.lua
-        remove_if_regular ~/.config/nvim/lua/plugins/formatting.lua ~/.config/nvim/lua/plugins/init.lua
-        remove_if_regular ~/.config/nvim/lua/plugins/lsp.lua ~/.config/nvim/lua/plugins/motions.lua
-        remove_if_regular ~/.config/nvim/lua/plugins/themes.lua ~/.config/nvim/lua/plugins/ui.lua
-        remove_if_regular ~/.config/ghostty/config
-        remove_if_regular ~/.config/ghostty/themes/"Gruvbox Dark Hard" ~/.config/ghostty/themes/"Gruvbox Light Soft"
-        remove_if_regular ~/.config/kitty/kitty.conf
-        remove_if_regular ~/.config/kitty/themes/gruvbox-dark-hard.conf ~/.config/kitty/themes/gruvbox-light-soft.conf
-        remove_if_regular ~/.config/rio/config.toml
-        remove_if_regular ~/.config/rio/themes/gruvbox-dark-hard.toml ~/.config/rio/themes/gruvbox-light-soft.toml
-        remove_if_regular ~/.config/contour/contour.yml
-        remove_if_regular ~/.config/opencode/opencode.json ~/.config/opencode/themes/gruvbox-dark-hard-light-soft.json
-        true
-      description: Removing regular files that block symlink creation
-      quiet: true
-
-# ============================================================================
 # Create Symlinks
 # ============================================================================
 # Link dotfiles and configuration directories to their target locations
