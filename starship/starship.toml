@@ -1,0 +1,55 @@
+add_newline = false # Keep the prompt directly below command output.
+
+[os]
+format   = "[$os](style)" # Show the operating-system segment.
+disabled = false          # Enable the operating-system segment.
+style    = "bold yellow"  # Render the operating-system segment in yellow.
+
+[shell]
+disabled       = false  # Show the active shell segment.
+bash_indicator = "bash" # Label Bash sessions explicitly.
+
+[sudo]
+style    = 'bold red' # Highlight elevated sessions in red.
+disabled = false      # Show sudo status when active.
+
+[username]
+disabled    = false                              # Show the username segment.
+format      = "[$user]($style)[@](bold dimmed)" # Render the username before the host separator.
+style_user  = "bold green"                      # Render normal users in green.
+style_root  = "bold red"                        # Render root users in red.
+show_always = true                              # Show the username outside SSH too.
+
+[hostname]
+disabled = false                                  # Show the hostname segment.
+ssh_only = false                                  # Show the hostname locally and over SSH.
+format   = "[$ssh_symbol]($style)[$hostname]($style) " # Render SSH marker and hostname together.
+style    = "bold cyan"                            # Render the hostname in cyan.
+
+[directory]
+format            = "[$path]($style) " # Show the current directory path.
+disabled          = false              # Enable the directory segment.
+truncation_length = 5                  # Keep at most five path components.
+style             = "bold blue"        # Render the directory in blue.
+
+[custom.gh_auth]
+command        = "awk '/^[[:space:]]*user:/ {print $2; exit}' ~/.config/gh/hosts.yml 2>/dev/null || echo 'unknown'" # Read the active GitHub CLI user.
+when           = "command -v gh >/dev/null 2>&1 && [ -f ~/.config/gh/hosts.yml ]"                                    # Show only when gh is configured.
+format         = "[gh:](bold black)[$output](bold green) "                                                            # Render the GitHub user segment.
+ignore_timeout = true                                                                                                # Keep the prompt responsive if the check is slow.
+
+[env_var.ENVIRONMENT]
+format   = "[\\[](bold white)[$env_value](bold $style)[\\]](bold white) " # Render ENVIRONMENT in brackets.
+disabled = false                                                          # Enable the environment variable segment.
+variable = "ENVIRONMENT"                                                  # Read the ENVIRONMENT variable.
+style    = "yellow"                                                       # Render the environment value in yellow.
+
+[time]
+disabled        = false
+format          = "[$time]($style) "
+style           = "bold purple"
+time_format     = "%H:%M:%S"
+
+[character]
+success_symbol = "[❱](bold yellow)[❱](bold green)[❱](bold red)" # Prompt symbol after successful commands.
+error_symbol   = "[❱](bold yellow)[❱](bold green)[❱](bold red)" # Prompt symbol after failed commands.

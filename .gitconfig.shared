@@ -1,0 +1,45 @@
+[init]
+# Use main for newly initialized repositories.
+defaultBranch = main
+
+[push]
+# Push new branches to a same-named upstream automatically.
+autoSetupRemote = true
+
+[credential "https://github.com"]
+# Delegate GitHub credentials to the GitHub CLI.
+helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+# Delegate Gist credentials to the GitHub CLI.
+helper = !gh auth git-credential
+
+[filter "lfs"]
+# Clean large files through Git LFS.
+clean = git-lfs clean -- %f
+# Restore large files through Git LFS.
+smudge = git-lfs smudge -- %f
+# Use the long-running Git LFS filter process.
+process = git-lfs filter-process
+# Require Git LFS filters for repositories that use them.
+required = true
+
+[core]
+# Use Zed as the blocking Git editor.
+editor = zed --wait
+
+[diff]
+# Use Zed for visual diffs.
+tool = zed
+
+[difftool "zed"]
+# Open Zed's diff view for difftool invocations.
+cmd = zed --wait --diff $LOCAL $REMOTE
+
+[merge]
+# Use Zed for merge conflict resolution.
+tool = zed
+
+[mergetool "zed"]
+# Open Zed on the merged file for mergetool invocations.
+cmd = zed --wait $MERGED

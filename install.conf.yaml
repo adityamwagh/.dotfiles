@@ -1,0 +1,82 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
+
+- clean: # Remove stale dotfile symlinks.
+    ~/: # Clean top-level dotfile links.
+      recursive: false # Do not scan home recursively.
+      force: false # Only clean links into this repo.
+    ~/.config: # Clean direct config links.
+      recursive: false # Avoid scanning app internals.
+      force: false # Preserve non-dotfile broken links.
+
+- link:
+    # Shell
+    ~/.bash_profile: shells/bash/.bash_profile
+    ~/.bashrc: shells/bash/.bashrc
+    ~/.profile: shells/.profile
+    ~/.zprofile: shells/zsh/.zprofile
+    ~/.zshenv: shells/zsh/.zshenv
+    ~/.zshrc: shells/zsh/.zshrc
+
+    # Git
+    ~/.gitconfig: .gitconfig
+
+    # Packages
+    ~/.Brewfile: Brewfile
+
+    # Prompt
+    ~/.config/starship.toml: starship/starship.toml
+
+    # Neovim
+    ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
+    ~/.config/nvim/init.lua: editors/nvim/init.lua
+    ~/.config/nvim/lua: editors/nvim/lua
+    ~/.config/nvim/colors: editors/nvim/colors
+
+    # Zed
+    ~/.config/zed/settings.json: editors/zed/settings.json
+    ~/.config/zed/tasks.json: editors/zed/tasks.json
+    ~/.config/zed/themes: editors/zed/themes
+    ~/.config/zed/keymap.json: editors/zed/keymap.json
+
+    # Ghostty
+    ~/.config/ghostty/config.ghostty: terminals/ghostty/config.ghostty
+    ~/.config/ghostty/themes: terminals/ghostty/themes
+
+    # WezTerm
+    ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
+    ~/.config/wezterm/colors: terminals/wezterm/colors
+
+    # Fonts
+    ~/.local/bin/install-fonts: fonts/install-fonts.sh
+
+    # Scripts
+    ~/.local/bin/check-git-identity: scripts/check-git-identity.sh
+
+    # Konsole colorschemes
+    ~/.local/share/konsole/:
+      glob: true
+      path: terminals/konsole/colorschemes/*.colorscheme
+      if: "[ $(uname) = Linux ]"
+    ~/Library/Application Support/konsole/:
+      glob: true
+      path: terminals/konsole/colorschemes/*.colorscheme
+      if: "[ $(uname) = Darwin ]"
+
+    # Coding Agents
+    ~/.config/opencode/opencode.json: opencode/opencode.json
+    ~/.config/opencode/themes: opencode/themes
+
+- shell:
+    - [
+        "if command -v brew >/dev/null 2>&1; then brew bundle --file ~/.dotfiles/Brewfile; fi",
+        "Install Brew packages",
+      ]
+    - ["~/.local/bin/install-fonts ~/.dotfiles", "Install fonts"]

@@ -1,0 +1,31 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node modules
+node_modules/
+
+# Pre-commit cache
+.pre-commit-cache/
+
+# Konsole generated profiles
+terminals/konsole/colorschemes/*.profile
+
+# Nix hardware-specific config
+hardware-configuration.nix

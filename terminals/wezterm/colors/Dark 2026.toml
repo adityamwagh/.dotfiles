@@ -1,0 +1,12 @@
+# Dark 2026
+[colors]
+foreground = "#bbbebf"
+background = "#121314"
+cursor_bg = "#e5ba7d"
+cursor_border = "#e5ba7d"
+cursor_fg = "#121314"
+selection_bg = "#276782"
+selection_fg = "#bbbebf"
+
+ansi = ["#0d1117","#ff7b72","#7ee787","#e5ba7d","#79c0ff","#d2a8ff","#a5d6ff","#bbbebf"]
+brights = ["#8b949e","#ff7b72","#7ee787","#e5ba7d","#79c0ff","#d2a8ff","#a5d6ff","#c9d1d9"]

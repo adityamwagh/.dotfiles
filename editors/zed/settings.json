@@ -1,0 +1,192 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "session": {
+    "trust_all_worktrees": true // Trust every opened worktree without prompting.
+  },
+  "vim_mode": true, // Enable Vim keybindings.
+  "edit_predictions": {
+    "provider": "mercury" // Use Mercury for edit predictions.
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
+    "github-copilot": {
+      "type": "registry" // Load GitHub Copilot from Zed's registry.
+    },
+    "opencode": {
+      "type": "registry" // Load opencode from Zed's registry.
+    }
+  },
+  "debugger": {
+    "dock": "left" // Dock the debugger panel on the left.
+  },
+  "active_pane_modifiers": {
+    "border_size": 1.0, // Draw a 1px inset border around the active pane.
+    "inactive_opacity": 1.0 // Keep inactive panes fully opaque.
+  },
+  "centered_layout": {
+    "left_padding": 0.2, // Reserve centered-layout padding on the left side of the editor.
+    "right_padding": 0.2 // Reserve centered-layout padding on the right side of the editor.
+  },
+  "drop_target_size": 0.2, // Size the drag-and-drop split target as a fraction of the editor.
+  "zoomed_padding": true, // Keep padding around panels when a pane is zoomed.
+  "minimum_split_diff_width": 100, // Use split diff view once enough horizontal space is available.
+  "project_panel": {
+    "dock": "left", // Dock the project panel on the left.
+    "indent_size": 15, // Use compact tree indentation.
+    "entry_spacing": "standard" // Use standard spacing between entries.
+  },
+  "outline_panel": {
+    "dock": "left", // Dock the outline panel on the left.
+    "indent_size": 15 // Use compact outline tree indentation.
+  },
+  "collaboration_panel": {
+    "dock": "right" // Dock the collaboration panel on the left.
+  },
+  "git_panel": {
+    "dock": "left" // Dock the Git panel on the left.
+  },
+  "restore_on_startup": "last_workspace", // Reopen the last workspace on startup.
+  "resize_all_panels_in_dock": ["left"], // Resize all left-dock panels together when one is resized.
+  "agent": {
+    "dock": "right", // Dock the agent panel on the right.
+    "flexible": true, // Use flexible proportional sizing for the agent panel.
+    "limit_content_width": true, // Center and constrain agent response content.
+    "max_content_width": 850, // Limit agent response content width for readability.
+    "inline_assistant_model": {
+      "provider": "ollama", // Use local Ollama for inline assistant suggestions.
+      "model": "qwen2.5-coder:7b-base" // Use the local Qwen coder model.
+    },
+    "default_model": {
+      "provider": "ollama", // Use local Ollama for agent chats.
+      "model": "qwen2.5-coder:7b-base" // Use the local Qwen coder model.
+    },
+    "model_parameters": [] // Keep model parameters at provider defaults.
+  },
+  "auto_install_extensions": {
+    "catppuccin-icons": true, // Install Catppuccin icons automatically.
+    "material-icon-theme": true, // Install Material icons automatically.
+    "dockerfile": true, // Install Dockerfile language support automatically.
+    "git-firefly": true, // Install Git Firefly support automatically.
+    "github-actions": true, // Install GitHub Actions support automatically.
+    "html": true, // Install HTML language support automatically.
+    "just": true, // Install Just language support automatically.
+    "liquid": true, // Install Liquid language support automatically.
+    "lua": true, // Install Lua language support automatically.
+    "make": true, // Install Make language support automatically.
+    "neocmake": true, // Install CMake language support automatically.
+    "nix": true, // Install Nix language support automatically.
+    "python-requirements": true, // Install Python requirements support automatically.
+    "rainbow-csv": true, // Install Rainbow CSV support automatically.
+    "scss": true, // Install SCSS language support automatically.
+    "toml": true // Install TOML language support automatically.
+  },
+  "auto_signature_help": true, // Show signature help automatically.
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 0 // Save immediately after edits.
+    }
+  },
+  "base_keymap": "VSCode", // Start from VS Code-style keybindings.
+  "buffer_font_family": "IosevkaExtended", // Use Iosevka Extended in buffers.
+  "buffer_font_weight": 400, // Use regular buffer font weight.
+  "buffer_font_size": 14, // Set buffer font size.
+  "buffer_line_height": "comfortable", // Use comfortable editor line height.
+  "close_on_file_delete": true, // Close buffers when their files are deleted.
+  "icon_theme": {
+    "dark": "Catppuccin Mocha", // Use Catppuccin icons in dark mode.
+    "light": "Material Icon Theme", // Use Material icons in light mode.
+    "mode": "dark" // Follow the system appearance for icons.
+  },
+  "redact_private_values": false, // Show private values in settings and diagnostics.
+  "tabs": {
+    "activate_on_close": "history", // Return to the previously active tab after closing.
+    "close_position": "right", // Open close buttons on the right side.
+    "file_icons": true, // Show file icons in tabs.
+    "git_status": true, // Show Git status in tabs.
+    "show_close_button": "always", // Always show tab close buttons.
+    "show_diagnostics": "all" // Show all diagnostics in tabs.
+  },
+  "title_bar": {
+    "show_branch_status_icon": true, // Show the branch status icon.
+    "show_branch_name": true, // Show the current branch name.
+    "show_project_items": true, // Show project items in the title bar.
+    "show_onboarding_banner": true, // Show the onboarding banner.
+    "show_user_picture": true, // Show the signed-in user picture.
+    "show_sign_in": true, // Show sign-in controls.
+    "show_menus": true // Show app menus in the title bar.
+  },
+  "terminal": {
+    "cursor_shape": "bar", // Use a bar cursor in Zed terminals.
+    "blinking": "on", // Blink the terminal cursor.
+    "flexible": true, // Use flexible proportional sizing for the terminal panel.
+    "line_height": "standard", // Use standard terminal line height for TUI box drawing.
+    "font_size": 14 // Match terminal font size to editor font size.
+  },
+  "theme": {
+    "dark": "Dark 2026 - Custom No Italics", // Use the generated local Dark 2026 theme.
+    "light": "Catppuccin Latte - Custom No Italics", // Use the generated local Catppuccin Latte theme.
+    "mode": "dark" // Follow system dark/light appearance.
+  },
+  "toolbar": {
+    "agent_review": true, // Show agent review controls.
+    "breadcrumbs": true, // Show breadcrumbs.
+    "code_actions": true, // Show code action controls.
+    "quick_actions": true, // Show quick action controls.
+    "selections_menu": true // Show the selections menu.
+  },
+  "ui_font_family": "SF Pro Text", // Use SF Pro for the UI.
+  "ui_font_size": 16, // Set UI font size.
+  "agent_ui_font_size": 16, // Match agent UI font size to the rest of the UI.
+  "agent_buffer_font_size": 14, // Match agent message font size to editor text.
+  "use_auto_surround": true, // Surround selections automatically.
+  "use_autoclose": true, // Insert matching delimiters automatically.
+  "use_system_window_tabs": true, // Use native system window tabs.
+  "status_bar": {
+    "active_language_button": true, // Show the active language control.
+    "cursor_position_button": true, // Show the cursor position control.
+    "line_endings_button": true // Show the line endings control.
+  },
+  "line_indicator_format": "long", // Use verbose line and column display.
+  "gutter": {
+    "min_line_number_digits": 4 // Reserve stable width for line numbers.
+  },
+  "indent_guides": {
+    "line_width": 1, // Use 1px indent guide lines.
+    "active_line_width": 1 // Use 1px active indent guide lines.
+  },
+  "minimap": {
+    "max_width_columns": 80 // Cap the minimap width to 80 columns.
+  },
+  "file_finder": {
+    "modal_max_width": "small" // Keep the file finder compact.
+  },
+  "diagnostics": {
+    "inline": {
+      "padding": 4, // Leave horizontal padding before inline diagnostics.
+      "min_column": 0 // Do not force inline diagnostics to a minimum column.
+    }
+  },
+  "git": {
+    "inline_blame": {
+      "padding": 7 // Leave horizontal padding before inline blame text.
+    }
+  },
+  "preferred_line_length": 88, // Prefer 88-column formatting.
+  "scroll_beyond_last_line": "off", // Stop scrolling at the last line.
+  "vertical_scroll_margin": 3, // Keep context above and below the cursor when scrolling.
+  "horizontal_scroll_margin": 5, // Keep context to either side of the cursor when scrolling horizontally.
+  "soft_wrap": "prefer_line", // Prefer soft-wrapping long lines.
+  "hard_tabs": false, // Use spaces for indentation.
+  "tab_size": 4, // Use four-column tab stops.
+  "show_wrap_guides": true, // Show wrap guides in the editor.
+  "wrap_guides": [88, 120] // Draw wrap guides at common widths.
+}
