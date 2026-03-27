@@ -1,0 +1,8 @@
+# Default shell for files without a shebang (sourced dotfiles)
+shell=bash
+
+# Don't flag unresolved sourced files (common in dotfiles)
+disable=SC1091
+
+# Don't require shebangs — many files here are sourced, not executed
+disable=SC2148

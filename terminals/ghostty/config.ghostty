@@ -1,0 +1,83 @@
+# Switch between generated local themes with the system appearance.
+theme = dark:vscode-2026-dark,light:catppuccin-latte
+
+# Use Iosevka Extended as the primary monospace face.
+font-family = Iosevka Extended
+# Add Nerd Font symbols as fallback glyphs.
+font-family = Symbols Nerd Font Mono
+# Set the terminal text size.
+font-size = 11
+
+# Render the cursor as a solid block.
+cursor-style = block
+# Blink the cursor while focused.
+cursor-style-blink = true
+
+# Use client-side window decorations.
+window-decoration = client
+# Follow the system light/dark appearance for the window chrome.
+window-theme = auto
+# Use the wide-gamut Display P3 color space on supported displays.
+window-colorspace = display-p3
+# Keep content away from the window edge.
+window-padding-x = 12
+window-padding-y = 12
+# Spread leftover padding evenly across all edges.
+window-padding-balance = true
+# Extend the nearest cell background color into the padding area.
+window-padding-color = extend
+# Show the tab bar only when more than one tab is open (GTK only).
+window-show-tab-bar = auto
+# Show the working directory as the window subtitle (GTK only).
+window-subtitle = working-directory
+# Open new tabs next to the current one.
+window-new-tab-position = current
+# New windows and tabs open in the previous window's working directory.
+window-inherit-working-directory = true
+# New windows and tabs inherit the current font size.
+window-inherit-font-size = true
+# Let the OS decide whether to save and restore window state.
+window-save-state = default
+# Resize in pixel increments rather than whole cell steps.
+window-step-resize = false
+# Sync rendering to the display refresh rate.
+window-vsync = true
+# Show the resize overlay only after the first resize.
+resize-overlay = after-first
+# Display the resize overlay in the center of the window.
+resize-overlay-position = center
+# Keep the resize overlay visible for 750 ms.
+resize-overlay-duration = 750ms
+# Do not change focus when the mouse moves between panes.
+focus-follows-mouse = false
+
+macos-titlebar-style = tabs
+
+# Auto-detect the shell and enable integration features.
+shell-integration = detect
+# Open new terminals in the current working directory.
+working-directory = inherit
+# Keep 100,000 lines of scrollback history.
+scrollback-limit = 100000
+# Send a notification when a command finishes after 10 seconds.
+notify-on-command-finish-after = 10s
+
+# Start an interactive login zsh.
+command = /bin/zsh -l
+
+# Copy selected text to the clipboard.
+keybind = ctrl+shift+c=copy_to_clipboard
+# Paste clipboard text into the terminal.
+keybind = ctrl+shift+v=paste_from_clipboard
+# Open a new tab.
+keybind = ctrl+shift+t=new_tab
+# Close the current surface.
+keybind = ctrl+shift+w=close_surface
+# Open a new window.
+keybind = ctrl+shift+n=new_window
+# Increase the font size by one point.
+keybind = ctrl+equal=increase_font_size:1
+# Decrease the font size by one point.
+keybind = ctrl+minus=decrease_font_size:1
+# Reset the font size to the configured value.
+keybind = ctrl+zero=reset_font_size
