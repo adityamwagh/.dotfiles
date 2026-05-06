@@ -2,7 +2,7 @@
 theme = dark:vscode-2026-dark,light:catppuccin-latte
 
 # Use Iosevka Extended as the primary monospace face.
-font-family = Iosevka Extended
+font-family = IosevkaExtended
 # Add Nerd Font symbols as fallback glyphs.
 font-family = Symbols Nerd Font Mono
 # Set the terminal text size.
@@ -12,7 +12,7 @@ font-size = 11
 cursor-style = block
 # Blink the cursor while focused.
 cursor-style-blink = true
-
+scrollback-limit = 10000000
 # Use client-side window decorations.
 window-decoration = client
 # Follow the system light/dark appearance for the window chrome.
