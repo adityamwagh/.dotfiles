@@ -66,7 +66,7 @@
   "base_keymap": "VSCode", // Start from VS Code-style keybindings.
   "buffer_font_fallbacks": [".SystemUIFont"],
   "buffer_font_family": "IosevkaExtended", // Use Iosevka Extended in buffers.
-  "buffer_font_size": 16, // Set buffer font size.
+  "buffer_font_size": 14, // Set buffer font size.
   "buffer_font_weight": 400, // Use regular buffer font weight.
   "buffer_line_height": "comfortable", // Use comfortable editor line height.
   "centered_layout": {
@@ -99,6 +99,7 @@
     }
   },
   "git_panel": {
+    "tree_view": true,
     "dock": "left" // Dock the Git panel on the left.
   },
   "gutter": {
@@ -182,7 +183,7 @@
     "selections_menu": true // Show the selections menu.
   },
   "ui_font_family": "Selawik", // Use SF Pro for the UI.
-  "ui_font_size": 18, // Set UI font size.
+  // "ui_font_size": 14, // Set UI font size.
   "use_auto_surround": true, // Surround selections automatically.
   "use_autoclose": true, // Insert matching delimiters automatically.
   "use_system_window_tabs": true, // Use native system window tabs.

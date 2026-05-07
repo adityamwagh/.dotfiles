@@ -3,6 +3,8 @@
 defaultBranch = main
 
 [push]
+# Push the current branch to a same-named branch by default.
+default = current
 # Push new branches to a same-named upstream automatically.
 autoSetupRemote = true
 
@@ -28,7 +30,62 @@ required = true
 # Use Zed as the blocking Git editor.
 editor = zed --wait
 
+[branch]
+# Sort branches by most recently updated first.
+sort = -committerdate
+
+[tag]
+# Sort version-like tags naturally.
+sort = version:refname
+
+[status]
+# Show branch and stash details in status output.
+branch = true
+showStash = true
+# Summarize submodule changes in status output.
+submoduleSummary = true
+
+[fetch]
+# Remove remote-tracking branches that disappeared upstream.
+prune = true
+# Remove local tags that disappeared upstream.
+pruneTags = true
+# Fetch submodules only when the superproject needs them.
+recurseSubmodules = on-demand
+
+[pull]
+# Rebase local commits when pulling instead of creating merge commits.
+rebase = true
+
+[rebase]
+# Reapply local work around rebases automatically.
+autoStash = true
+# Move dependent branches forward when their base is rewritten.
+updateRefs = true
+
+[checkout]
+# Prefer origin when checking out a branch name that exists on one remote.
+defaultRemote = origin
+
+[commit]
+# Include the staged diff in the commit message editor.
+verbose = true
+
+[worktree]
+# Guess the remote branch when adding a worktree for a branch name.
+guessRemote = true
+
+[rerere]
+# Remember conflict resolutions and reuse them.
+enabled = true
+
 [diff]
+# Use a more stable diff algorithm for moved or refactored code.
+algorithm = histogram
+# Highlight moved code within diffs.
+colorMoved = default
+# Show submodule commit ranges in diffs.
+submodule = log
 # Use Zed for visual diffs.
 tool = zed
 
@@ -37,6 +94,8 @@ tool = zed
 cmd = zed --wait --diff $LOCAL $REMOTE
 
 [merge]
+# Show base, current, and incoming changes in conflict markers.
+conflictStyle = zdiff3
 # Use Zed for merge conflict resolution.
 tool = zed
 
