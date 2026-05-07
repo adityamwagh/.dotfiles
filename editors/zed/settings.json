@@ -11,21 +11,6 @@
     "border_size": 1, // Draw a 1px inset border around the active pane.
     "inactive_opacity": 1 // Keep inactive panes fully opaque.
   },
-  "agent": {
-    "default_model": {
-      "model": "qwen2.5-coder:7b-base", // Use the local Qwen coder model.
-      "provider": "ollama" // Use local Ollama for agent chats.
-    },
-    "dock": "right", // Dock the agent panel on the right.
-    "flexible": true, // Use flexible proportional sizing for the agent panel.
-    "inline_assistant_model": {
-      "model": "qwen2.5-coder:7b-base", // Use the local Qwen coder model.
-      "provider": "ollama" // Use local Ollama for inline assistant suggestions.
-    },
-    "limit_content_width": true, // Center and constrain agent response content.
-    "max_content_width": 850, // Limit agent response content width for readability.
-    "model_parameters": [] // Keep model parameters at provider defaults.
-  },
   "agent_buffer_font_size": 14, // Match agent message font size to editor text.
   "agent_servers": {
     "claude-acp": {
@@ -33,9 +18,6 @@
     },
     "github-copilot": {
       "type": "registry" // Load GitHub Copilot from Zed's registry.
-    },
-    "opencode": {
-      "type": "registry" // Load opencode from Zed's registry.
     }
   },
   "agent_ui_font_size": 18, // Match agent UI font size to the rest of the UI.
@@ -66,7 +48,7 @@
   "base_keymap": "VSCode", // Start from VS Code-style keybindings.
   "buffer_font_fallbacks": [".SystemUIFont"],
   "buffer_font_family": "IosevkaExtended", // Use Iosevka Extended in buffers.
-  "buffer_font_size": 16, // Set buffer font size.
+  "buffer_font_size": 14, // Set buffer font size.
   "buffer_font_weight": 400, // Use regular buffer font weight.
   "buffer_line_height": "comfortable", // Use comfortable editor line height.
   "centered_layout": {
@@ -99,7 +81,8 @@
     }
   },
   "git_panel": {
-    "dock": "left" // Dock the Git panel on the left.
+    "dock": "left", // Dock the Git panel on the left.
+    "tree_view": true
   },
   "gutter": {
     "min_line_number_digits": 4 // Reserve stable width for line numbers.
@@ -158,7 +141,6 @@
     "cursor_shape": "bar", // Use a bar cursor in Zed terminals.
     "flexible": true, // Use flexible proportional sizing for the terminal panel.
     "line_height": "standard"
-    // "font_size": 14 // Match terminal font size to editor font size.
   },
   "theme": {
     "dark": "Dark 2026 - Custom No Italics", // Use the generated local Dark 2026 theme.
@@ -182,12 +164,12 @@
     "selections_menu": true // Show the selections menu.
   },
   "ui_font_family": "Selawik", // Use SF Pro for the UI.
-  "ui_font_size": 18, // Set UI font size.
+  // "ui_font_size": 14, // Set UI font size.
   "use_auto_surround": true, // Surround selections automatically.
   "use_autoclose": true, // Insert matching delimiters automatically.
   "use_system_window_tabs": true, // Use native system window tabs.
   "vertical_scroll_margin": 3, // Keep context above and below the cursor when scrolling.
-  "vim_mode": true, // Enable Vim keybindings.
+  "vim_mode": false, // Enable Vim keybindings.
   "wrap_guides": [88, 120], // Draw wrap guides at common widths.
   "zoomed_padding": true // Keep padding around panels when a pane is zoomed.
 }

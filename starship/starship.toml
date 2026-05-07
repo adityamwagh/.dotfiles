@@ -53,3 +53,30 @@ time_format     = "%H:%M:%S"
 [character]
 success_symbol = "[❱](bold yellow)[❱](bold green)[❱](bold red)" # Prompt symbol after successful commands.
 error_symbol   = "[❱](bold yellow)[❱](bold green)[❱](bold red)" # Prompt symbol after failed commands.
+
+# Claude Code statusline profile — rendered via `starship statusline claude-code`
+[profiles]
+claude-code = "$claude_model$git_branch$claude_context$claude_cost"
+
+[claude_model]
+format        = '[$symbol$model]($style) ' # Show model name with icon.
+symbol        = '🤖 '                       # Icon before model name.
+style         = 'bold blue'                # Model name style.
+model_aliases = {}                         # Map model IDs to shorter display names.
+disabled      = false
+
+[claude_context]
+format               = '[$gauge $percentage]($style) ' # Token context gauge with percentage.
+symbol               = ''                              # Icon before gauge (empty by default).
+gauge_width          = 5                               # Number of gauge characters.
+gauge_full_symbol    = '█'                             # Filled gauge segment.
+gauge_partial_symbol = '▒'                             # Partial gauge segment.
+gauge_empty_symbol   = '░'                             # Empty gauge segment.
+disabled             = false
+# display: threshold-based styling; add entries with threshold, style, hidden fields.
+
+[claude_cost]
+format   = '[$symbol(\$$cost)]($style) ' # Session cost with dollar sign.
+symbol   = '💰 '                          # Icon before cost.
+disabled = false
+# display: threshold-based styling; add entries with threshold (USD), style, hidden fields.
