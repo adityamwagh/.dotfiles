@@ -49,6 +49,12 @@
     # Ghostty
     ~/.config/ghostty/config.ghostty: terminals/ghostty/config.ghostty
     ~/.config/ghostty/themes: terminals/ghostty/themes
+    ~/.config/ghostty/config-local:
+      path: terminals/ghostty/config-local-linux
+      if: "[ $(uname) = Linux ]"
+    ~/.config/ghostty/config-local:
+      path: terminals/ghostty/config-local-macos
+      if: "[ $(uname) = Darwin ]"
 
     # WezTerm
     ~/.wezterm.lua: terminals/wezterm/.wezterm.lua

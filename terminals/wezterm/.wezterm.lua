@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 
 local is_dark = wezterm.gui.get_appearance():find("Dark") -- Match the terminal theme to the operating-system appearance.
+local is_macos = wezterm.target_triple:find("darwin") ~= nil
 local hyperlink_rules = wezterm.default_hyperlink_rules()
 
 table.insert(hyperlink_rules, {
@@ -61,6 +62,7 @@ end)
 
 return {
     color_scheme = is_dark and "Dark 2026" or "Catppuccin Latte", -- Select theme for current appearance.
+    font_size = is_macos and 16 or 11, -- macOS Retina needs larger point size than Linux.
     hyperlink_rules = hyperlink_rules, -- Extend default URL detection with GitHub refs and local paths.
     font = wezterm.font_with_fallback({ -- Use Iosevka with Nerd Font symbols as fallback.
         { family = "Iosevka Extended", weight = "Regular", italic = false },

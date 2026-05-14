@@ -16,6 +16,12 @@
   },
   {
     "bindings": {
+      "ctrl-u": "editor::DeleteLine"
+    },
+    "context": "Editor"
+  },
+  {
+    "bindings": {
       // "j k": "vim::NormalBefore"
     },
     "context": "Editor && vim_mode == insert"

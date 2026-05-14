@@ -11,7 +11,7 @@ esac
 export PATH
 
 export EDITOR="nvim"
-export PYTEST_ADDOPTS="-v -s --color=yes"
+export PYTEST_ADDOPTS="--color=yes -sv -o log_cli=true --log-cli-level=INFO"
 export GEM_HOME="$HOME/.gems"
 export PATH="$HOME/.gems/bin:$PATH"
 
