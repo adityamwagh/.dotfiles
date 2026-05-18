@@ -9,12 +9,12 @@ if [ ! -d "$fonts_src" ]; then
 fi
 
 case "$(uname -s)" in
-Darwin*)
-  fonts_dst="$HOME/Library/Fonts"
-  ;;
-*)
-  fonts_dst="$HOME/.local/share/fonts"
-  ;;
+  Darwin*)
+    fonts_dst="$HOME/Library/Fonts"
+    ;;
+  *)
+    fonts_dst="$HOME/.local/share/fonts"
+    ;;
 esac
 
 mkdir -p "$fonts_dst"
@@ -61,20 +61,20 @@ install_sf_pro() {
     return
   fi
 
-  if ! command -v git > /dev/null 2>&1; then
+  if ! command -v git >/dev/null 2>&1; then
     echo "Skipping SF Pro: git not found" >&2
     return
   fi
 
-  if ! git clone -n --depth=1 --filter=tree:0 "https://github.com/thelioncape/San-Francisco-family.git" "$repo_dir" > /dev/null 2>&1; then
+  if ! git clone -n --depth=1 --filter=tree:0 "https://github.com/thelioncape/San-Francisco-family.git" "$repo_dir" >/dev/null 2>&1; then
     echo "Skipping SF Pro: clone failed" >&2
     return
   fi
 
   (
     cd "$repo_dir" || exit 1
-    git sparse-checkout set --no-cone "SF Pro" > /dev/null 2>&1
-    git checkout > /dev/null 2>&1
+    git sparse-checkout set --no-cone "SF Pro" >/dev/null 2>&1
+    git checkout >/dev/null 2>&1
   ) || {
     echo "Skipping SF Pro: sparse checkout failed" >&2
     return
@@ -109,12 +109,12 @@ install_segoe_ui_linux() {
     return
   fi
 
-  if ! command -v git > /dev/null 2>&1; then
+  if ! command -v git >/dev/null 2>&1; then
     echo "Skipping segoe-ui-linux: git not found" >&2
     return
   fi
 
-  if ! git clone --depth 1 https://github.com/mrbvrz/segoe-ui-linux.git "$repo_dir" > /dev/null 2>&1; then
+  if ! git clone --depth 1 https://github.com/mrbvrz/segoe-ui-linux.git "$repo_dir" >/dev/null 2>&1; then
     echo "Skipping segoe-ui-linux: clone failed" >&2
     return
   fi
@@ -135,6 +135,6 @@ install_repo_fonts
 install_sf_pro
 install_segoe_ui_linux
 
-if [ "$fonts_changed" -eq 1 ] && [ "$(uname -s)" = "Linux" ] && command -v fc-cache > /dev/null 2>&1; then
-  fc-cache -f "$fonts_dst" > /dev/null 2>&1 || true
+if [ "$fonts_changed" -eq 1 ] && [ "$(uname -s)" = "Linux" ] && command -v fc-cache >/dev/null 2>&1; then
+  fc-cache -f "$fonts_dst" >/dev/null 2>&1 || true
 fi

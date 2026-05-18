@@ -7,5 +7,23 @@ cursor_border = "#fabd2f"
 cursor_fg = "#32302f"
 selection_bg = "#504945"
 selection_fg = "#ebdbb2"
-ansi = ["#32302f", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#ebdbb2"]
-brights = ["#928374", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#fbf1c7"]
+ansi = [
+  "#32302f",
+  "#fb4934",
+  "#b8bb26",
+  "#fabd2f",
+  "#83a598",
+  "#d3869b",
+  "#8ec07c",
+  "#ebdbb2",
+]
+brights = [
+  "#928374",
+  "#fb4934",
+  "#b8bb26",
+  "#fabd2f",
+  "#83a598",
+  "#d3869b",
+  "#8ec07c",
+  "#fbf1c7",
+]

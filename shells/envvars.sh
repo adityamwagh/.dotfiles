@@ -5,8 +5,8 @@ if [ -z "${PATH-}" ]; then
 fi
 
 case ":$PATH:" in
-*":$HOME/.local/bin:$HOME/bin:"*) ;;
-*) PATH="$HOME/.local/bin:$HOME/bin:$PATH" ;;
+  *":$HOME/.local/bin:$HOME/bin:"*) ;;
+  *) PATH="$HOME/.local/bin:$HOME/bin:$PATH" ;;
 esac
 export PATH
 

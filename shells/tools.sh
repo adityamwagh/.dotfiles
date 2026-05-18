@@ -32,18 +32,18 @@ __dotfiles_set_git_identity_from_gh_user() {
   local expected_email=""
 
   case "$gh_user" in
-  adityamwagh)
-    expected_name="adityamwagh"
-    expected_email="adityamwagh@outlook.com"
-    ;;
-  adityamwagh)
-    expected_name="adityamwagh"
-    expected_email="adityamwagh@outlook.com"
-    ;;
-  *)
-    echo "[gh-auth-sync] Unknown GitHub user '$gh_user'; leaving git global identity unchanged." >&2
-    return 0
-    ;;
+    adityamwagh)
+      expected_name="adityamwagh"
+      expected_email="adityamwagh@outlook.com"
+      ;;
+    adityamwagh)
+      expected_name="adityamwagh"
+      expected_email="adityamwagh@outlook.com"
+      ;;
+    *)
+      echo "[gh-auth-sync] Unknown GitHub user '$gh_user'; leaving git global identity unchanged." >&2
+      return 0
+      ;;
   esac
 
   git config --global user.name "$expected_name"
@@ -54,7 +54,7 @@ __dotfiles_set_git_identity_from_gh_user() {
 __dotfiles_sync_git_identity_from_gh() {
   local gh_user
 
-  gh_user="$(command gh api user --jq .login 2> /dev/null || true)"
+  gh_user="$(command gh api user --jq .login 2>/dev/null || true)"
   if [ -z "$gh_user" ]; then
     echo "[gh-auth-sync] Could not detect current GitHub user; leaving git global identity unchanged." >&2
     return 0
@@ -84,10 +84,10 @@ fi
 
 # uv completions
 if [ -n "$ZSH_VERSION" ]; then
-  [ -n "$has_uv" ]  && eval "$("$has_uv"  generate-shell-completion zsh 2>/dev/null)"
+  [ -n "$has_uv" ] && eval "$("$has_uv" generate-shell-completion zsh 2>/dev/null)"
   [ -n "$has_uvx" ] && eval "$("$has_uvx" --generate-shell-completion zsh 2>/dev/null)"
 elif [ -n "$BASH_VERSION" ]; then
-  [ -n "$has_uv" ]  && eval "$("$has_uv"  generate-shell-completion bash 2>/dev/null)"
+  [ -n "$has_uv" ] && eval "$("$has_uv" generate-shell-completion bash 2>/dev/null)"
   [ -n "$has_uvx" ] && eval "$("$has_uvx" --generate-shell-completion bash 2>/dev/null)"
 fi
 

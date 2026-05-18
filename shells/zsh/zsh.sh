@@ -21,7 +21,7 @@ elif [ -n "$HOMEBREW_PREFIX" ] && [ -f "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-hig
   . "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 fi
 
-if typeset -p FAST_HIGHLIGHT_STYLES > /dev/null 2>&1; then
+if typeset -p FAST_HIGHLIGHT_STYLES >/dev/null 2>&1; then
   _set_fast_style() {
     local key="$1"
     local style="$2"

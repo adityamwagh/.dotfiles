@@ -1,7 +1,7 @@
 # .bashrc
 
 case "$(uname -s)" in
-  Linux*)  [ -f /etc/bashrc ]      && . /etc/bashrc ;;
+  Linux*) [ -f /etc/bashrc ] && . /etc/bashrc ;;
   Darwin*) [ -f /etc/bash.bashrc ] && . /etc/bash.bashrc ;;
 esac
 
@@ -27,13 +27,13 @@ export HISTFILESIZE
 
 shopt -s expand_aliases
 
-[ -f "$HOME/.dotfiles/shells/aliases.sh" ]   && . "$HOME/.dotfiles/shells/aliases.sh"
+[ -f "$HOME/.dotfiles/shells/aliases.sh" ] && . "$HOME/.dotfiles/shells/aliases.sh"
 [ -f "$HOME/.dotfiles/shells/functions.sh" ] && . "$HOME/.dotfiles/shells/functions.sh"
 
 [ -f "$HOME/.dotfiles/shells/tools/fzf.sh" ] && . "$HOME/.dotfiles/shells/tools/fzf.sh"
-[ -f "$HOME/.dotfiles/shells/tools/uv.sh" ]  && . "$HOME/.dotfiles/shells/tools/uv.sh"
+[ -f "$HOME/.dotfiles/shells/tools/uv.sh" ] && . "$HOME/.dotfiles/shells/tools/uv.sh"
 [ -f "$HOME/.dotfiles/shells/tools/bun.sh" ] && . "$HOME/.dotfiles/shells/tools/bun.sh"
-[ -f "$HOME/.dotfiles/shells/tools/gh.sh" ]  && . "$HOME/.dotfiles/shells/tools/gh.sh"
+[ -f "$HOME/.dotfiles/shells/tools/gh.sh" ] && . "$HOME/.dotfiles/shells/tools/gh.sh"
 
 [ -f "$HOME/.dotfiles/shells/tools/starship.sh" ] && . "$HOME/.dotfiles/shells/tools/starship.sh"
-[ -f "$HOME/.dotfiles/shells/tools/zoxide.sh" ]   && . "$HOME/.dotfiles/shells/tools/zoxide.sh"
+[ -f "$HOME/.dotfiles/shells/tools/zoxide.sh" ] && . "$HOME/.dotfiles/shells/tools/zoxide.sh"

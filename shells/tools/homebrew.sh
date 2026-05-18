@@ -2,7 +2,7 @@
 brew_bin=""
 if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -x "${HOMEBREW_PREFIX}/bin/brew" ]; then
   brew_bin="${HOMEBREW_PREFIX}/bin/brew"
-elif command -v brew > /dev/null 2>&1; then
+elif command -v brew >/dev/null 2>&1; then
   brew_bin="$(command -v brew)"
 elif [ -x /opt/homebrew/bin/brew ]; then
   brew_bin="/opt/homebrew/bin/brew"

@@ -18,7 +18,7 @@ alias lttt='eza --tree --level=3 --long --git --group-directories-first'
 alias lsd='eza --only-dirs --git --group-directories-first'
 
 if command -v ddcutil >/dev/null 2>&1; then
-    alias brightness="ddcutil setvcp 10"
+  alias brightness="ddcutil setvcp 10"
 fi
 
 alias vi='nvim'
@@ -38,15 +38,15 @@ alias pci='pre-commit install'
 
 # Environment profile helpers migrated from work aliases.
 _load_env_profile() {
-    if [ -f "$1" ]; then
-        set -a
-        # shellcheck source=/dev/null
-        . "$1"
-        set +a
-    else
-        echo "Missing env file: $1" >&2
-        return 1
-    fi
+  if [ -f "$1" ]; then
+    set -a
+    # shellcheck source=/dev/null
+    . "$1"
+    set +a
+  else
+    echo "Missing env file: $1" >&2
+    return 1
+  fi
 }
 
 alias dev='_load_env_profile ~/.env.dev'
