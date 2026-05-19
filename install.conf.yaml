@@ -82,7 +82,7 @@
 
 - shell:
     - [
-        "if command -v brew >/dev/null 2>&1; then brew bundle --file ~/.dotfiles/Brewfile; fi",
+        "if command -v brew >/dev/null 2>&1; then brew bundle --file ~/.dotfiles/Brewfile 2>&1 | grep -E '^(Installing|Upgrading|Tapping|Error|==>|brew bundle)' || true; fi",
         "Install Brew packages",
       ]
     - ["~/.local/bin/install-fonts ~/.dotfiles", "Install fonts"]
