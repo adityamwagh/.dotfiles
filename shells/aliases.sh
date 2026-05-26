@@ -86,13 +86,6 @@ alias sudo='sudo '
 
 alias update-dotfiles='~/.dotfiles/install'
 
-alias yv='uv'
-alias uvr='uv run'
-alias uvp='uv pip'
-alias uvpi='uv pip install'
-alias uvpri='uv pip install --reinstall'
-alias uvpir='uv pip install --reinstall'
-
 alias starshipconf='$EDITOR ~/.config/starship.toml'
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
