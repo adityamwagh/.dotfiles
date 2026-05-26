@@ -6,24 +6,38 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-      "cmd-,": "zed::OpenSettingsFile",
-      "ctrl-,": "zed::OpenSettingsFile"
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "shift shift": "file_finder::Toggle"
+            "cmd-,": "zed::OpenSettingsFile",
+            "ctrl-,": "zed::OpenSettingsFile",
+            "ctrl-enter": null,
+        },
     },
-    "context": "Workspace"
-  },
-  {
-    "bindings": {
-      "ctrl-u": "editor::DeleteLine"
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-u": "editor::DeleteLine",
+            "ctrl-enter": null,
+        },
     },
-    "context": "Editor"
-  },
-  {
-    "bindings": {
-      // "j k": "vim::NormalBefore"
+    {
+        "context": "Terminal",
+        "bindings": {
+            "ctrl-enter": null,
+        },
     },
-    "context": "Editor && vim_mode == insert"
-  }
+    {
+        "context": "Assistant",
+        "bindings": {
+            "ctrl-enter": null,
+        },
+    },
+    {
+        "bindings": {
+            // "j k": "vim::NormalBefore"
+        },
+        "context": "Editor && vim_mode == insert",
+    },
 ]
