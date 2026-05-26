@@ -26,6 +26,13 @@ setopt aliases
 
 fpath+=(~/.zfunc)
 autoload -Uz compinit
+zstyle ':completion:*' menu select
+# shellcheck disable=SC2296
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*' rehash true
 if [ -n "$(find "$HOME" -maxdepth 1 -name '.zcompdump' -mmin +1440 -print -quit 2>/dev/null)" ]; then
   compinit
 else
