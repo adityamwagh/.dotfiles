@@ -29,6 +29,8 @@ window-inherit-font-size = true
 window-save-state = never
 window-step-resize = false
 window-vsync = true
+window-height = 9999
+window-width  = 9999
 maximize = true
 
 resize-overlay = after-first
