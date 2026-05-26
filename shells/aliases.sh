@@ -24,6 +24,10 @@ fi
 alias vi='nvim'
 alias vim='nvim'
 
+alias pip='noglob pip'
+alias pip3='noglob pip3'
+alias uv='noglob uv'
+
 alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
 alias envvars='$EDITOR ~/.dotfiles/shells/envvars.sh'
 alias bashrc='$EDITOR ~/.bashrc'
