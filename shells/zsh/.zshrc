@@ -1,28 +1,49 @@
 # .zshrc
 
+# ############################################
+# #               SYSTEM RC                 #
+# ############################################
+
 [ -f /etc/zshrc ] && . /etc/zshrc
+
+# ############################################
+# #                 ENV VARS                #
+# ############################################
+
 [ -f "$HOME/.dotfiles/shells/envvars.sh" ] && . "$HOME/.dotfiles/shells/envvars.sh"
 
-[ -f "$HOME/.dotfiles/shells/tools/homebrew.sh" ] && . "$HOME/.dotfiles/shells/tools/homebrew.sh"
+# ############################################
+# #                HOMEBREW                 #
+# ############################################
 
-setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
-setopt hist_save_no_dups hist_ignore_dups hist_find_no_dups
+brew_bin=""
+if   [ -n "${HOMEBREW_PREFIX:-}" ] && [ -x "${HOMEBREW_PREFIX}/bin/brew" ]; then
+  brew_bin="${HOMEBREW_PREFIX}/bin/brew"
+elif command -v brew >/dev/null 2>&1; then
+  brew_bin="$(command -v brew)"
+elif [ -x /opt/homebrew/bin/brew ]; then
+  brew_bin="/opt/homebrew/bin/brew"
+elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  brew_bin="/home/linuxbrew/.linuxbrew/bin/brew"
+elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
+  brew_bin="$HOME/.linuxbrew/bin/brew"
+fi
 
-HISTSIZE=5000
-# shellcheck disable=SC2034
-SAVEHIST=$HISTSIZE
-HISTFILE=~/.zsh_history
-# shellcheck disable=SC2034
-HISTDUP=erase
+[ -n "$brew_bin" ] && eval "$("$brew_bin" shellenv)"
 
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey -e
+# Keep Linux system tools ahead of Homebrew by appending brew paths.
+if [ "$(uname -s)" = "Linux" ] && [ -n "${HOMEBREW_PREFIX:-}" ]; then
+  PATH=":${PATH}:"
+  PATH="${PATH//:${HOMEBREW_PREFIX}\/bin:/:}"
+  PATH="${PATH//:${HOMEBREW_PREFIX}\/sbin:/:}"
+  PATH="${PATH#:}"
+  PATH="${PATH%:}"
+  export PATH="${PATH}:${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin"
+fi
 
-setopt aliases
-
-[ -f "$HOME/.dotfiles/shells/aliases.sh" ] && . "$HOME/.dotfiles/shells/aliases.sh"
-[ -f "$HOME/.dotfiles/shells/functions.sh" ] && . "$HOME/.dotfiles/shells/functions.sh"
+# ############################################
+# #              COMPLETIONS                #
+# ############################################
 
 fpath+=(~/.zfunc)
 autoload -Uz compinit
@@ -33,49 +54,220 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*' rehash true
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh/completion
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' squeeze-slashes true
 if [ -n "$(find "$HOME" -maxdepth 1 -name '.zcompdump' -mmin +1440 -print -quit 2>/dev/null)" ]; then
   compinit
 else
   compinit -C
 fi
 
-[ -f "$HOME/.dotfiles/shells/tools/fzf.sh" ] && . "$HOME/.dotfiles/shells/tools/fzf.sh"
-[ -f "$HOME/.dotfiles/shells/tools/uv.sh" ] && . "$HOME/.dotfiles/shells/tools/uv.sh"
-[ -f "$HOME/.dotfiles/shells/tools/bun.sh" ] && . "$HOME/.dotfiles/shells/tools/bun.sh"
-[ -f "$HOME/.dotfiles/shells/tools/gh.sh" ] && . "$HOME/.dotfiles/shells/tools/gh.sh"
+# ############################################
+# #                 HISTORY                 #
+# ############################################
 
-export NVM_DIR="$HOME/.nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  _nvm_load() {
-    unset -f nvm node npm npx yarn pnpm
-    . "$NVM_DIR/nvm.sh"
-  }
-  nvm() {
-    _nvm_load
-    nvm "$@"
-  }
-  node() {
-    _nvm_load
-    node "$@"
-  }
-  npm() {
-    _nvm_load
-    npm "$@"
-  }
-  npx() {
-    _nvm_load
-    npx "$@"
-  }
-  yarn() {
-    _nvm_load
-    yarn "$@"
-  }
-  pnpm() {
-    _nvm_load
-    pnpm "$@"
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
+setopt hist_save_no_dups hist_ignore_dups hist_find_no_dups EXTENDED_HISTORY
+
+HISTSIZE=5000
+# shellcheck disable=SC2034
+SAVEHIST=$HISTSIZE
+HISTFILE=~/.zsh_history
+# shellcheck disable=SC2034
+HISTDUP=erase
+
+# ############################################
+# #             SHELL OPTIONS               #
+# ############################################
+
+setopt AUTO_CD NO_BEEP GLOB_DOTS aliases
+
+# ############################################
+# #              KEYBINDINGS                #
+# ############################################
+
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey -e
+
+# ############################################
+# #          ALIASES & FUNCTIONS            #
+# ############################################
+
+[ -f "$HOME/.dotfiles/shells/aliases.sh" ] && . "$HOME/.dotfiles/shells/aliases.sh"
+[ -f "$HOME/.dotfiles/shells/functions.sh" ] && . "$HOME/.dotfiles/shells/functions.sh"
+
+# ############################################
+# #                   FZF                   #
+# ############################################
+
+if [ -f ~/.fzf.zsh ]; then
+  # shellcheck source=/dev/null
+  . ~/.fzf.zsh
+elif command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
+
+# ############################################
+# #             UV COMPLETIONS              #
+# ############################################
+
+if command -v uv  >/dev/null 2>&1; then eval "$(uv  generate-shell-completion zsh  2>/dev/null)"; fi
+if command -v uvx >/dev/null 2>&1; then eval "$(uvx --generate-shell-completion zsh  2>/dev/null)"; fi
+
+# ############################################
+# #                   BUN                   #
+# ############################################
+
+export BUN_INSTALL="$HOME/.bun"
+case ":$PATH:" in
+  *":$BUN_INSTALL/bin:"*) ;;
+  *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
+esac
+[ -s "$HOME/.bun/_bun" ] && . "$HOME/.bun/_bun"
+
+# ############################################
+# #                    GH                   #
+# ############################################
+
+gh_sync_identity() {
+  local gh_user expected_name expected_email
+
+  command -v gh >/dev/null 2>&1 || return 0
+  gh_user="$(command gh api user --jq .login 2>/dev/null || true)"
+
+  if [ -z "$gh_user" ]; then
+    echo "[gh-auth-sync] Could not detect current GitHub user." >&2
+    return 0
+  fi
+
+  case "$gh_user" in
+    adityamwagh) expected_name="adityamwagh"; expected_email="adityamwagh@outlook.com" ;;
+    adityamwagh)    expected_name="adityamwagh";    expected_email="adityamwagh@outlook.com"   ;;
+    *)
+      echo "[gh-auth-sync] Unknown user '$gh_user'; git identity unchanged." >&2
+      return 0
+      ;;
+  esac
+
+  git config --global user.name  "$expected_name"
+  git config --global user.email "$expected_email"
+  echo "[gh-auth-sync] Identity set to: $expected_name <$expected_email>"
+}
+
+if command -v gh >/dev/null 2>&1; then
+  gh() {
+    command gh "$@"
+    [ "$1" = "auth" ] && [ "$2" = "switch" ] && gh_sync_identity
   }
 fi
 
-[ -f "$HOME/.dotfiles/shells/tools/starship.sh" ] && . "$HOME/.dotfiles/shells/tools/starship.sh"
-[ -f "$HOME/.dotfiles/shells/zsh/zsh.sh" ] && . "$HOME/.dotfiles/shells/zsh/zsh.sh"
-[ -f "$HOME/.dotfiles/shells/tools/zoxide.sh" ] && . "$HOME/.dotfiles/shells/tools/zoxide.sh"
+# ############################################
+# #                   NVM                   #
+# ############################################
+
+export NVM_DIR="$HOME/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  nvm_load() { unset -f nvm node npm npx yarn pnpm; . "$NVM_DIR/nvm.sh"; }
+  nvm()  { nvm_load; nvm  "$@"; }
+  node() { nvm_load; node "$@"; }
+  npm()  { nvm_load; npm  "$@"; }
+  npx()  { nvm_load; npx  "$@"; }
+  yarn() { nvm_load; yarn "$@"; }
+  pnpm() { nvm_load; pnpm "$@"; }
+fi
+
+# ############################################
+# #                   PNPM                  #
+# ############################################
+
+export PNPM_HOME="/home/aditya/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
+# ############################################
+# #                 STARSHIP                #
+# ############################################
+
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+# ############################################
+# #              ZSH PLUGINS                #
+# #         (load after compinit)           #
+# ############################################
+
+# fzf-tab (must load after fzf, before other plugins)
+if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/fzf-tab/fzf-tab.zsh" ]; then
+  . "$HOMEBREW_PREFIX/share/fzf-tab/fzf-tab.zsh"
+fi
+
+# zsh-autosuggestions
+if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  . "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
+# fast-syntax-highlighting
+if [ -f /usr/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
+  . /usr/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+elif [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]; then
+  . "$HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+elif [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]; then
+  . "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+fi
+
+zle_highlight+=(paste:none)
+
+if typeset -p FAST_HIGHLIGHT_STYLES >/dev/null 2>&1; then
+  fsh_set_style() {
+    local key="$1" style="$2"
+    # shellcheck disable=SC2004
+    FAST_HIGHLIGHT_STYLES[$key]="$style"
+    [ -n "${FAST_THEME_NAME:-}" ] && FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}${key}]="$style"
+  }
+
+  fsh_set_style unknown-token          'fg=red,bold'
+  fsh_set_style reserved-word          'fg=yellow'
+  fsh_set_style alias                  'fg=green,bold'
+  fsh_set_style suffix-alias           'fg=cyan,underline'
+  fsh_set_style global-alias           'fg=cyan,bold'
+  fsh_set_style builtin                'fg=yellow,bold'
+  fsh_set_style function               'fg=green,bold'
+  fsh_set_style command                'fg=green,bold'
+  fsh_set_style precommand             'fg=green,underline'
+  fsh_set_style commandseparator       'fg=magenta'
+  fsh_set_style hashed-command         'fg=green,bold'
+  fsh_set_style subcommand             'fg=11'
+  fsh_set_style path-to-dir            'fg=white,underline'
+  fsh_set_style globbing               'fg=blue,bold'
+  fsh_set_style history-expansion      'fg=blue,bold'
+  fsh_set_style double-hyphen-option   'fg=yellow'
+  fsh_set_style single-hyphen-option   'fg=yellow'
+  fsh_set_style back-quoted-argument   'fg=magenta'
+  fsh_set_style single-quoted-argument 'fg=yellow'
+  fsh_set_style double-quoted-argument 'fg=yellow'
+  fsh_set_style dollar-quoted-argument 'fg=yellow'
+  fsh_set_style redirection            'fg=magenta'
+  fsh_set_style path                   'fg=white,underline'
+  fsh_set_style comment                'fg=black,bold'
+  fsh_set_style arg0                   'fg=green'
+  fsh_set_style default                'fg=white'
+  fsh_set_style bracket-level-1        'fg=blue,bold'
+  fsh_set_style bracket-level-2        'fg=green,bold'
+  fsh_set_style bracket-level-3        'fg=magenta,bold'
+
+  unset -f fsh_set_style
+fi
+
+# ############################################
+# #                  ZOXIDE                 #
+# ############################################
+
+: "${_ZO_DOCTOR:=0}"
+export _ZO_DOCTOR
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
