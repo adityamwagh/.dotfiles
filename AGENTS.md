@@ -85,5 +85,4 @@ Every commit must be independently installable: `./install` at that commit sets 
 - Small, composable config files per domain rather than monolithic files
 - Commits: Conventional Commits prefixes (`feat:`, `fix:`, `refactor:`), scoped by subsystem
 - Before committing, always run `./install -v` and fix any errors first
-- After all commits are made, squash everything into a single `chore: init dotfiles` commit using:
-  `NEW=$(git commit-tree HEAD^{tree} -m "chore: init dotfiles") && git reset --hard "$NEW"`
+- Keep history aligned with `origin/main`; do not rewrite or squash commits unless explicitly requested.
