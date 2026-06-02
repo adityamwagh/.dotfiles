@@ -57,7 +57,7 @@ install_sf_pro() {
   local repo_dir="$tmp_dir/San-Francisco-family"
   local font_subdir="$repo_dir/SF Pro"
 
-  if [ -d "$target_dir" ] && find "$target_dir" -type f \( -iname "*.otf" -o -iname "*.ttf" \) | rg -q .; then
+  if [ -d "$target_dir" ] && find "$target_dir" -type f \( -iname "*.otf" -o -iname "*.ttf" \) -print -quit | grep -q .; then
     return
   fi
 
@@ -105,7 +105,7 @@ install_segoe_ui_linux() {
   local repo_dir="$tmp_dir/segoe-ui-linux"
   local target_dir="$fonts_dst/SegoeUILinux"
 
-  if [ -d "$target_dir" ] && find "$target_dir" -type f -iname "*.ttf" | rg -q .; then
+  if [ -d "$target_dir" ] && find "$target_dir" -type f -iname "*.ttf" -print -quit | grep -q .; then
     return
   fi
 
