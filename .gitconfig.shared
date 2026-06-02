@@ -31,8 +31,8 @@ editor = zed --wait
 [branch]
 # Sort branches by most recently updated first.
 sort = -committerdate
-# Track remote branches automatically only when names match.
-autoSetupMerge = simple
+# Track upstream branches automatically when creating a branch from a remote-tracking branch.
+autoSetupMerge = true
 
 [tag]
 # Sort version-like tags naturally.
