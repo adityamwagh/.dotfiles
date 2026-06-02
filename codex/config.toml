@@ -2,40 +2,7 @@ model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
 
-[projects."/home/aditya/.dotfiles"]
-trust_level = "trusted"
-
-[projects."/home/aditya/work/redacted"]
-trust_level = "trusted"
-
-[projects."/home/aditya/work/redacted"]
-trust_level = "trusted"
-
-[projects."/home/aditya"]
-trust_level = "trusted"
-
-[projects."/home/aditya/.work-dotfiles"]
-trust_level = "trusted"
-
-[projects."/home/aditya/dev-docs"]
-trust_level = "trusted"
-
-[projects."/home/aditya/zed"]
-trust_level = "trusted"
-
-[projects."/home/aditya/work/datasets/virtualsio_data"]
-trust_level = "trusted"
-
-[projects."/home/aditya/work/redacted"]
-trust_level = "trusted"
-
-[projects."/home/aditya/work/mujoco_mojo"]
-trust_level = "trusted"
-
-[projects."/home/aditya/work"]
-trust_level = "trusted"
-
-[projects."/home/aditya/Downloads"]
+[projects."/"]
 trust_level = "trusted"
 
 [features]

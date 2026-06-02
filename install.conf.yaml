@@ -63,9 +63,6 @@
     # Fonts
     ~/.local/bin/install-fonts: fonts/install-fonts.sh
 
-    # Scripts
-    ~/.local/bin/check-git-identity: scripts/check-git-identity.sh
-
     # Konsole colorschemes
     ~/.local/share/konsole/:
       glob: true
@@ -88,4 +85,6 @@
         "if command -v brew >/dev/null 2>&1; then brew bundle --file ~/.dotfiles/Brewfile 2>&1 | grep -E '^(Installing|Upgrading|Tapping|Error|==>|brew bundle)' || true; fi",
         "Install Brew packages",
       ]
+    - ["~/.dotfiles/scripts/install-linux-system-packages.sh", "Install Linux system packages"]
     - ["~/.local/bin/install-fonts ~/.dotfiles", "Install fonts"]
+    - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]

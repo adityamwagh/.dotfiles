@@ -40,27 +40,6 @@ alias weztermconf='$EDITOR ~/.wezterm.lua'
 alias pcra='pre-commit run --color=always --all-files'
 alias pci='pre-commit install'
 
-# Environment profile helpers migrated from work aliases.
-_load_env_profile() {
-  if [ -f "$1" ]; then
-    set -a
-    # shellcheck source=/dev/null
-    . "$1"
-    set +a
-  else
-    echo "Missing env file: $1" >&2
-    return 1
-  fi
-}
-
-alias dev='_load_env_profile ~/.env.dev'
-alias staging='_load_env_profile ~/.env.staging'
-alias staging-sa='_load_env_profile ~/.env.staging-sa'
-alias prod='_load_env_profile ~/.env.prod'
-alias prod-sa='_load_env_profile ~/.env.prod-sa'
-alias prod-debug='_load_env_profile ~/.env.prod-debug'
-alias prod-debug-sa='_load_env_profile ~/.env.prod-debug-sa'
-
 alias gcm='git commit -m'
 alias gc-am='git commit --amend'
 alias gc-amne='git commit --amend --no-edit'
