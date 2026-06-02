@@ -1,0 +1,70 @@
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+
+[projects."/home/aditya/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/aditya/work/redacted"]
+trust_level = "trusted"
+
+[projects."/home/aditya/work/redacted"]
+trust_level = "trusted"
+
+[projects."/home/aditya"]
+trust_level = "trusted"
+
+[projects."/home/aditya/.work-dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/aditya/dev-docs"]
+trust_level = "trusted"
+
+[projects."/home/aditya/zed"]
+trust_level = "trusted"
+
+[projects."/home/aditya/work/datasets/virtualsio_data"]
+trust_level = "trusted"
+
+[projects."/home/aditya/work/redacted"]
+trust_level = "trusted"
+
+[projects."/home/aditya/work/mujoco_mojo"]
+trust_level = "trusted"
+
+[projects."/home/aditya/work"]
+trust_level = "trusted"
+
+[projects."/home/aditya/Downloads"]
+trust_level = "trusted"
+
+[features]
+unified_exec = true
+shell_snapshot = true
+steer = true
+personality = true
+apps = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[notice.model_migrations]
+"gpt-5.1-codex-mini" = "gpt-5.4"
+
+[tui]
+theme = "ansi"
+status_line = [
+  "model-with-reasoning",
+  "current-dir",
+  "git-branch",
+  "context-used",
+  "five-hour-limit",
+  "weekly-limit",
+  "context-window-size",
+  "used-tokens",
+  "total-input-tokens",
+  "total-output-tokens",
+]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4

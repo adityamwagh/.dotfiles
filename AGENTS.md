@@ -12,6 +12,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 - `~/.dotfiles/install -n` — dry run before applying
 - `pre-commit run --all-files` — run repo checks (trailing whitespace hook)
 - `brew bundle --file ~/.dotfiles/Brewfile` — install/update Homebrew packages
+- For install or bootstrap changes, test a fresh clone plus `./install` in Docker before merging.
 
 ## Architecture
 

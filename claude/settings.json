@@ -1,83 +1,10 @@
 {
+  "cleanupPeriodDays": 90,
   "attribution": {
     "commit": "",
     "pr": ""
   },
-  "autoCompactEnabled": true,
-  "autoDreamEnabled": true,
-  "autoMemoryEnabled": true,
-  "autoScrollEnabled": true,
-  "cleanupPeriodDays": 90,
-  "effortLevel": "medium",
-  "enabledPlugins": {
-    "caveman@caveman": true,
-    "claude-code-setup@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true,
-    "learning-output-style@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "caveman": {
-      "source": {
-        "repo": "juliusbrussee/caveman",
-        "source": "github"
-      }
-    }
-  },
-  "fileCheckpointingEnabled": true,
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('content',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
-          }
-        ]
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('new_string',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
-            "async": true
-          }
-        ]
-      }
-    ]
-  },
   "permissions": {
-    "additionalDirectories": [
-      "/tmp"
-    ],
-    "deny": [
-      "Bash(rm -rf *)",
-      "Write(/etc/**)",
-      "Write(.env*)"
-    ],
     "allow": [
       "WebSearch",
       "Skill(code-review:code-review)",
@@ -138,17 +65,92 @@
       "Bash(which *)",
       "Bash(ls *)",
       "Bash(brew tap)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Write(/etc/**)",
+      "Write(.env*)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('content',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('new_string',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
+            "async": true
+          }
+        ]
+      }
     ]
   },
-  "preferredNotifChannel": "ghostty",
-  "showMessageTimestamps": true,
-  "showThinkingSummaries": true,
-  "showTurnDuration": true,
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
-    "command": "starship statusline claude-code",
-    "type": "command"
+    "type": "command",
+    "command": "starship statusline claude-code"
   },
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "greptile@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "learning-output-style@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "juliusbrussee/caveman"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
-  "voiceEnabled": true
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": true,
+  "autoScrollEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "showTurnDuration": true,
+  "showMessageTimestamps": true,
+  "voiceEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
