@@ -83,6 +83,10 @@ installable per repo policy.
 
 ## Out of scope
 
+- Effort level and human-readable session duration: the `cship.effort` and
+  `cship.cost.total_duration` tokens exist only on cship main, not in the v1.7.1
+  release (`total_duration_ms` renders raw milliseconds). Re-add both to
+  `cship/cship.toml` when the next cship release ships them.
 - Removing starship claude modules or profile.
 - Per-model usage breakdown (`show_per_model`) — off initially; one-line config flip later.
 - Managing cship version upgrades automatically.
