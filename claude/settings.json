@@ -112,7 +112,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "starship statusline claude-code"
+    "command": "cship"
   },
   "enabledPlugins": {
     "caveman@caveman": true,

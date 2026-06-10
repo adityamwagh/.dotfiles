@@ -1,0 +1,68 @@
+# Claude Code statusline rendered by cship (https://github.com/stephenleo/cship).
+# Named ANSI colors only, so the terminal palette themes dark/light automatically.
+
+[cship]
+# effort and human-readable duration tokens are not in cship v1.7.1; re-add once released.
+lines = [
+  "$directory$git_branch$cship.model $cship.context_bar $cship.context_window.used_tokens $cship.context_window.total_input_tokens $cship.context_window.total_output_tokens",
+  "$cship.cost $cship.cost.total_lines_added $cship.cost.total_lines_removed $cship.usage_limits",
+]
+
+[cship.model]
+symbol = "🤖 "       # Icon before the model name.
+style = "bold blue" # Match the starship claude_model style.
+
+[cship.context_bar]
+width = 10                  # Gauge width in characters.
+filled_char = "█"           # Filled gauge segment.
+empty_char = "░"            # Empty gauge segment.
+style = "green"             # Healthy context usage.
+warn_threshold = 70.0       # Warn once context passes 70%.
+warn_style = "yellow"       # Warning gauge color.
+critical_threshold = 90.0   # Critical once context passes 90%.
+critical_style = "bold red" # Critical gauge color.
+
+[cship.context_window.used_tokens]
+style = "cyan"              # Used/total token summary style.
+warn_threshold = 70.0       # Warn once context passes 70%.
+warn_style = "yellow"       # Warning summary color.
+critical_threshold = 90.0   # Critical once context passes 90%.
+critical_style = "bold red" # Critical summary color.
+
+[cship.context_window.total_input_tokens]
+format = "[$symbol$value]($style)" # Render input tokens in context.
+symbol = "in:"                     # Label before the input token count.
+style = "white"                    # Input token style.
+
+[cship.context_window.total_output_tokens]
+format = "[$symbol$value]($style)" # Render output tokens in context.
+symbol = "out:"                    # Label before the output token count.
+style = "white"                    # Output token style.
+
+[cship.cost]
+symbol = "💰 "               # Icon before the session cost.
+style = "green"             # Healthy cost style.
+warn_threshold = 5.0        # Warn once the session passes $5.
+warn_style = "yellow"       # Warning cost color.
+critical_threshold = 10.0   # Critical once the session passes $10.
+critical_style = "bold red" # Critical cost color.
+
+[cship.cost.total_lines_added]
+format = "[$symbol$value]($style)" # Render lines added this session.
+symbol = "+"                       # Diffstat-style prefix.
+style = "green"                    # Lines-added color.
+
+[cship.cost.total_lines_removed]
+format = "[$symbol$value]($style)" # Render lines removed this session.
+symbol = "-"                       # Diffstat-style prefix.
+style = "red"                      # Lines-removed color.
+
+[cship.usage_limits]
+five_hour_format = "5h {pct}% ({reset})" # 5-hour window usage and reset time.
+seven_day_format = "7d {pct}% ({reset})" # 7-day window usage and reset time.
+separator = " "                          # Space between the two windows.
+style = "cyan"                           # Healthy usage style.
+warn_threshold = 70.0                    # Warn once a window passes 70%.
+warn_style = "yellow"                    # Warning usage color.
+critical_threshold = 90.0                # Critical once a window passes 90%.
+critical_style = "bold red"              # Critical usage color.

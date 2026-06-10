@@ -74,6 +74,7 @@
       if: "[ $(uname) = Darwin ]"
 
     # Coding Agents
+    ~/.config/cship.toml: cship/cship.toml
     ~/.codex/config.toml: codex/config.toml
     ~/.config/opencode/opencode.json: opencode/opencode.json
     ~/.config/opencode/themes: opencode/themes
@@ -88,3 +89,4 @@
     - ["~/.dotfiles/scripts/install-linux-system-packages.sh", "Install Linux system packages"]
     - ["~/.local/bin/install-fonts ~/.dotfiles", "Install fonts"]
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
+    - ["~/.dotfiles/scripts/install-cship.sh", "Install cship statusline"]
