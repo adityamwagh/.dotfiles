@@ -11,7 +11,7 @@ cursor-style-blink = true
 shell-integration = detect
 working-directory = inherit
 command = /bin/zsh -l
-scrollback-limit = 100000
+scrollback-limit = 10000000
 notify-on-command-finish-after = 10s
 
 window-decoration = client
