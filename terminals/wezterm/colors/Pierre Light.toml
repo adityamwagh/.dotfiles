@@ -1,0 +1,30 @@
+# Pierre Light
+[colors]
+foreground = "#0a0a0a"
+background = "#ffffff"
+cursor_bg = "#009fff"
+cursor_border = "#009fff"
+cursor_fg = "#ffffff"
+selection_bg = "#dfebff"
+selection_fg = "#0a0a0a"
+
+ansi = [
+  "#1d1d1d",
+  "#d52c36",
+  "#18a46c",
+  "#d5a910",
+  "#1a85d4",
+  "#bd2e90",
+  "#1ca1c7",
+  "#bcbcbc",
+]
+brights = [
+  "#1d1d1d",
+  "#d52c36",
+  "#77a42a",
+  "#d5a910",
+  "#1a85d4",
+  "#bd2e90",
+  "#1ca1c7",
+  "#bcbcbc",
+]

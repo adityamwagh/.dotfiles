@@ -145,7 +145,7 @@
     },
     "theme": {
         "dark": "Dark 2026 - Custom No Italics", // Use the generated local Dark 2026 theme.
-        "light": "Catppuccin Latte - Custom No Italics", // Use the generated local Catppuccin Latte theme.
+        "light": "Pierre Light - Custom No Italics", // Use the generated local Pierre Light theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {

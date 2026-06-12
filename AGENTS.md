@@ -32,7 +32,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 ## Theme and Config Policy
 
-**Active dark/light pair:** use Dark 2026 for dark mode and Catppuccin Latte for light mode across tools that support appearance switching. Keep other theme variants available; do not delete Ayu, Gruvbox, Tokyo Night, Catppuccin, or VS Code 2026 theme files just because they are not active.
+**Active dark/light pair:** use Dark 2026 for dark mode and Pierre Light for light mode across tools that support appearance switching. Keep other theme variants available; do not delete Ayu, Gruvbox, Tokyo Night, Catppuccin, Pierre, or VS Code 2026 theme files just because they are not active.
 
 **Theme files:** theme outputs are checked in directly for Zed, WezTerm, Ghostty, Konsole colorschemes, Neovim, and opencode. Keep related variants consistent when changing a shared palette.
 
@@ -41,6 +41,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 - Tokyo Night: `https://github.com/tokyo-night/tokyo-night-vscode-theme`
 - Gruvbox: `https://github.com/ellisonleao/gruvbox.nvim`
 - Catppuccin: `https://github.com/catppuccin/palette`
+- Pierre: `https://github.com/pierrecomputer/theme` (roles in `src/palette.ts`)
 - VS Code: `https://github.com/microsoft/vscode/tree/main/extensions/theme-defaults/themes`
 
 **Variants to preserve:**
@@ -49,18 +50,19 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 - Gruvbox: Dark Hard, Dark, Dark Soft, Light Hard, Light, Light Soft
 - Tokyo Night: Night, Storm, Moon, Day
 - VS Code 2026: Dark 2026, Light 2026
+- Pierre: Light, Light Soft, Dark, Dark Soft (Zed); Pierre Light only for other tools
 
 **Zed themes:** Zed themes should follow the installed Catppuccin extension's theme shape so UI elements are themed consistently. Keep the "Custom No Italics" style. Border-related Zed theme fields should use the Catppuccin-style border roles; borders should contrast with the background, with lighter borders on dark themes and darker borders on light themes.
 
-**Zed settings:** Zed should use dark `Dark 2026 - Custom No Italics` and light `Catppuccin Latte - Custom No Italics`. Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
+**Zed settings:** Zed should use dark `Dark 2026 - Custom No Italics` and light `Pierre Light - Custom No Italics`. Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
 
 **KDE/Konsole settings:** Dotbot may link Konsole colorscheme files only. Do not manage Konsole profiles, `konsolerc`, Plasma themes, KDE services, or other KDE settings through these dotfiles.
 
 **Tool-specific active themes:**
-- Zed: dark Dark 2026, light Catppuccin Latte
-- Ghostty: `theme = dark:vscode-2026-dark,light:catppuccin-latte`
-- WezTerm: load `Dark 2026` for dark mode and `Catppuccin Latte` for light mode
-- Neovim: load `vscode-2026-dark` for dark mode and Catppuccin Latte for light mode
+- Zed: dark Dark 2026, light Pierre Light
+- Ghostty: `theme = dark:vscode-2026-dark,light:pierre-light`
+- WezTerm: load `Dark 2026` for dark mode and `Pierre Light` for light mode
+- Neovim: load `vscode-2026-dark` for dark mode and `pierre-light` for light mode
 - opencode: use the `vscode-2026-dark` theme
 
 **Comments:** keep config option comments as short one-line inline comments where the file format supports it. File-level headers, such as the Zed settings documentation header, may remain as standalone comments.
