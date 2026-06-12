@@ -212,57 +212,7 @@ elif [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/zsh-autosugge
   . "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-# fast-syntax-highlighting
-if [ -f /usr/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then
-  . /usr/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-elif [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]; then
-  . "$HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-elif [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]; then
-  . "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-fi
-
-zle_highlight+=(paste:none)
-
-if typeset -p FAST_HIGHLIGHT_STYLES >/dev/null 2>&1; then
-  fsh_set_style() {
-    local key="$1" style="$2"
-    # shellcheck disable=SC2004
-    FAST_HIGHLIGHT_STYLES[$key]="$style"
-    [ -n "${FAST_THEME_NAME:-}" ] && FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}${key}]="$style"
-  }
-
-  fsh_set_style unknown-token          'fg=red,bold'
-  fsh_set_style reserved-word          'fg=yellow'
-  fsh_set_style alias                  'fg=green,bold'
-  fsh_set_style suffix-alias           'fg=cyan,underline'
-  fsh_set_style global-alias           'fg=cyan,bold'
-  fsh_set_style builtin                'fg=yellow,bold'
-  fsh_set_style function               'fg=green,bold'
-  fsh_set_style command                'fg=green,bold'
-  fsh_set_style precommand             'fg=green,underline'
-  fsh_set_style commandseparator       'fg=magenta'
-  fsh_set_style hashed-command         'fg=green,bold'
-  fsh_set_style subcommand             'fg=11'
-  fsh_set_style path-to-dir            'fg=white,underline'
-  fsh_set_style globbing               'fg=blue,bold'
-  fsh_set_style history-expansion      'fg=blue,bold'
-  fsh_set_style double-hyphen-option   'fg=yellow'
-  fsh_set_style single-hyphen-option   'fg=yellow'
-  fsh_set_style back-quoted-argument   'fg=magenta'
-  fsh_set_style single-quoted-argument 'fg=yellow'
-  fsh_set_style double-quoted-argument 'fg=yellow'
-  fsh_set_style dollar-quoted-argument 'fg=yellow'
-  fsh_set_style redirection            'fg=magenta'
-  fsh_set_style path                   'fg=white,underline'
-  fsh_set_style comment                'fg=black,bold'
-  fsh_set_style arg0                   'fg=green'
-  fsh_set_style default                'fg=white'
-  fsh_set_style bracket-level-1        'fg=blue,bold'
-  fsh_set_style bracket-level-2        'fg=green,bold'
-  fsh_set_style bracket-level-3        'fg=magenta,bold'
-
-  unset -f fsh_set_style
-fi
+zle_highlight+=(paste:none) # no background on pasted text
 
 # ############################################
 # #                  ZOXIDE                 #
@@ -271,3 +221,10 @@ fi
 : "${_ZO_DOCTOR:=0}"
 export _ZO_DOCTOR
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
+
+# ############################################
+# #          SYNTAX HIGHLIGHTING            #
+# ############################################
+
+# zsh-patina must initialize at the end of .zshrc
+command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"

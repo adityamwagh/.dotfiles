@@ -73,6 +73,9 @@
       path: terminals/konsole/colorschemes/*.colorscheme
       if: "[ $(uname) = Darwin ]"
 
+    # zsh-patina
+    ~/.config/zsh-patina: shells/zsh/patina
+
     # Coding Agents
     ~/.config/cship.toml: cship/cship.toml
     ~/.config/opencode/opencode.json: opencode/opencode.json
@@ -89,3 +92,4 @@
     - ["~/.local/bin/install-fonts ~/.dotfiles", "Install fonts"]
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-cship.sh", "Install cship statusline"]
+    - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
