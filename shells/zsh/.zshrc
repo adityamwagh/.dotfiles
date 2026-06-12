@@ -52,7 +52,8 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:descriptions' format '%d'
+zstyle ':fzf-tab:*' prefix ''
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh/completion
@@ -204,6 +205,13 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/fzf-tab/fzf-tab.zsh" ]; then
   . "$HOMEBREW_PREFIX/share/fzf-tab/fzf-tab.zsh"
 fi
+
+expand-alias-or-space() {
+  zle _expand_alias 2>/dev/null
+  zle self-insert
+}
+zle -N expand-alias-or-space
+bindkey ' ' expand-alias-or-space
 
 # zsh-autosuggestions
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
