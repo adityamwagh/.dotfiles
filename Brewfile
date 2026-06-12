@@ -1,5 +1,6 @@
 tap "oven-sh/bun"
 tap "gromgit/brewtils"
+tap "michel-kraemer/zsh-patina" if OS.mac?
 
 brew "gromgit/brewtils/taproom"
 brew "bat"
@@ -30,7 +31,7 @@ brew "ddcutil" if OS.linux?
 brew "bash-completion@2"
 brew "fzf-tab"
 brew "zsh-autosuggestions"
-brew "zsh-fast-syntax-highlighting"
+brew "michel-kraemer/zsh-patina/zsh-patina" if OS.mac? # Linux: scripts/install-zsh-patina.sh (tap has no Linux builds)
 
 cask "claude-code"
 cask "claude" if OS.mac?

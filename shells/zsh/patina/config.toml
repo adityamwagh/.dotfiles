@@ -1,0 +1,4 @@
+# zsh-patina config; linked to ~/.config/zsh-patina by dotbot.
+
+[highlighting]
+theme = "file:~/.config/zsh-patina/vscode-2026.toml"
