@@ -1,6 +1,6 @@
 theme = dark:vscode-2026-dark,light:pierre-light
 
-font-family = IosevkaExtended
+font-family = Source Code Pro
 font-family = Symbols Nerd Font Mono
 font-size = 11
 config-file = ?config-local
