@@ -14,10 +14,7 @@ return {
             end,
             set_light_mode = function()
                 vim.opt.background = "light"
-                require("catppuccin").setup({
-                    flavour = "latte",
-                })
-                vim.cmd.colorscheme("catppuccin")
+                vim.cmd.colorscheme("pierre-light")
             end,
         },
     },
