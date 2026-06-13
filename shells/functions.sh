@@ -1,6 +1,18 @@
 #!/bin/bash
 # Shared shell functions for bash and zsh
 
+pp() {
+  google-chrome "https://www.perplexity.ai/search?q=$*"
+}
+
+g() {
+  google-chrome "https://www.google.com/search?q=$*"
+}
+
+gai() {
+  google-chrome "https://www.google.com/search?udm=50&q=$*"
+}
+
 chfont-replace-file() {
   local file="$1" current_font="$2" new_font="$3" tmp_file
 
