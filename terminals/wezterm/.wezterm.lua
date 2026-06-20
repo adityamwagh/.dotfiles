@@ -65,7 +65,7 @@ return {
     font_size = is_macos and 16 or 11, -- macOS Retina needs larger point size than Linux.
     hyperlink_rules = hyperlink_rules, -- Extend default URL detection with GitHub refs and local paths.
     font = wezterm.font_with_fallback({ -- Use Iosevka with Nerd Font symbols as fallback.
-        { family = "Source Code Pro", weight = "Regular", italic = false },
+        { family = "IosevkaExtended", weight = "Regular", italic = false },
         { family = "Symbols Nerd Font" },
     }),
     font_rules = { -- Replace synthetic bold/italic faces with explicit font choices.
@@ -73,7 +73,7 @@ return {
             intensity = "Bold",
             italic = false,
             font = wezterm.font_with_fallback({
-                { family = "Source Code Pro", weight = "Bold" },
+                { family = "IosevkaExtended", weight = "Bold" },
                 { family = "Symbols Nerd Font" },
             }),
         },
@@ -81,7 +81,7 @@ return {
             intensity = "Normal",
             italic = false,
             font = wezterm.font_with_fallback({
-                { family = "Source Code Pro", italic = false },
+                { family = "IosevkaExtended", italic = false },
                 { family = "Symbols Nerd Font" },
             }),
         },
@@ -89,7 +89,7 @@ return {
             intensity = "Bold",
             italic = false,
             font = wezterm.font_with_fallback({
-                { family = "Source Code Pro", weight = "Bold", italic = false },
+                { family = "IosevkaExtended", weight = "Bold", italic = false },
                 { family = "Symbols Nerd Font" },
             }),
         },
