@@ -1,5 +1,5 @@
 # .zprofile
 # shellcheck source=/dev/null
 [ -f ~/.profile ] && . ~/.profile
-# shellcheck source=/dev/null
-[ -f ~/.zshrc ] && . ~/.zshrc
+# Note: zsh sources ~/.zshrc automatically for every interactive shell, so we
+# must NOT source it here — doing so runs ~/.zshrc twice on login shells.

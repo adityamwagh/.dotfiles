@@ -4,7 +4,9 @@
 # #               SYSTEM RC                 #
 # ############################################
 
-[ -f /etc/zshrc ] && . /etc/zshrc
+# Source system zshrc once per session; it re-runs all /etc/profile.d/*.sh
+# (~60ms) which only need to set up the exported env once. Children inherit it.
+[ -z "$ETC_ZSHRC_DONE" ] && [ -f /etc/zshrc ] && { . /etc/zshrc; export ETC_ZSHRC_DONE=1; }
 
 # ############################################
 # #                 ENV VARS                #
@@ -59,7 +61,9 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh/completion
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' squeeze-slashes true
-if [ -n "$(find "$HOME" -maxdepth 1 -name '.zcompdump' -mmin +1440 -print -quit 2>/dev/null)" ]; then
+# Full compinit only if the dump is missing or >1 day old, else fast cached path.
+# The glob qualifier (#qN.md+1) tests age natively — no `find $HOME` subprocess.
+if [[ -n ~/.zcompdump(#qN.md+1) ]]; then
   compinit
 else
   compinit -C
@@ -236,3 +240,4 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 
 # zsh-patina must initialize at the end of .zshrc
 command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
