@@ -32,35 +32,11 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 ## Theme and Config Policy
 
-**Primary theme:** Pierre. Four variants are kept: `Pierre Dark`, `Pierre Light`, and the softer `Pierre Dark Soft` / `Pierre Light Soft`. Colors are taken verbatim from the upstream Pierre theme (`https://github.com/pierrecomputer/theme`). The active pair is `Pierre Dark Soft` (dark) / `Pierre Light Soft` (light); the non-soft variants are available for manual switching.
+**Themes:** each tool keeps its theme files under its own theme directory (Neovim `colors/`, Zed `themes/`, Ghostty `themes/`, WezTerm `colors/`, Konsole colorschemes). Which theme is active is set in each tool's own config and is the user's choice — do not change the active theme or record specific theme names in this file. When adding or editing a theme, keep all of its variants consistent and mirror upstream colors faithfully.
 
-**Alternative theme:** Doom One (`Doom One` dark / `Doom One Light`), ported from the upstream doom-themes palettes. It is **not** active — it ships alongside Pierre for manual switching only; do not wire it into the auto dark/light config. Two variants, no soft.
-
-Two theme families are intentional (Pierre + Doom One). All others (Ayu, Gruvbox, Catppuccin, Tokyo Night, VS Code 2026, One Monokai) were removed — do not re-add them.
-
-**Theme files:** Pierre and Doom One outputs are checked in directly for Zed, WezTerm, Ghostty, Konsole colorschemes, and Neovim; Pierre additionally has a zsh-patina prompt theme. Keep all variants of a family consistent when changing its palette; mirror any upstream change across every tool.
-
-**Canonical palette source:**
-- Pierre theme (VS Code / Zed / Shiki): `https://github.com/pierrecomputer/theme` — `themes/pierre-{dark,light,dark-soft,light-soft}.json` hold the authoritative UI + syntax + ANSI hex values.
-- Dark variants pair their backgrounds with the vivid ANSI ramp (`#ff2e3f`, `#0dbe4e`, `#009fff`…). Dark editor background is `#0a0a0a`, dark-soft `#171717`.
-- Doom One: `https://github.com/doomemacs/themes` — palettes in `themes/doom-one-theme.el` / `themes/doom-one-light-theme.el`; the shared face→role mapping is in `doom-themes-base.el`. Doom One bg `#282c34`/fg `#bbc2cf`; Doom One Light bg `#fafafa`/fg `#383a42`.
-
-**Local deviations from upstream:**
-- **Pierre Light Soft syntax/ANSI.** Upstream pairs Light Soft's soft chrome with the *vivid* (dark-tuned) ANSI ramp — string `#0dbe4e`, number/operator `#08c0ef`, keyword `#ff678d`, variable `#fe8c2c`, constant `#ffca00`, function `#9d6afb`, type `#d568ea`, ANSI `#ff2e3f`/`#0dbe4e`/`#009fff`… — which collapses to 1.5–2.8:1 contrast on the `#ffffff` editor and is unreadable. We replaced Light Soft's syntax, accents, and ANSI with Pierre Light's *muted* ramp — string `#199f43`, number `#1ca1c7`, keyword `#d32a61`, variable `#d47628`, constant `#d5a910`, function `#693acf`, type `#a631be`, ANSI `#d52c36`/`#18a46c`/`#1a85d4`… — and kept only the soft chrome/foreground. The other three variants stay upstream-exact. Applied across Zed, Neovim, Ghostty, WezTerm, Konsole.
-- **Dark readability.** Upstream's dimmest grays were illegible for editor UI: bumped Zed `predictive` (inline/ghost completion text) and `text.muted` (completion detail) `#636363`/`#525252` → `#8a8a8a` in Dark and Dark Soft, and Neovim inactive `LineNr` `#525252` → `#737373` in both dark variants.
-
-**Zed theme:** `editors/zed/themes/pierre.json` is one file defining all four Pierre themes (`Pierre Light - Custom No Italics`, `Pierre Light Soft - Custom No Italics`, `Pierre Dark - Custom No Italics`, `Pierre Dark Soft - Custom No Italics`). Comments are italic; otherwise no italics. `editors/zed/themes/doom-one.json` defines `Doom One` / `Doom One Light`.
-
-**Zed settings:** Zed should use dark `Pierre Dark Soft - Custom No Italics` and light `Pierre Light Soft - Custom No Italics`. Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
+**Zed settings:** Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
 
 **KDE/Konsole settings:** Dotbot may link Konsole colorscheme files only. Do not manage Konsole profiles, `konsolerc`, Plasma themes, KDE services, or other KDE settings through these dotfiles.
-
-**Tool-specific active themes:**
-- Zed: dark `Pierre Dark Soft - Custom No Italics`, light `Pierre Light Soft - Custom No Italics`
-- Ghostty: `theme = dark:pierre-dark-soft,light:pierre-light-soft`
-- WezTerm: load `Pierre Dark Soft` for dark mode and `Pierre Light Soft` for light mode
-- Neovim: load `pierre-dark-soft` for dark mode and `pierre-light-soft` for light mode
-- zsh-patina: use the Pierre prompt theme (`theme = "file:~/.config/zsh-patina/pierre.toml"`); it maps Pierre roles to ANSI names and follows the terminal palette
 
 **Comments:** keep config option comments as short one-line inline comments where the file format supports it. File-level headers, such as the Zed settings documentation header, may remain as standalone comments.
 
