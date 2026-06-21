@@ -39,6 +39,7 @@ cask "font-sf-pro" if OS.mac?
 cask "font-et-book"
 cask "font-symbols-only-nerd-font"
 cask "font-cascadia-code"
+cask "font-hack"
 cask "font-inter"
 cask "font-selawik"
 cask "font-source-code-pro"
