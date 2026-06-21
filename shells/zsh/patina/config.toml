@@ -1,4 +1,4 @@
 # zsh-patina config; linked to ~/.config/zsh-patina by dotbot.
 
 [highlighting]
-theme = "classic"
+theme = "file:~/.config/zsh-patina/pierre.toml"

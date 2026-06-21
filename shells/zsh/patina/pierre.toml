@@ -1,0 +1,48 @@
+# zsh-patina theme matching the active colorscheme pair (Pierre Dark / Pierre
+# Light). Uses ANSI named colors only, so it renders from the terminal palette
+# and follows the dark/light switch automatically. Pierre role -> ANSI slot:
+# commands blue (Function/indigo), keywords/operators magenta (Keyword/pink),
+# strings green, escapes cyan (mint), globs/specials cyan. Pierre's orange
+# variable role has no ANSI slot and stays terminal-default. Scope names:
+# `zsh-patina list-scopes`. Role mapping follows editors/nvim/colors/pierre-dark.lua.
+
+# commands: blue like Function, bold; builtins cyan like @function.builtin
+"dynamic.callable" = { foreground = "blue", bold = true }
+"dynamic.callable.builtin" = { foreground = "cyan", bold = true }
+"dynamic.callable.missing" = { foreground = "red", bold = true }
+"variable.function" = { foreground = "blue", bold = true }
+
+# function definitions
+"entity.name.function" = "blue"
+
+# keywords, operators, separators, redirections: magenta like Keyword/Operator
+"keyword" = "magenta"
+"storage" = "magenta"
+"precommand" = "magenta"
+
+# globs and test brackets: cyan like Special
+"keyword.operator.regexp" = "cyan"
+"support" = "cyan"
+
+# strings green like String; escapes cyan like @string.escape (mint)
+"string" = "green"
+"constant.character.escape" = "cyan"
+
+# variables: cyan like @property; assignments stay default like @variable
+"variable.other.readwrite" = "cyan"
+"punctuation.definition.variable" = "cyan"
+"variable.language" = "cyan"
+"variable.other.readwrite.assignment" = {}
+
+# option arguments stay default like @variable.parameter
+"variable.parameter" = {}
+
+# expansions
+"meta.group.expansion.history" = "cyan"
+"meta.group.expansion.command.parens" = {}
+
+# paths: underline only, keep default foreground
+"dynamic.path" = { underline = true }
+
+# comments: bright black like Comment
+"comment" = 8
