@@ -1,0 +1,30 @@
+# Doom One Light
+[colors]
+foreground = "#383a42"
+background = "#fafafa"
+cursor_bg = "#4078f2"
+cursor_border = "#4078f2"
+cursor_fg = "#fafafa"
+selection_bg = "#dfdfdf"
+selection_fg = "#383a42"
+
+ansi = [
+  "#383a42",
+  "#e45649",
+  "#50a14f",
+  "#986801",
+  "#4078f2",
+  "#a626a4",
+  "#0184bc",
+  "#a0a1a7",
+]
+brights = [
+  "#696c77",
+  "#e45649",
+  "#50a14f",
+  "#986801",
+  "#4078f2",
+  "#a626a4",
+  "#0184bc",
+  "#383a42",
+]
