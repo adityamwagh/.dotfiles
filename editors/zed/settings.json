@@ -144,8 +144,8 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Pierre Dark Soft - Custom No Italics", // Use the generated local Pierre Dark Soft theme.
-        "light": "Pierre Light Soft - Custom No Italics", // Use the generated local Pierre Light Soft theme.
+        "dark": "Doom One", // Use the local Doom One theme.
+        "light": "Doom One Light", // Use the local Doom One Light theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {
