@@ -32,7 +32,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 ## Theme and Config Policy
 
-**Active dark/light pair:** use Dark 2026 for dark mode and Pierre Light for light mode across tools that support appearance switching. Keep other theme variants available; do not delete Ayu, Gruvbox, Tokyo Night, Catppuccin, Pierre, or VS Code 2026 theme files just because they are not active.
+**Active dark/light pair:** use Pierre Dark for dark mode and Pierre Light for light mode across tools that support appearance switching. Keep other theme variants available; do not delete Ayu, Gruvbox, Tokyo Night, Catppuccin, Dark 2026, VS Code 2026, or any Pierre theme files just because they are not active.
 
 **Theme files:** theme outputs are checked in directly for Zed, WezTerm, Ghostty, Konsole colorschemes, Neovim, and opencode. Keep related variants consistent when changing a shared palette.
 
@@ -50,20 +50,21 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 - Gruvbox: Dark Hard, Dark, Dark Soft, Light Hard, Light, Light Soft
 - Tokyo Night: Night, Storm, Moon, Day
 - VS Code 2026: Dark 2026, Light 2026
-- Pierre: Light, Light Soft, Dark, Dark Soft (Zed); Pierre Light only for other tools
+- Pierre: Light, Light Soft, Dark, Dark Soft (Zed); Light, Dark, Dark Soft for other tools
 
 **Zed themes:** Zed themes should follow the installed Catppuccin extension's theme shape so UI elements are themed consistently. Keep the "Custom No Italics" style. Border-related Zed theme fields should use the Catppuccin-style border roles; borders should contrast with the background, with lighter borders on dark themes and darker borders on light themes.
 
-**Zed settings:** Zed should use dark `Dark 2026 - Custom No Italics` and light `Pierre Light - Custom No Italics`. Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
+**Zed settings:** Zed should use dark `Pierre Dark - Custom No Italics` and light `Pierre Light - Custom No Italics`. Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
 
 **KDE/Konsole settings:** Dotbot may link Konsole colorscheme files only. Do not manage Konsole profiles, `konsolerc`, Plasma themes, KDE services, or other KDE settings through these dotfiles.
 
 **Tool-specific active themes:**
-- Zed: dark Dark 2026, light Pierre Light
-- Ghostty: `theme = dark:vscode-2026-dark,light:pierre-light`
-- WezTerm: load `Dark 2026` for dark mode and `Pierre Light` for light mode
-- Neovim: load `vscode-2026-dark` for dark mode and `pierre-light` for light mode
-- opencode: use the `vscode-2026-dark` theme
+- Zed: dark Pierre Dark, light Pierre Light
+- Ghostty: `theme = dark:pierre-dark,light:pierre-light`
+- WezTerm: load `Pierre Dark` for dark mode and `Pierre Light` for light mode
+- Neovim: load `pierre-dark` for dark mode and `pierre-light` for light mode
+- opencode: use the `pierre-dark` theme
+- zsh-patina: use the Pierre prompt theme (`theme = "file:~/.config/zsh-patina/pierre.toml"`); it maps Pierre roles to ANSI names and follows the terminal palette
 
 **Comments:** keep config option comments as short one-line inline comments where the file format supports it. File-level headers, such as the Zed settings documentation header, may remain as standalone comments.
 
