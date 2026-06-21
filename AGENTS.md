@@ -81,3 +81,4 @@ Every commit must be independently installable: `./install` at that commit sets 
 - Commits: Conventional Commits prefixes (`feat:`, `fix:`, `refactor:`), scoped by subsystem
 - Before committing, always run `./install -v` and fix any errors first
 - Keep history aligned with `origin/main`; do not rewrite or squash commits unless explicitly requested.
+- Alphabetical order: when a list's element order does not affect behavior (e.g. `.gitignore` rules, `auto_install_extensions`, package/font lists), keep entries alphabetically sorted, and re-check the ordering whenever you add or edit such a list. Never reorder order-sensitive content (font fallback chains, `tap` before `brew` in the Brewfile, positional ANSI arrays, code).
