@@ -78,8 +78,6 @@
 
     # Coding Agents
     ~/.config/cship.toml: cship/cship.toml
-    ~/.config/opencode/opencode.json: opencode/opencode.json
-    ~/.config/opencode/themes: opencode/themes
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
 
