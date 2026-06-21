@@ -1,4 +1,4 @@
-theme = dark:vscode-2026-dark,light:pierre-light
+theme = dark:pierre-dark,light:pierre-light
 
 font-family = Hack
 font-family = Symbols Nerd Font Mono
