@@ -1,5 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "gpt-oss-120b",
-  "theme": "vscode-2026-dark"
+  "theme": "pierre-dark"
 }
