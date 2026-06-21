@@ -1,11 +1,11 @@
 theme = dark:pierre-dark-soft,light:pierre-light-soft
 
-font-family = Hack
+font-family = Source Code Pro
 font-family = Symbols Nerd Font Mono
 font-size = 11
 config-file = ?config-local
 
-adjust-cell-height = 10
+adjust-cell-height = 4
 cursor-style = bar
 cursor-style-blink = true
 
