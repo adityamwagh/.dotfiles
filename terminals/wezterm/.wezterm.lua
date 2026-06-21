@@ -61,7 +61,7 @@ wezterm.on("update-status", function(window, pane)
 end)
 
 return {
-    color_scheme = is_dark and "Pierre Dark Soft" or "Pierre Light Soft", -- Select theme for current appearance.
+    color_scheme = is_dark and "Doom One" or "Doom One Light", -- Select theme for current appearance.
     font_size = is_macos and 16 or 11, -- macOS Retina needs larger point size than Linux.
     hyperlink_rules = hyperlink_rules, -- Extend default URL detection with GitHub refs and local paths.
     font = wezterm.font_with_fallback({ -- Use Source Code Pro with Nerd Font symbols as fallback.
