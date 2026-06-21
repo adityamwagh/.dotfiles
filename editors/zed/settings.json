@@ -144,8 +144,8 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Pierre Dark - Custom No Italics", // Use the generated local Pierre Dark theme.
-        "light": "Pierre Light - Custom No Italics", // Use the generated local Pierre Light theme.
+        "dark": "Pierre Dark Soft - Custom No Italics", // Use the generated local Pierre Dark Soft theme.
+        "light": "Pierre Light Soft - Custom No Italics", // Use the generated local Pierre Light Soft theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {
