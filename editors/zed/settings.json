@@ -48,7 +48,7 @@
     },
     "base_keymap": "VSCode", // Start from VS Code-style keybindings.
     "buffer_font_fallbacks": [".SystemUIFont"],
-    "buffer_font_family": "Hack", // Use Hack in buffers.
+    "buffer_font_family": "Source Code Pro", // Use Source Code Pro in buffers.
     "buffer_font_size": 14, // Set buffer font size.
     "buffer_font_weight": 400, // Use regular buffer font weight.
     "buffer_line_height": "comfortable", // Use comfortable editor line height.

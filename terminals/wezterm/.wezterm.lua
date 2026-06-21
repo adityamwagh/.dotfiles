@@ -64,8 +64,8 @@ return {
     color_scheme = is_dark and "Pierre Dark Soft" or "Pierre Light Soft", -- Select theme for current appearance.
     font_size = is_macos and 16 or 11, -- macOS Retina needs larger point size than Linux.
     hyperlink_rules = hyperlink_rules, -- Extend default URL detection with GitHub refs and local paths.
-    font = wezterm.font_with_fallback({ -- Use Hack with Nerd Font symbols as fallback.
-        { family = "Hack", weight = "Regular", italic = false },
+    font = wezterm.font_with_fallback({ -- Use Source Code Pro with Nerd Font symbols as fallback.
+        { family = "Source Code Pro", weight = "Regular", italic = false },
         { family = "Symbols Nerd Font" },
     }),
     font_rules = { -- Replace synthetic bold/italic faces with explicit font choices.
@@ -73,7 +73,7 @@ return {
             intensity = "Bold",
             italic = false,
             font = wezterm.font_with_fallback({
-                { family = "Hack", weight = "Bold" },
+                { family = "Source Code Pro", weight = "Bold" },
                 { family = "Symbols Nerd Font" },
             }),
         },
@@ -81,7 +81,7 @@ return {
             intensity = "Normal",
             italic = false,
             font = wezterm.font_with_fallback({
-                { family = "Hack", italic = false },
+                { family = "Source Code Pro", italic = false },
                 { family = "Symbols Nerd Font" },
             }),
         },
@@ -89,7 +89,7 @@ return {
             intensity = "Bold",
             italic = false,
             font = wezterm.font_with_fallback({
-                { family = "Hack", weight = "Bold", italic = false },
+                { family = "Source Code Pro", weight = "Bold", italic = false },
                 { family = "Symbols Nerd Font" },
             }),
         },
