@@ -144,7 +144,7 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Dark 2026 - Custom No Italics", // Use the generated local Dark 2026 theme.
+        "dark": "Pierre Dark - Custom No Italics", // Use the generated local Pierre Dark theme.
         "light": "Pierre Light - Custom No Italics", // Use the generated local Pierre Light theme.
         "mode": "system", // Follow system dark/light appearance.
     },
