@@ -15,6 +15,9 @@ map("v", "<C-a>", "<Esc>ggVG", { desc = "Select all" })
 -- gcip = comment inner paragraph
 -- gcG = comment from here to end of file
 
+map("n", "<C-a>", "^", { desc = "Move to start of the line" })
+map("n", "<C-e>", "$", { desc = "Move to end of the line" })
+
 -- VS Code style Ctrl+/ shortcuts
 map("n", toggle_key, "gcc", { desc = "Toggle comment", remap = true })
 map("x", toggle_key, "gc", { desc = "Toggle comment", remap = true })
