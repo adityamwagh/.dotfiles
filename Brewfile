@@ -32,14 +32,15 @@ brew "bash-completion@2"
 brew "fzf-tab"
 brew "zsh-autosuggestions"
 brew "michel-kraemer/zsh-patina/zsh-patina" if OS.mac? # Linux: scripts/install-zsh-patina.sh (tap has no Linux builds)
+brew "panache"
 
 cask "claude-code"
-cask "claude" if OS.mac?
 cask "font-sf-pro" if OS.mac?
 cask "font-et-book"
 cask "font-symbols-only-nerd-font"
 cask "font-cascadia-code"
 cask "font-hack"
 cask "font-inter"
+cask "font-latin-modern-math"
 cask "font-selawik"
 cask "font-source-code-pro"
