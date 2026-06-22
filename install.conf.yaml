@@ -80,6 +80,7 @@
     ~/.config/cship.toml: cship/cship.toml
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
+    ~/.claude/themes: claude/themes
 
 - shell:
     - [
