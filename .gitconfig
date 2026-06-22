@@ -8,8 +8,8 @@ path = ~/.dotfiles/.gitconfig.shared
 # Set the default Git author email.
 	email = adityamwagh@outlook.com
 
-[includeIf "gitdir:~/work/"]
-# Load work-specific Git identity inside ~/work repositories.
+[includeIf "gitdir:~/Projects/"]
+# Load work-specific Git identity inside ~/Projects repositories.
 	path = ~/.gitconfig.work
 
 [credential "https://github.com"]
