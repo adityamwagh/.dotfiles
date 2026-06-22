@@ -145,7 +145,7 @@
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:doom-one",
+  "theme": "auto",
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "autoScrollEnabled": true,
