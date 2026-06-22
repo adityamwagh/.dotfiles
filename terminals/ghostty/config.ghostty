@@ -1,46 +1,40 @@
-theme = dark:doom-one,light:doom-one-light
-
+adjust-cell-height = 4
+command = /bin/zsh
+config-file = ?config-local
+cursor-style = bar
+cursor-style-blink = true
+focus-follows-mouse = false
 font-family = Source Code Pro
 font-family = Symbols Nerd Font Mono
 font-size = 11
-config-file = ?config-local
-
-adjust-cell-height = 4
-cursor-style = bar
-cursor-style-blink = true
-
-shell-integration = detect
-working-directory = inherit
-command = /bin/zsh -l
-scrollback-limit = 10000000
+keybind = ctrl+enter=unbind
+keybind = ctrl+shift+w=close_surface
+macos-titlebar-style = tabs
+maximize = true
 notify-on-command-finish-after = 10s
-
-window-decoration = client
-window-theme = auto
+resize-overlay = after-first
+resize-overlay-duration = 750ms
+resize-overlay-position = center
+scrollback-limit = 10000000
+shell-integration = detect
+split-inherit-working-directory = true
+tab-inherit-working-directory = true
+theme = dark:doom-one,light:doom-one-light
 window-colorspace = display-p3
-window-padding-x = 12
-window-padding-y = 12
+window-decoration = client
+window-height = 9999
+window-inherit-font-size = true
+window-inherit-working-directory = true
+window-new-tab-position = current
 window-padding-balance = true
 window-padding-color = extend
-window-show-tab-bar = auto
-window-subtitle = working-directory
-window-new-tab-position = current
-window-inherit-working-directory = true
-window-inherit-font-size = true
+window-padding-x = 12
+window-padding-y = 12
 window-save-state = never
+window-show-tab-bar = auto
 window-step-resize = false
+window-subtitle = working-directory
+window-theme = auto
 window-vsync = true
-window-height = 9999
-window-width  = 9999
-maximize = true
-
-resize-overlay = after-first
-resize-overlay-position = center
-resize-overlay-duration = 750ms
-
-focus-follows-mouse = false
-
-macos-titlebar-style = tabs
-
-keybind = ctrl+shift+w=close_surface
-keybind = ctrl+enter=unbind
+window-width = 9999
+working-directory = home
