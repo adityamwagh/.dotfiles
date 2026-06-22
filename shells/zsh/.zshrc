@@ -241,3 +241,6 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 # zsh-patina must initialize at the end of .zshrc
 command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
