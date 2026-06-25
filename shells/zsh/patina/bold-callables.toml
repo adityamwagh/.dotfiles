@@ -1,0 +1,20 @@
+# Bold only callable tokens (commands, builtins, functions, aliases, missing)
+# plus the command-position base and precommand modifiers. Everything else
+# keeps the classic theme untouched. Extends built-in "classic".
+
+# command-position base — bold so post-precommand commands (`noglob uv`) bold too,
+# since dynamic.callable.* only overlays the first word at runtime.
+"variable.function" = { foreground = "green", bold = true }
+
+# precommand modifiers: noglob, nocorrect, exec, command, builtin
+"precommand" = { foreground = "yellow", bold = true }
+
+# dynamic callables (runtime PATH resolution)
+"dynamic.callable.builtin" = { foreground = "yellow", bold = true }   # system builtins
+"dynamic.callable.command" = { foreground = "green", bold = true }    # valid installed commands
+"dynamic.callable.function" = { foreground = "green", bold = true }   # shell functions
+"dynamic.callable.alias" = { foreground = "green", bold = true }      # aliases
+"dynamic.callable.missing" = { foreground = "red", bold = true }      # not found
+
+[metadata]
+extends = "classic"

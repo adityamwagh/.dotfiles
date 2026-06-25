@@ -1,4 +1,5 @@
 # zsh-patina config; linked to ~/.config/zsh-patina by dotbot.
 
 [highlighting]
-theme = "file:~/.config/zsh-patina/pierre.toml"
+theme = "file:~/.config/zsh-patina/bold-callables.toml"
+dynamic = true
