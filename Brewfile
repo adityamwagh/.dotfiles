@@ -43,4 +43,4 @@ cask "font-hack"
 cask "font-inter"
 cask "font-latin-modern-math"
 cask "font-selawik"
-cask "font-source-code-pro"
+cask "font-source-code-pro" if OS.mac? # Linux: scripts/install-source-code-pro.sh (no Linux cask)
