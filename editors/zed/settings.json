@@ -50,7 +50,7 @@
     "buffer_font_fallbacks": [".SystemUIFont"],
     "buffer_font_family": "Source Code Pro", // Use Source Code Pro in buffers.
     "buffer_font_size": 14, // Set buffer font size.
-    "buffer_font_weight": 400, // Use regular buffer font weight.
+    "buffer_font_weight": 500, // Use regular buffer font weight.
     "buffer_line_height": "comfortable", // Use comfortable editor line height.
     "centered_layout": {
         "left_padding": 0.2, // Reserve centered-layout padding on the left side of the editor.
@@ -144,8 +144,8 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Doom One", // Use the local Doom One theme.
-        "light": "Doom One Light", // Use the local Doom One Light theme.
+        "dark": "Revontuli", // Use the local Revontuli dark theme.
+        "light": "Pierre Light Soft - Custom No Italics", // Use the local Pierre Light Soft theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {
