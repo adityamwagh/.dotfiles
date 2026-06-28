@@ -1,0 +1,60 @@
+# Iosevka custom build plan: "Iosevka Extended".
+# Builds all weights (Thin..Heavy), upright only, at Extended width, in the
+# default Iosevka style. Regenerate the .ttf files in this directory with
+# scripts/build-custom-iosevka-extended.sh (Docker).
+# Options reference: https://github.com/be5invis/Iosevka/blob/master/doc/custom-build.md
+
+[buildPlans.IosevkaExtended]
+family = "Iosevka Extended" # menu family; filenames become IosevkaExtended-<Weight>.ttf
+spacing = "fontconfig-mono" # normal | term | fontconfig-mono | fixed
+serifs = "sans"             # sans | slab
+exportGlyphNames = false    # true bloats files; only needed for Kitty ligature names
+
+# fontconfig-mono forces every glyph to one width so fontconfig classifies the
+# font as monospace (drops a few extra-wide long-arrow glyphs); ligatures stay.
+# Default Iosevka letterforms -- add a [buildPlans.IosevkaExtended.variants]
+# block (e.g. inherits = "ss09") to emulate another font's glyphs.
+
+# ligations omitted: default calt programming ligatures are kept.
+
+# weights is intentionally omitted: when absent, Iosevka builds all of them
+# (9 weights Thin..Heavy).
+
+# Defining a slopes block restricts output to the slopes listed, so this yields
+# upright only (no Italic, no Oblique). To also keep the slanted upright shapes,
+# add an Oblique block; for true italic letterforms add an Italic block.
+[buildPlans.IosevkaExtended.slopes.Upright]
+angle = 0         # degrees, valid range [0, 15]
+shape = "upright" # slope used for variant selection
+menu = "upright"  # slope grade used in font names
+css = "normal"    # webfont font-style
+
+# Single width carrying Extended geometry. Keyed `Normal` (the default width slot)
+# on purpose: a non-default key/grade would append a "Extended" token to every
+# name, doubling the family ("Iosevka Extended Extended ..."). Keeping it in the
+# default slot yields clean names -- family "Iosevka Extended", files
+# IosevkaExtended-<Weight>.ttf -- while shape = 600 gives the wide glyphs.
+# (9 weights x 1 slope x 1 width = 9 files.)
+[buildPlans.IosevkaExtended.widths.Normal]
+shape = 600    # extended geometry; unit width in 1/1000 em (500 = normal)
+menu = 5       # default width grade -> no width token in font names
+css = "normal"
+
+# Name-table strings (cosmetic; no effect on glyph shapes). Iosevka is OFL with a
+# Reserved Font Name -- keep this build private or rebrand here before sharing.
+[buildPlans.IosevkaExtended.namingOverride]
+version = "1.0.0"
+
+# Raw metric overrides -- STRONGLY DISCOURAGED (can break geometry). Uncomment to
+# try: tighter built-in line height, looser tracking. Values may be expressions
+# over `weight`/`width`, e.g. blend(weight, [100,50], [900,180]).
+# [buildPlans.IosevkaExtended.metricOverride]
+# leading = 1180                    # default 1250 (built-in line height, em-units)
+# sb = 'default_sb * 1.0625 + 15'   # default ~60; widens side-bearings
+
+# Pre-encoded PUA ligatures for software without OpenType calt (e.g. Emacs).
+# Uncomment per sequence; pick free PUA code points (0xE100+).
+# [[buildPlans.IosevkaExtended.compatibilityLigatures]]
+# unicode = 57600      # 0xE100
+# featureTag = 'calt'
+# sequence = '<*>'
