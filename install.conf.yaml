@@ -84,9 +84,6 @@
     ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
     ~/.config/wezterm/colors: terminals/wezterm/colors
 
-    # Fonts
-    ~/.local/bin/install-fonts: fonts/install-fonts.sh
-
     # Konsole colorschemes
     ~/.local/share/konsole/:
       glob: true
@@ -112,7 +109,11 @@
         "Install Brew packages",
       ]
     - ["~/.dotfiles/scripts/install-linux-system-packages.sh", "Install Linux system packages"]
-    - ["~/.local/bin/install-fonts ~/.dotfiles", "Install fonts"]
+    - ["~/.dotfiles/scripts/install-custom-iosevka-extended.sh", "Install custom Iosevka Extended"]
+    - ["~/.dotfiles/scripts/install-helvetica-now.sh", "Install HelveticaNow"]
+    - ["~/.dotfiles/scripts/install-segoe-ui.sh", "Install Segoe UI (Linux)"]
+    - ["~/.dotfiles/scripts/install-sf-pro.sh", "Install SF Pro (Linux)"]
+    - ["~/.dotfiles/scripts/install-source-code-pro.sh", "Install Source Code Pro (Linux)"]
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-cship.sh", "Install cship statusline"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
