@@ -1,11 +1,11 @@
 [Background]
-Color=23,23,23
+Color=16,16,16
 
 [BackgroundFaint]
-Color=23,23,23
+Color=16,16,16
 
 [BackgroundIntense]
-Color=38,38,38
+Color=16,16,16
 
 [Color0]
 Color=23,23,23
@@ -80,13 +80,13 @@ Color=188,188,188
 Color=188,188,188
 
 [Foreground]
-Color=212,212,212
+Color=138,138,138
 
 [ForegroundFaint]
-Color=212,212,212
+Color=138,138,138
 
 [ForegroundIntense]
-Color=212,212,212
+Color=138,138,138
 
 [General]
 Description=Pierre Dark Soft

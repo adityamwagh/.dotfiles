@@ -1,11 +1,11 @@
 [Background]
-Color=255,255,255
+Color=247,247,247
 
 [BackgroundFaint]
-Color=255,255,255
+Color=247,247,247
 
 [BackgroundIntense]
-Color=245,245,245
+Color=247,247,247
 
 [Color0]
 Color=29,29,29
@@ -17,58 +17,58 @@ Color=29,29,29
 Color=29,29,29
 
 [Color1]
-Color=213,44,54
+Color=255,46,63
 
 [Color1Faint]
-Color=213,44,54
+Color=255,46,63
 
 [Color1Intense]
-Color=213,44,54
+Color=255,46,63
 
 [Color2]
-Color=24,164,108
+Color=13,190,78
 
 [Color2Faint]
-Color=24,164,108
+Color=13,190,78
 
 [Color2Intense]
-Color=119,164,42
+Color=134,196,39
 
 [Color3]
-Color=213,169,16
+Color=255,202,0
 
 [Color3Faint]
-Color=213,169,16
+Color=255,202,0
 
 [Color3Intense]
-Color=213,169,16
+Color=255,202,0
 
 [Color4]
-Color=26,133,212
+Color=0,159,255
 
 [Color4Faint]
-Color=26,133,212
+Color=0,159,255
 
 [Color4Intense]
-Color=26,133,212
+Color=0,159,255
 
 [Color5]
-Color=189,46,144
+Color=225,48,172
 
 [Color5Faint]
-Color=189,46,144
+Color=225,48,172
 
 [Color5Intense]
-Color=189,46,144
+Color=225,48,172
 
 [Color6]
-Color=28,161,199
+Color=8,192,239
 
 [Color6Faint]
-Color=28,161,199
+Color=8,192,239
 
 [Color6Intense]
-Color=28,161,199
+Color=8,192,239
 
 [Color7]
 Color=188,188,188
@@ -80,13 +80,13 @@ Color=188,188,188
 Color=188,188,188
 
 [Foreground]
-Color=82,82,82
+Color=115,115,115
 
 [ForegroundFaint]
-Color=82,82,82
+Color=115,115,115
 
 [ForegroundIntense]
-Color=82,82,82
+Color=115,115,115
 
 [General]
 Description=Pierre Light Soft

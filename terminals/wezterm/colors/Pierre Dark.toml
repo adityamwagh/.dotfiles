@@ -1,7 +1,7 @@
 # Pierre Dark
 [colors]
-foreground = "#fafafa"
-background = "#0a0a0a"
+foreground = "#a3a3a3"
+background = "#171717"
 cursor_bg = "#009fff"
 cursor_border = "#009fff"
 cursor_fg = "#0a0a0a"

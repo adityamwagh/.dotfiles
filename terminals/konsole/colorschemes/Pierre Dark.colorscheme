@@ -1,11 +1,11 @@
 [Background]
-Color=10,10,10
+Color=23,23,23
 
 [BackgroundFaint]
-Color=10,10,10
+Color=23,23,23
 
 [BackgroundIntense]
-Color=29,29,29
+Color=23,23,23
 
 [Color0]
 Color=23,23,23
@@ -80,13 +80,13 @@ Color=188,188,188
 Color=188,188,188
 
 [Foreground]
-Color=250,250,250
+Color=163,163,163
 
 [ForegroundFaint]
-Color=250,250,250
+Color=163,163,163
 
 [ForegroundIntense]
-Color=250,250,250
+Color=163,163,163
 
 [General]
 Description=Pierre Dark

@@ -1,7 +1,7 @@
 # Pierre Light
 [colors]
-foreground = "#0a0a0a"
-background = "#ffffff"
+foreground = "#525252"
+background = "#f5f5f5"
 cursor_bg = "#009fff"
 cursor_border = "#009fff"
 cursor_fg = "#ffffff"
