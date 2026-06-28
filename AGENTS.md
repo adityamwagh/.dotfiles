@@ -44,6 +44,8 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 Every commit must be independently installable: `./install` at that commit sets up only what has been committed so far. When adding a tool, editor, or terminal: update its file(s), `.zshrc`, `.bashrc`, `aliases.sh` (if it has aliases), and `install.conf.yaml` (if it needs symlinks) all in the same commit.
 
+Group commits by **semantic change, not by tool**. One logical change that spans several tools (e.g. "add theme X across all editors/terminals", "switch active light theme") is a single commit covering every tool it touches — not one commit per tool. Split commits only when the changes are distinct concepts (e.g. "add theme X" vs "fix theme Y's palette"), keeping each concept's cross-tool edits together.
+
 ## Shell/Script Coding Style
 
 - **Minimal and correct:** do only what is needed; no speculative or future-proofing code
