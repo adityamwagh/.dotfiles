@@ -1,7 +1,7 @@
 # Pierre Light Soft
 [colors]
-foreground = "#525252"
-background = "#ffffff"
+foreground = "#737373"
+background = "#f7f7f7"
 cursor_bg = "#009fff"
 cursor_border = "#009fff"
 cursor_fg = "#ffffff"
@@ -10,21 +10,21 @@ selection_fg = "#525252"
 
 ansi = [
   "#1d1d1d",
-  "#d52c36",
-  "#18a46c",
-  "#d5a910",
-  "#1a85d4",
-  "#bd2e90",
-  "#1ca1c7",
+  "#ff2e3f",
+  "#0dbe4e",
+  "#ffca00",
+  "#009fff",
+  "#e130ac",
+  "#08c0ef",
   "#bcbcbc",
 ]
 brights = [
   "#1d1d1d",
-  "#d52c36",
-  "#77a42a",
-  "#d5a910",
-  "#1a85d4",
-  "#bd2e90",
-  "#1ca1c7",
+  "#ff2e3f",
+  "#86c427",
+  "#ffca00",
+  "#009fff",
+  "#e130ac",
+  "#08c0ef",
   "#bcbcbc",
 ]

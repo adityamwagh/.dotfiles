@@ -1,7 +1,7 @@
 # Pierre Dark Soft
 [colors]
-foreground = "#d4d4d4"
-background = "#171717"
+foreground = "#8a8a8a"
+background = "#101010"
 cursor_bg = "#69b1ff"
 cursor_border = "#69b1ff"
 cursor_fg = "#171717"
