@@ -16,11 +16,11 @@ return {
             fallback = "dark",
             set_dark_mode = function()
                 vim.opt.background = "dark"
-                vim.cmd.colorscheme("doom-one") -- Plugin picks the palette from &background.
+                vim.cmd.colorscheme("revontuli") -- Local Revontuli dark colorscheme.
             end,
             set_light_mode = function()
                 vim.opt.background = "light"
-                vim.cmd.colorscheme("doom-one")
+                vim.cmd.colorscheme("pierre-light-soft") -- Pierre Light Soft for light appearance.
             end,
         },
     },

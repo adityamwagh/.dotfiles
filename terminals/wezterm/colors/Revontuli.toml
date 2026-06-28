@@ -1,0 +1,30 @@
+# Revontuli
+[colors]
+foreground = "#ffffff"
+background = "#202020"
+cursor_bg = "#33ffa0"
+cursor_border = "#33ffa0"
+cursor_fg = "#202020"
+selection_bg = "#144364"
+selection_fg = "#ffffff"
+
+ansi = [
+  "#606060",
+  "#ff3344",
+  "#5fff33",
+  "#ff9233",
+  "#33bbff",
+  "#d970ff",
+  "#33ffff",
+  "#cccccc",
+]
+brights = [
+  "#808080",
+  "#ff1d3f",
+  "#57ff1a",
+  "#ff7513",
+  "#15a5ff",
+  "#d258ff",
+  "#00ddff",
+  "#ffffff",
+]
