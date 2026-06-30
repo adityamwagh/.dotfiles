@@ -16,11 +16,11 @@ return {
             fallback = "dark",
             set_dark_mode = function()
                 vim.opt.background = "dark"
-                vim.cmd.colorscheme("revontuli") -- Local Revontuli dark colorscheme.
+                vim.cmd.colorscheme("tango-dark") -- Local Tango Dark colorscheme.
             end,
             set_light_mode = function()
                 vim.opt.background = "light"
-                vim.cmd.colorscheme("pierre-light-soft") -- Pierre Light Soft for light appearance.
+                vim.cmd.colorscheme("tango-light") -- Local Tango Light colorscheme.
             end,
         },
     },
