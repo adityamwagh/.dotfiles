@@ -144,8 +144,8 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Revontuli", // Use the local Revontuli dark theme.
-        "light": "Pierre Light Soft - Custom No Italics", // Use the local Pierre Light Soft theme.
+        "dark": "Tango Dark", // Use the local Tango Dark theme.
+        "light": "Tango Light", // Use the local Tango Light theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {
