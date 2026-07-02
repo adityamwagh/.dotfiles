@@ -12,9 +12,33 @@
     ~/: # Clean top-level dotfile links.
       recursive: false # Do not scan home recursively.
       force: false # Only clean links into this repo.
+    ~/.claude: # Clean Claude Code config links.
+      recursive: false
+      force: false
     ~/.config: # Clean direct config links.
       recursive: false # Avoid scanning app internals.
       force: false # Preserve non-dotfile broken links.
+    ~/.config/ghostty: # Clean per-file app links from older layouts.
+      recursive: false
+      force: false
+    ~/.config/nvim:
+      recursive: false
+      force: false
+    ~/.config/wezterm:
+      recursive: false
+      force: false
+    ~/.config/zed:
+      recursive: false
+      force: false
+    ~/.local/bin: # Clean script and font installer links.
+      recursive: false
+      force: false
+    ~/.local/share/konsole: # Clean Konsole colorscheme links (Linux).
+      recursive: false
+      force: false
+    ~/Library/Application Support/konsole: # Clean Konsole colorscheme links (macOS).
+      recursive: false
+      force: false
 
 - link:
     # Shell
