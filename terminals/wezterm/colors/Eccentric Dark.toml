@@ -1,0 +1,30 @@
+# Eccentric Dark
+[colors]
+foreground = "#a9b2c3"
+background = "#181a1f"
+cursor_bg = "#a9b2c3"
+cursor_border = "#a9b2c3"
+cursor_fg = "#181a1f"
+selection_bg = "#363b43"
+selection_fg = "#c6ccd7"
+
+ansi = [
+  "#5f6672",
+  "#e06c75",
+  "#98c379",
+  "#e5c07b",
+  "#61afef",
+  "#b57edc",
+  "#56b6c2",
+  "#a9b2c3",
+]
+brights = [
+  "#707784",
+  "#f57f87",
+  "#abd78c",
+  "#f9d38e",
+  "#74c2ff",
+  "#c891f0",
+  "#6ac9d5",
+  "#bcc5d6",
+]

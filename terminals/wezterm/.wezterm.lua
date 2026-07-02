@@ -37,8 +37,8 @@ local function format_cwd(pane)
 end
 
 local status_colors = is_dark
-        and { background = "#121314", foreground = "#bbbebf", accent = "#79c0ff" }
-    or { background = "#eff1f5", foreground = "#4c4f69", accent = "#1e66f5" }
+        and { background = "#181a1f", foreground = "#a9b2c3", accent = "#1085ff" }
+    or { background = "#f8f9fa", foreground = "#202124", accent = "#4285f4" }
 
 wezterm.on("gui-startup", function(cmd) -- Maximize newly spawned GUI windows.
     local _, _, window = wezterm.mux.spawn_window(cmd or {})
@@ -61,7 +61,7 @@ wezterm.on("update-status", function(window, pane)
 end)
 
 return {
-    color_scheme = is_dark and "Tango Dark" or "Tango Light", -- Select theme for current appearance.
+    color_scheme = is_dark and "Eccentric Dark" or "Eccentric Light", -- Select theme for current appearance.
     font_size = is_macos and 16 or 11, -- macOS Retina needs larger point size than Linux.
     hyperlink_rules = hyperlink_rules, -- Extend default URL detection with GitHub refs and local paths.
     font = wezterm.font_with_fallback({ -- Use Source Code Pro with Nerd Font symbols as fallback.

@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "agent": {
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": [],
+    },
     "cli_default_open_behavior": "existing_window",
     "active_pane_modifiers": {
         "border_size": 1, // Draw a 1px inset border around the active pane.
@@ -50,7 +55,7 @@
     "buffer_font_fallbacks": [".SystemUIFont"],
     "buffer_font_family": "Source Code Pro", // Use Source Code Pro in buffers.
     "buffer_font_size": 14, // Set buffer font size.
-    "buffer_font_weight": 500, // Use regular buffer font weight.
+    "buffer_font_weight": 400, // Use regular buffer font weight.
     "buffer_line_height": "comfortable", // Use comfortable editor line height.
     "centered_layout": {
         "left_padding": 0.2, // Reserve centered-layout padding on the left side of the editor.
@@ -58,6 +63,7 @@
     },
     "close_on_file_delete": true, // Close buffers when their files are deleted.
     "collaboration_panel": {
+        "button": false,
         "dock": "right", // Dock the collaboration panel on the left.
     },
     "debugger": {
@@ -82,7 +88,7 @@
         },
     },
     "git_panel": {
-        "dock": "left", // Dock the Git panel on the left.
+        "dock": "right", // Dock the Git panel on the left.
         "tree_view": true,
     },
     "gutter": {
@@ -144,8 +150,8 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Tango Dark", // Use the local Tango Dark theme.
-        "light": "Tango Light", // Use the local Tango Light theme.
+        "dark": "Eccentric Dark", // Use the local Eccentric Dark theme.
+        "light": "Eccentric Light", // Use the local Eccentric Light theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {
