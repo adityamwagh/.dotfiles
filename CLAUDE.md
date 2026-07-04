@@ -28,7 +28,9 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Neovim config** (`editors/nvim/`) uses Lazy.nvim with modular Lua files under `lua/plugins/`. Stylua formatting: 2-space indent (see `.stylua.toml`).
 
-**dotbot/** and **dotbot-brew/** are vendored submodules — treat as upstream.
+**dotbot/**, **dotbot-brew/**, and **dotbot-unipkg/** are vendored submodules — treat as upstream.
+
+**Package split:** tools that touch system directories or hardware (e.g. `eza`, `ddcutil`, `zsh`) install via the native package manager on Linux (`unipkg` directive); everything else comes from the Brewfile.
 
 ## Theme and Config Policy
 

@@ -109,6 +109,19 @@
       path: terminals/ghostty/config-local-macos
       if: "[ $(uname) = Darwin ]"
 
+# Install system-integrated packages with the native package manager
+# (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
+# missing. Tools that touch system directories or hardware belong here
+# on Linux; everything else comes from the Brewfile.
+- unipkg:
+    - install:
+        - ddcutil:
+            filter: linux
+        - eza:
+            filter: linux
+        - zsh:
+            filter: linux
+
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
 - brewfile:
     - Brewfile
@@ -118,7 +131,6 @@
         "[ -f ~/.gitconfig.local ] || printf '# Machine-local Git overrides (identity, employer setup); loaded last by ~/.gitconfig.\\n' > ~/.gitconfig.local",
         "Seed ~/.gitconfig.local",
       ]
-    - ["~/.dotfiles/scripts/install-system-packages.sh zsh", "Install system packages (Linux)"]
     - ["~/.dotfiles/scripts/install-custom-iosevka-extended.sh", "Install custom Iosevka Extended"]
     - ["~/.dotfiles/scripts/install-helvetica-now.sh", "Install HelveticaNow"]
     - ["~/.dotfiles/scripts/install-segoe-ui.sh", "Install Segoe UI (Linux)"]
