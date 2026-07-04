@@ -121,6 +121,8 @@
             filter: linux
         - zsh:
             filter: linux
+        - zstd: # ollama's installer needs it for extraction
+            filter: linux
 
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
 - brewfile:
@@ -144,3 +146,4 @@
     - ["~/.dotfiles/scripts/install-llama.sh", "Install llama.cpp"]
     - ["~/.dotfiles/scripts/install-ollama.sh", "Install Ollama"]
     - ["~/.dotfiles/scripts/install-opencode.sh", "Install opencode"]
+    - ["~/.dotfiles/scripts/install-rustup.sh", "Install Rust toolchain"]
