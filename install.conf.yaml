@@ -139,3 +139,8 @@
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-cship.sh", "Install cship statusline"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
+    - ["~/.dotfiles/scripts/install-claude-code.sh", "Install Claude Code"]
+    - ["~/.dotfiles/scripts/install-codex.sh", "Install Codex"]
+    - ["~/.dotfiles/scripts/install-llama.sh", "Install llama.cpp"]
+    - ["~/.dotfiles/scripts/install-ollama.sh", "Install Ollama"]
+    - ["~/.dotfiles/scripts/install-opencode.sh", "Install opencode"]
