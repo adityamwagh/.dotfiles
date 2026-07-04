@@ -8,12 +8,11 @@ brew "asciinema"
 brew "bash-completion@2"
 brew "bash-language-server"
 brew "bat"
-brew "ddcutil" if OS.linux?
 brew "delta"
 brew "direnv"
 brew "dust"
 brew "entr"
-brew "eza"
+brew "eza" if OS.mac? # Linux: system package via dotbot-unipkg (reads system file metadata)
 brew "fd"
 brew "fzf"
 brew "fzf-tab"
