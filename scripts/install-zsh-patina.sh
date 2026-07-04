@@ -4,7 +4,7 @@ set -euo pipefail
 # Install the zsh-patina syntax highlighter from a pinned GitHub release.
 # macOS gets it from Homebrew (Brewfile); the tap ships no Linux binaries.
 
-ZSH_PATINA_VERSION="1.7.0"
+ZSH_PATINA_VERSION="1.8.0"
 
 if [ "$(uname -s)" != Linux ]; then
   exit 0

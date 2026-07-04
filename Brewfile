@@ -1,4 +1,3 @@
-tap "anomalyco/tap"
 tap "gromgit/brewtils"
 tap "michel-kraemer/zsh-patina" if OS.mac?
 tap "oven-sh/bun"
