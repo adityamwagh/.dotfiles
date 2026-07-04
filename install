@@ -4,6 +4,9 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOTBOT_DIR="$DOTFILES_DIR/dotbot"
 
+# Trust all Brewfile taps; fresh machines have no per-tap trust recorded.
+export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+
 if [ ! -x "$DOTBOT_DIR/bin/dotbot" ] || [ ! -f "$DOTFILES_DIR/dotbot-brew/brew.py" ] ||
   [ ! -f "$DOTFILES_DIR/dotbot-unipkg/unipkg.py" ]; then
   git -C "$DOTFILES_DIR" submodule update --init --recursive
