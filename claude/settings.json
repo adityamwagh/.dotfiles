@@ -2,10 +2,15 @@
   "cleanupPeriodDays": 90,
   "attribution": {
     "commit": "",
-    "pr": ""
+    "pr": "",
+    "sessionUrl": false
   },
   "permissions": {
     "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "LS",
       "WebSearch",
       "Skill(code-review:code-review)",
       "Skill(code-review:code-review:*)",
@@ -71,13 +76,25 @@
       "Write(/etc/**)",
       "Write(.env*)"
     ],
-    "defaultMode": "auto",
+    "defaultMode": "plan",
     "additionalDirectories": [
       "/tmp"
     ]
   },
-  "model": "opus",
+  "model": "claude-fable-5[1m]",
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
+            "async": true
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Write",
@@ -94,18 +111,6 @@
           {
             "type": "command",
             "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('new_string',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
-            "async": true
           }
         ]
       }
@@ -130,7 +135,8 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -140,18 +146,23 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:eccentric-light",
+  "theme": "custom:eccentric-dark",
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "autoScrollEnabled": true,
   "fileCheckpointingEnabled": true,
   "showTurnDuration": true,
   "showMessageTimestamps": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true
 }
