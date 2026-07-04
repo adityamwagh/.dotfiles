@@ -10,11 +10,11 @@
 "precommand" = { foreground = "yellow", bold = true }
 
 # dynamic callables (runtime PATH resolution)
-"dynamic.callable.builtin" = { foreground = "yellow", bold = true }   # system builtins
-"dynamic.callable.command" = { foreground = "green", bold = true }    # valid installed commands
-"dynamic.callable.function" = { foreground = "green", bold = true }   # shell functions
-"dynamic.callable.alias" = { foreground = "green", bold = true }      # aliases
-"dynamic.callable.missing" = { foreground = "red", bold = true }      # not found
+"dynamic.callable.builtin" = { foreground = "yellow", bold = true } # system builtins
+"dynamic.callable.command" = { foreground = "green", bold = true }  # valid installed commands
+"dynamic.callable.function" = { foreground = "green", bold = true } # shell functions
+"dynamic.callable.alias" = { foreground = "green", bold = true }    # aliases
+"dynamic.callable.missing" = { foreground = "red", bold = true }    # not found
 
 [metadata]
 extends = "classic"
