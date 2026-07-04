@@ -109,14 +109,14 @@
       path: terminals/ghostty/config-local-macos
       if: "[ $(uname) = Darwin ]"
 
+# Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
+- brewfile:
+    - Brewfile
+
 - shell:
     - [
         "[ -f ~/.gitconfig.local ] || printf '# Machine-local Git overrides (identity, employer setup); loaded last by ~/.gitconfig.\\n' > ~/.gitconfig.local",
         "Seed ~/.gitconfig.local",
-      ]
-    - [
-        "if command -v brew >/dev/null 2>&1; then brew bundle --file ~/.dotfiles/Brewfile 2>&1 | grep -E '^(Installing|Upgrading|Tapping|Error|==>|brew bundle)' || true; fi",
-        "Install Brew packages",
       ]
     - ["~/.dotfiles/scripts/install-linux-system-packages.sh", "Install Linux system packages"]
     - ["~/.dotfiles/scripts/install-custom-iosevka-extended.sh", "Install custom Iosevka Extended"]

@@ -28,7 +28,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Neovim config** (`editors/nvim/`) uses Lazy.nvim with modular Lua files under `lua/plugins/`. Stylua formatting: 2-space indent (see `.stylua.toml`).
 
-**dotbot/** is a vendored submodule — treat as upstream.
+**dotbot/** and **dotbot-brew/** are vendored submodules — treat as upstream.
 
 ## Theme and Config Policy
 
