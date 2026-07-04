@@ -52,7 +52,9 @@
         },
     },
     "base_keymap": "VSCode", // Start from VS Code-style keybindings.
-    "buffer_font_fallbacks": [".SystemUIFont"],
+    "buffer_font_fallbacks": [
+        ".SystemUIFont"
+    ],
     "buffer_font_family": "Source Code Pro", // Use Source Code Pro in buffers.
     "buffer_font_size": 14, // Set buffer font size.
     "buffer_font_weight": 400, // Use regular buffer font weight.
@@ -121,7 +123,9 @@
         "indent_size": 24, // Use compact tree indentation.
     },
     "redact_private_values": false, // Show private values in settings and diagnostics.
-    "resize_all_panels_in_dock": ["left"], // Resize all left-dock panels together when one is resized.
+    "resize_all_panels_in_dock": [
+        "left"
+    ], // Resize all left-dock panels together when one is resized.
     "restore_on_startup": "last_workspace", // Reopen the last workspace on startup.
     "scroll_beyond_last_line": "off", // Stop scrolling at the last line.
     "session": {
@@ -170,13 +174,16 @@
         "quick_actions": true, // Show quick action controls.
         "selections_menu": true, // Show the selections menu.
     },
-    "ui_font_family": "Selawik", // Use SF Pro for the UI.
+    "ui_font_family": "Selawik", // Use Selawik for the UI.
     // "ui_font_size": 14, // Set UI font size.
     "use_auto_surround": true, // Surround selections automatically.
     "use_autoclose": true, // Insert matching delimiters automatically.
     "use_system_window_tabs": true, // Use native system window tabs.
     "vertical_scroll_margin": 3, // Keep context above and below the cursor when scrolling.
     "vim_mode": false, // Enable Vim keybindings.
-    "wrap_guides": [88, 120], // Draw wrap guides at common widths.
+    "wrap_guides": [
+        88,
+        120
+    ], // Draw wrap guides at common widths.
     "zoomed_padding": true, // Keep padding around panels when a pane is zoomed.
 }
