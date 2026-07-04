@@ -73,12 +73,6 @@
     # Ghostty
     ~/.config/ghostty/config.ghostty: terminals/ghostty/config.ghostty
     ~/.config/ghostty/themes: terminals/ghostty/themes
-    ~/.config/ghostty/config-local:
-      path: terminals/ghostty/config-local-linux
-      if: "[ $(uname) = Linux ]"
-    ~/.config/ghostty/config-local:
-      path: terminals/ghostty/config-local-macos
-      if: "[ $(uname) = Darwin ]"
 
     # WezTerm
     ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
@@ -102,6 +96,18 @@
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
     ~/.claude/themes: claude/themes
+
+# Ghostty per-OS local config: separate link blocks because the same
+# target key twice in one block would collide in YAML.
+- link:
+    ~/.config/ghostty/config-local:
+      path: terminals/ghostty/config-local-linux
+      if: "[ $(uname) = Linux ]"
+
+- link:
+    ~/.config/ghostty/config-local:
+      path: terminals/ghostty/config-local-macos
+      if: "[ $(uname) = Darwin ]"
 
 - shell:
     - [
