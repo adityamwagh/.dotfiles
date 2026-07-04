@@ -244,3 +244,6 @@ command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# opencode
+export PATH=/home/aditya/.opencode/bin:$PATH
