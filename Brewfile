@@ -25,7 +25,6 @@ brew "jq"
 brew "just"
 brew "mdformat"
 brew "michel-kraemer/zsh-patina/zsh-patina" if OS.mac? # Linux: scripts/install-zsh-patina.sh (tap has no Linux builds)
-brew "opencode"
 brew "oven-sh/bun/bun"
 brew "panache"
 brew "pre-commit"
