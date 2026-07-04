@@ -1,54 +1,31 @@
-# Sync global git identity after switching GitHub auth account.
+# Sync git identity in ~/.gitconfig.local after switching GitHub auth account.
 
-__dotfiles_set_git_identity_from_gh_user() {
-  local gh_user="$1"
-  local expected_name=""
-  local expected_email=""
+gh_sync_identity() {
+  local gh_user gh_id gh_email
 
-  case "$gh_user" in
-    adityamwagh)
-      expected_name="adityamwagh"
-      expected_email="adityamwagh@outlook.com"
-      ;;
-    adityamwagh)
-      expected_name="adityamwagh"
-      expected_email="adityamwagh@outlook.com"
-      ;;
-    *)
-      echo "[gh-auth-sync] Unknown GitHub user '$gh_user'; leaving git global identity unchanged." >&2
-      return 0
-      ;;
-  esac
-
-  git config --global user.name "$expected_name"
-  git config --global user.email "$expected_email"
-  echo "[gh-auth-sync] Set git global identity to: $expected_name <$expected_email>"
-}
-
-__dotfiles_sync_git_identity_from_gh() {
-  local gh_user
-
-  if ! command -v gh >/dev/null 2>&1; then
-    return 0
-  fi
-
+  command -v gh >/dev/null 2>&1 || return 0
   gh_user="$(command gh api user --jq .login 2>/dev/null || true)"
+
   if [ -z "$gh_user" ]; then
-    echo "[gh-auth-sync] Could not detect current GitHub user; leaving git global identity unchanged." >&2
+    echo "[gh-auth-sync] Could not detect current GitHub user." >&2
     return 0
   fi
 
-  __dotfiles_set_git_identity_from_gh_user "$gh_user"
+  # Prefer the account's public email; fall back to the GitHub noreply address.
+  gh_email="$(command gh api user --jq '.email // empty' 2>/dev/null || true)"
+  if [ -z "$gh_email" ]; then
+    gh_id="$(command gh api user --jq .id 2>/dev/null || true)"
+    gh_email="${gh_id:+${gh_id}+}${gh_user}@users.noreply.github.com"
+  fi
+
+  git config --file "$HOME/.gitconfig.local" user.name "$gh_user"
+  git config --file "$HOME/.gitconfig.local" user.email "$gh_email"
+  echo "[gh-auth-sync] Identity set to: $gh_user <$gh_email>"
 }
 
 if command -v gh >/dev/null 2>&1; then
   gh() {
-    if [ "$#" -ge 2 ] && [ "$1" = "auth" ] && [ "$2" = "switch" ]; then
-      command gh "$@" || return $?
-      __dotfiles_sync_git_identity_from_gh
-      return $?
-    fi
-
     command gh "$@"
+    [ "$1" = "auth" ] && [ "$2" = "switch" ] && gh_sync_identity
   }
 fi

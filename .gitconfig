@@ -3,14 +3,9 @@
 path = ~/.dotfiles/.gitconfig.shared
 
 [user]
-# Set the default Git author name.
+# Default Git identity; override per machine in ~/.gitconfig.local.
 	name = adityamwagh
-# Set the default Git author email.
 	email = adityamwagh@outlook.com
-
-[includeIf "gitdir:~/Projects/"]
-# Load work-specific Git identity inside ~/Projects repositories.
-	path = ~/.gitconfig.work
 
 [credential "https://github.com"]
 # Clear inherited helpers before using gh for GitHub.
@@ -23,3 +18,7 @@ path = ~/.dotfiles/.gitconfig.shared
 	helper =
 # Delegate Gist credentials to the GitHub CLI.
 	helper = !gh auth git-credential
+
+[include]
+# Machine-specific overrides (identity, employer setup); skipped if absent.
+	path = ~/.gitconfig.local

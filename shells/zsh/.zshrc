@@ -137,37 +137,7 @@ esac
 # #                    GH                   #
 # ############################################
 
-gh_sync_identity() {
-  local gh_user expected_name expected_email
-
-  command -v gh >/dev/null 2>&1 || return 0
-  gh_user="$(command gh api user --jq .login 2>/dev/null || true)"
-
-  if [ -z "$gh_user" ]; then
-    echo "[gh-auth-sync] Could not detect current GitHub user." >&2
-    return 0
-  fi
-
-  case "$gh_user" in
-    adityamwagh) expected_name="adityamwagh"; expected_email="adityamwagh@outlook.com" ;;
-    adityamwagh)    expected_name="adityamwagh";    expected_email="adityamwagh@outlook.com"   ;;
-    *)
-      echo "[gh-auth-sync] Unknown user '$gh_user'; git identity unchanged." >&2
-      return 0
-      ;;
-  esac
-
-  git config --global user.name  "$expected_name"
-  git config --global user.email "$expected_email"
-  echo "[gh-auth-sync] Identity set to: $expected_name <$expected_email>"
-}
-
-if command -v gh >/dev/null 2>&1; then
-  gh() {
-    command gh "$@"
-    [ "$1" = "auth" ] && [ "$2" = "switch" ] && gh_sync_identity
-  }
-fi
+[ -f "$HOME/.dotfiles/shells/tools/gh.sh" ] && . "$HOME/.dotfiles/shells/tools/gh.sh"
 
 # ############################################
 # #                   NVM                   #
