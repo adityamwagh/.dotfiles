@@ -35,5 +35,13 @@ if ! command -v chsh >/dev/null 2>&1; then
   exit 0
 fi
 
-chsh -s "$zsh_bin" "$user_name"
+# chsh prompts for a password; close stdin and fall back to passwordless sudo.
+if ! chsh -s "$zsh_bin" "$user_name" </dev/null 2>/dev/null; then
+  if command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
+    sudo chsh -s "$zsh_bin" "$user_name"
+  else
+    echo "Skipping shell switch: chsh needs authentication" >&2
+    exit 0
+  fi
+fi
 echo "Set login shell to $zsh_bin"
