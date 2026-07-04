@@ -111,6 +111,10 @@
 
 - shell:
     - [
+        "[ -f ~/.gitconfig.local ] || printf '# Machine-local Git overrides (identity, employer setup); loaded last by ~/.gitconfig.\\n' > ~/.gitconfig.local",
+        "Seed ~/.gitconfig.local",
+      ]
+    - [
         "if command -v brew >/dev/null 2>&1; then brew bundle --file ~/.dotfiles/Brewfile 2>&1 | grep -E '^(Installing|Upgrading|Tapping|Error|==>|brew bundle)' || true; fi",
         "Install Brew packages",
       ]
