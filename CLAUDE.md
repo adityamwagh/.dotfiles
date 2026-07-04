@@ -12,7 +12,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 - `~/.dotfiles/install -n` — dry run before applying
 - `pre-commit run --all-files` — run repo checks (trailing whitespace hook)
 - `brew bundle --file ~/.dotfiles/Brewfile` — install/update Homebrew packages
-- For install or bootstrap changes, test a fresh clone plus `./install` in Docker before merging, on both `ubuntu:latest` and `fedora:latest` (covers the apt and dnf paths of the `unipkg` directive).
+- For install or bootstrap changes, test a fresh clone plus `./install` in Docker before merging, on both `ubuntu:latest` and `fedora:latest` (covers the apt and dnf paths of the `unipkg` directive). Recipe: install `git curl sudo python3 file build tools` (Ubuntu also `procps unzip ca-certificates`), create a non-root user with passwordless sudo (Homebrew refuses root), then as that user `git clone --recurse-submodules https://github.com/adityamwagh/.dotfiles.git ~/.dotfiles && ~/.dotfiles/install -v`. Push commits first (the container clones from GitHub) and run the two distro tests sequentially — parallel runs exhaust the shared 60/hour unauthenticated GitHub API quota and the codex/opencode installers fail their version lookups.
 
 ## Architecture
 
