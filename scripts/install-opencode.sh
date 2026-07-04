@@ -7,4 +7,4 @@ if command -v opencode >/dev/null 2>&1; then
   exit 0
 fi
 
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path
