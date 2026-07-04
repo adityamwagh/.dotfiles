@@ -6,4 +6,4 @@
 	url = https://github.com/d12frosted/dotbot-brew.git
 [submodule "dotbot-unipkg"]
 	path = dotbot-unipkg
-	url = https://github.com/smitropoulos/dotbot-unipkg.git
+	url = https://github.com/adityamwagh/dotbot-unipkg.git
