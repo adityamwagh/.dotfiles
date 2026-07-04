@@ -109,12 +109,6 @@
       path: terminals/ghostty/config-local-macos
       if: "[ $(uname) = Darwin ]"
 
-# Install system packages with the native package manager (dotbot-omnipkg
-# plugin: apt-get/dnf/pacman on Linux, brew on macOS). Needs sudo on Linux.
-- omnipkg:
-    - install:
-        - zsh
-
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
 - brewfile:
     - Brewfile
@@ -124,6 +118,7 @@
         "[ -f ~/.gitconfig.local ] || printf '# Machine-local Git overrides (identity, employer setup); loaded last by ~/.gitconfig.\\n' > ~/.gitconfig.local",
         "Seed ~/.gitconfig.local",
       ]
+    - ["~/.dotfiles/scripts/install-system-packages.sh zsh", "Install system packages (Linux)"]
     - ["~/.dotfiles/scripts/install-custom-iosevka-extended.sh", "Install custom Iosevka Extended"]
     - ["~/.dotfiles/scripts/install-helvetica-now.sh", "Install HelveticaNow"]
     - ["~/.dotfiles/scripts/install-segoe-ui.sh", "Install Segoe UI (Linux)"]
