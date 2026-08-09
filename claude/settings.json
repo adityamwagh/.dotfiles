@@ -73,15 +73,15 @@
     ],
     "deny": [
       "Bash(rm -rf *)",
-      "Write(/etc/**)",
-      "Write(.env*)"
+      "Edit(/etc/**)",
+      "Edit(.env*)"
     ],
     "defaultMode": "plan",
     "additionalDirectories": [
       "/tmp"
     ]
   },
-  "model": "claude-fable-5[1m]",
+  "model": "opus[1m]",
   "hooks": {
     "PostToolUse": [
       {
@@ -89,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
+            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('tool_input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
             "async": true
           }
         ]
@@ -97,20 +97,11 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Write",
+        "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('content',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
-          }
-        ]
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); c=d.get('new_string',''); patterns=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; found=[p for p in patterns if re.search(p,c)]; print(json.dumps({'permissionDecision':'deny','permissionDecisionReason':'Secret pattern detected: '+str(found)}) if found else '{}')\""
+            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); t=d.get('tool_input',{}); c=str(t.get('content',''))+str(t.get('new_string','')); pats=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; f=[p for p in pats if re.search(p,c)]; print(json.dumps({'hookSpecificOutput':{'hookEventName':'PreToolUse','permissionDecision':'deny'},'systemMessage':'Secret pattern detected: '+', '.join(f)}) if f else '{}')\""
           }
         ]
       }
