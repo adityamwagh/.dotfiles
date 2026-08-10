@@ -1,0 +1,4 @@
+// Packages Package Control installs on first run.
+{
+    "installed_packages": ["AutoAppearance"],
+}
