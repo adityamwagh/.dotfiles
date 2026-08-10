@@ -146,7 +146,7 @@
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:eccentric-dark",
+  "theme": "auto",
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "autoScrollEnabled": true,
