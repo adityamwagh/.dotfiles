@@ -154,8 +154,8 @@
         "line_height": "standard",
     },
     "theme": {
-        "dark": "Eccentric Dark", // Use the local Eccentric Dark theme.
-        "light": "Eccentric Light", // Use the local Eccentric Light theme.
+        "dark": "Flexoki Dark", // Use the local Flexoki Dark theme.
+        "light": "Flexoki Light", // Use the local Flexoki Light theme.
         "mode": "system", // Follow system dark/light appearance.
     },
     "title_bar": {

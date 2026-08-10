@@ -62,7 +62,6 @@
     ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
     ~/.config/nvim/init.lua: editors/nvim/init.lua
     ~/.config/nvim/lua: editors/nvim/lua
-    ~/.config/nvim/colors: editors/nvim/colors
 
     # Zed
     ~/.config/zed/settings.json: editors/zed/settings.json
@@ -70,9 +69,8 @@
     ~/.config/zed/themes: editors/zed/themes
     ~/.config/zed/keymap.json: editors/zed/keymap.json
 
-    # Ghostty
+    # Ghostty (themes are built in; no theme dir to link)
     ~/.config/ghostty/config.ghostty: terminals/ghostty/config.ghostty
-    ~/.config/ghostty/themes: terminals/ghostty/themes
 
     # WezTerm
     ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
@@ -95,7 +93,6 @@
     ~/.config/cship.toml: cship/cship.toml
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
-    ~/.claude/themes: claude/themes
 
 # Ghostty per-OS local config: separate link blocks because the same
 # target key twice in one block would collide in YAML.
