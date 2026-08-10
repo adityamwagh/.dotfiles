@@ -33,6 +33,12 @@
     ~/.local/bin: # Clean script and font installer links.
       recursive: false
       force: false
+    ~/.config/sublime-text/Packages/User: # Clean Sublime Text links (Linux).
+      recursive: false
+      force: false
+    ~/Library/Application Support/Sublime Text/Packages/User: # Clean Sublime Text links (macOS).
+      recursive: false
+      force: false
     ~/.local/share/konsole: # Clean Konsole colorscheme links (Linux).
       recursive: false
       force: false
@@ -75,6 +81,16 @@
     # WezTerm
     ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
     ~/.config/wezterm/colors: terminals/wezterm/colors
+
+    # Sublime Text settings and colour schemes live in one flat User dir.
+    ~/.config/sublime-text/Packages/User/:
+      glob: true
+      path: editors/sublime-text/*
+      if: "[ $(uname) = Linux ]"
+    ~/Library/Application Support/Sublime Text/Packages/User/:
+      glob: true
+      path: editors/sublime-text/*
+      if: "[ $(uname) = Darwin ]"
 
     # Konsole colorschemes
     ~/.local/share/konsole/:
