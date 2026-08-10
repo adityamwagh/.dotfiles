@@ -25,8 +25,8 @@ process = git-lfs filter-process
 required = true
 
 [core]
-# Use Zed as the blocking Git editor.
-editor = zed --wait
+# Use Sublime Text as the blocking Git editor.
+editor = subl -w
 
 [branch]
 # Sort branches by most recently updated first.
@@ -80,17 +80,17 @@ guessRemote = true
 enabled = true
 
 [diff]
-# Use Zed for visual diffs.
-tool = zed
+# Use Sublime Text for visual diffs.
+tool = subl
 
-[difftool "zed"]
-# Open Zed's diff view for difftool invocations.
-cmd = zed --wait --diff $LOCAL $REMOTE
+[difftool "subl"]
+# Open both sides in Sublime Text; it has no dedicated diff view.
+cmd = subl -w $LOCAL $REMOTE
 
 [merge]
-# Use Zed for merge conflict resolution.
-tool = zed
+# Use Sublime Text for merge conflict resolution.
+tool = subl
 
-[mergetool "zed"]
-# Open Zed on the merged file for mergetool invocations.
-cmd = zed --wait $MERGED
+[mergetool "subl"]
+# Open Sublime Text on the merged file for mergetool invocations.
+cmd = subl -w $MERGED
