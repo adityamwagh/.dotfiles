@@ -2,21 +2,28 @@
 //
 // Mirrors editors/zed/settings.json and editors/nvim/lua/core/options.lua so
 // all three editors indent, wrap and guide identically.
+//
+// Sublime ignores the XDG desktop portal on Linux (sublimehq/sublime_text#5350),
+// so "auto" always reads light. The AutoAppearance package watches the portal and
+// rewrites "color_scheme" and "theme" from the dark_/light_ pairs below; the values
+// checked in here are just the startup defaults it overwrites.
 {
-    // Pinned, not "auto": Sublime ignores the XDG portal on Linux and always reads light.
     "color_scheme": "Flexoki Dark.sublime-color-scheme",
-    "dark_color_scheme": "Flexoki Dark.sublime-color-scheme", // Used if "auto" is restored.
+    "dark_color_scheme": "Flexoki Dark.sublime-color-scheme",
+    "dark_theme": "Default Dark.sublime-theme",
     "default_line_ending": "unix", // Match .stylua.toml line_endings.
     "ensure_newline_at_eof_on_save": true,
     "font_face": "Source Code Pro", // Match Zed buffer_font_family.
     "font_size": 11, // Match Zed buffer_font_size.
     "highlight_line": true, // Match nvim cursorline.
-    "light_color_scheme": "Flexoki Light.sublime-color-scheme", // Used if "auto" is restored.
+    "ignored_packages": ["Vintage"],
+    "light_color_scheme": "Flexoki Light.sublime-color-scheme",
+    "light_theme": "Default.sublime-theme",
     "line_numbers": true, // Match nvim number.
     "rulers": [88, 120], // Match Zed wrap_guides.
     "scroll_past_end": false, // Match Zed scroll_beyond_last_line="off".
     "tab_size": 4, // Match Zed tab_size and nvim shiftwidth.
-    "theme": "Default Dark.sublime-theme", // Pinned for the same reason as color_scheme.
+    "theme": "Default Dark.sublime-theme",
     "translate_tabs_to_spaces": true, // Match Zed hard_tabs=false and nvim expandtab.
     "trim_trailing_white_space_on_save": "all", // Match the repo's trailing-whitespace hook.
     "word_wrap": true, // Match Zed soft_wrap="prefer_line".
