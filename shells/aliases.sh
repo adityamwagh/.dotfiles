@@ -21,6 +21,8 @@ if command -v ddcutil >/dev/null 2>&1; then
   alias brightness="ddcutil setvcp 10"
 fi
 
+alias rm='rm -I'
+
 alias vi='nvim'
 alias vim='nvim'
 
@@ -70,6 +72,7 @@ alias sudo='sudo '
 alias update-dotfiles='~/.dotfiles/install'
 
 alias starshipconf='$EDITOR ~/.config/starship.toml'
+alias claude='claude --allow-dangerously-skip-permissions'
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
 [ -f "$HOME/.local/shell/functions.sh" ] && . "$HOME/.local/shell/functions.sh"
