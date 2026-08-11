@@ -53,7 +53,7 @@
     },
     "base_keymap": "VSCode", // Start from VS Code-style keybindings.
     "buffer_font_fallbacks": [
-        ".SystemUIFont"
+        "Iosevka Extended"
     ],
     "buffer_font_family": "Source Code Pro", // Use Source Code Pro in buffers.
     "buffer_font_size": 14, // Set buffer font size.
@@ -174,7 +174,8 @@
         "quick_actions": true, // Show quick action controls.
         "selections_menu": true, // Show the selections menu.
     },
-    "ui_font_family": "Selawik", // Use Selawik for the UI.
+    "ui_font_family": "SF Pro Text", // Use Selawik for the UI.
+    "ui_font_fallbacks": [".SystemUIFont"],
     // "ui_font_size": 14, // Set UI font size.
     "use_auto_surround": true, // Surround selections automatically.
     "use_autoclose": true, // Insert matching delimiters automatically.
