@@ -158,5 +158,4 @@
     - ["~/.dotfiles/scripts/install-codex.sh", "Install Codex"]
     - ["~/.dotfiles/scripts/install-llama.sh", "Install llama.cpp"]
     - ["~/.dotfiles/scripts/install-ollama.sh", "Install Ollama"]
-    - ["~/.dotfiles/scripts/install-opencode.sh", "Install opencode"]
     - ["~/.dotfiles/scripts/install-rustup.sh", "Install Rust toolchain"]
