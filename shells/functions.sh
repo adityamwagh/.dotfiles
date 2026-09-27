@@ -83,3 +83,82 @@ chfont() {
     chfont-replace-file "$file" "$current_font" "$new_font" || return 1
   done
 }
+
+# Remove Python/Rust tool caches under a directory (default: current dir),
+# plus the global Cargo download cache.
+clean-caches() {
+  local root="$PWD" dry_run=0 assume_yes=0 reply
+  local -a targets=()
+
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -n | --dry-run) dry_run=1 ;;
+      -y | --yes) assume_yes=1 ;;
+      -h | --help)
+        echo "Usage: clean-caches [-n|--dry-run] [-y|--yes] [directory]" >&2
+        return 0
+        ;;
+      -*)
+        echo "clean-caches: unknown option: $1" >&2
+        return 2
+        ;;
+      *) root="$1" ;;
+    esac
+    shift
+  done
+
+  [ -d "$root" ] || {
+    echo "clean-caches: not a directory: $root" >&2
+    return 1
+  }
+  root="$(cd "$root" && pwd)" || return 1
+
+  while IFS= read -r dir; do
+    targets+=("$dir")
+  done < <(find "$root" \
+    \( -name .git -o -name node_modules -o -name .venv -o -name venv \) -prune -o \
+    -type d \( -name __pycache__ -o -name .mypy_cache -o -name .ruff_cache -o -name .pytest_cache \) -prune -print 2>/dev/null)
+
+  while IFS= read -r dir; do
+    [ -f "${dir%/*}/Cargo.toml" ] || continue
+    targets+=("$dir")
+  done < <(find "$root" \
+    \( -name .git -o -name node_modules -o -name .venv -o -name venv \) -prune -o \
+    -type d -name target -prune -print 2>/dev/null)
+
+  local cargo_home="${CARGO_HOME:-$HOME/.cargo}" cargo_dir
+  for cargo_dir in \
+    "$cargo_home/registry/cache" \
+    "$cargo_home/registry/src" \
+    "$cargo_home/git"; do
+    [ -d "$cargo_dir" ] && targets+=("$cargo_dir")
+  done
+
+  if [ "${#targets[@]}" -eq 0 ]; then
+    echo "clean-caches: nothing to clean" >&2
+    return 0
+  fi
+
+  printf '%s\n' "${targets[@]}"
+  du -ch "${targets[@]}" 2>/dev/null | tail -n 1
+
+  if [ "$dry_run" -eq 1 ]; then
+    echo "clean-caches: dry run, nothing removed" >&2
+    return 0
+  fi
+
+  if [ "$assume_yes" -ne 1 ]; then
+    printf 'Remove %d paths? [y/N] ' "${#targets[@]}" >&2
+    read -r reply || reply=
+    case "$reply" in
+      [yY]*) ;;
+      *)
+        echo "clean-caches: aborted" >&2
+        return 1
+        ;;
+    esac
+  fi
+
+  rm -rf -- "${targets[@]}"
+  echo "clean-caches: removed ${#targets[@]} paths" >&2
+}
