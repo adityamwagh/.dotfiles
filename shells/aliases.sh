@@ -32,6 +32,21 @@ alias pip3='noglob pip3'
 alias uv='noglob uv --no-sync'
 alias bun='bun --no-save'
 
+# conda -> mamba (faster solver). On zsh the alias must be defined after the
+# conda shell hook runs, since that hook defines a `conda` function and zsh
+# errors ("defining function based on alias") if the alias already exists.
+if [ -n "${ZSH_VERSION:-}" ]; then
+  _conda_alias_deferred() {
+    alias conda='mamba'
+    add-zsh-hook -d precmd _conda_alias_deferred
+    unfunction _conda_alias_deferred
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _conda_alias_deferred
+else
+  alias conda='mamba'
+fi
+
 alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
 alias envvars='$EDITOR ~/.dotfiles/shells/envvars.sh'
 alias bashrc='$EDITOR ~/.bashrc'
