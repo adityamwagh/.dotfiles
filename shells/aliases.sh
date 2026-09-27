@@ -23,7 +23,6 @@ if command -v ddcutil >/dev/null 2>&1; then
 fi
 
 alias rm='rm -I'
-
 alias vi='nvim'
 alias vim='nvim'
 
@@ -51,7 +50,7 @@ alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
 alias envvars='$EDITOR ~/.dotfiles/shells/envvars.sh'
 alias bashrc='$EDITOR ~/.bashrc'
 alias zshrc='$EDITOR ~/.zshrc'
-
+alias starshipconf='$EDITOR ~/.config/starship.toml'
 alias nvimc='$EDITOR ~/.config/nvim/'
 alias zedconf='$EDITOR ~/.config/zed/settings.json'
 alias weztermconf='$EDITOR ~/.wezterm.lua'
@@ -88,7 +87,6 @@ alias sudo='sudo '
 
 alias update-dotfiles='~/.dotfiles/install'
 
-alias starshipconf='$EDITOR ~/.config/starship.toml'
 alias claude='claude --allow-dangerously-skip-permissions'
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
