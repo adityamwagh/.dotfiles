@@ -120,12 +120,7 @@ bindkey -e
 # #                   FZF                   #
 # ############################################
 
-if [ -f ~/.fzf.zsh ]; then
-  # shellcheck source=/dev/null
-  . ~/.fzf.zsh
-elif command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --zsh)"
-fi
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --zsh)"
 
 # ############################################
 # #                   BUN                   #
@@ -149,20 +144,19 @@ esac
 
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
-  nvm_load() { unset -f nvm node npm npx yarn pnpm; . "$NVM_DIR/nvm.sh"; }
+  nvm_load() { unset -f nvm node npm npx yarn; . "$NVM_DIR/nvm.sh"; }
   nvm()  { nvm_load; nvm  "$@"; }
   node() { nvm_load; node "$@"; }
   npm()  { nvm_load; npm  "$@"; }
   npx()  { nvm_load; npx  "$@"; }
   yarn() { nvm_load; yarn "$@"; }
-  pnpm() { nvm_load; pnpm "$@"; }
 fi
 
 # ############################################
 # #                   PNPM                  #
 # ############################################
 
-export PNPM_HOME="/home/aditya/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
@@ -219,18 +213,14 @@ command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 
 # >>> conda / mamba (lazy) >>>
 # Lazy init: auto_activate is false, so nothing is needed until first use.
-# This avoids ~210ms of conda/mamba python startup on every shell.
-export MAMBA_EXE='/home/aditya/.miniforge3/bin/mamba'
-export MAMBA_ROOT_PREFIX='/home/aditya/.miniforge3'
-__conda_bin='/home/aditya/.miniforge3/bin/conda'
-_conda_init() {
-  unset -f conda
-  eval "$("$__conda_bin" shell.zsh hook 2>/dev/null)"
-}
+# `conda` routes to `mamba`; both initialize the shell hook on first use.
+export MAMBA_ROOT_PREFIX="${MAMBA_ROOT_PREFIX:-$HOME/.miniforge3}"
+export MAMBA_EXE="$MAMBA_ROOT_PREFIX/bin/mamba"
 _mamba_init() {
-  unset -f mamba
+  unset -f conda mamba 2>/dev/null
   eval "$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+  alias conda='mamba'
 }
-conda() { _conda_init; conda "$@"; }
+conda() { _mamba_init; mamba "$@"; }
 mamba() { _mamba_init; mamba "$@"; }
 # <<< conda / mamba (lazy) <<<

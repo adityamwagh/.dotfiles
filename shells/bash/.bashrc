@@ -101,12 +101,7 @@ bind '"\C-n": history-search-forward'
 # #                   FZF                   #
 # ############################################
 
-if [ -f ~/.fzf.bash ]; then
-  # shellcheck source=/dev/null
-  . ~/.fzf.bash
-elif command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --bash)"
-fi
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
 
 # ############################################
 # #                   BUN                   #
@@ -131,7 +126,7 @@ esac
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   nvm_load() {
-    unset -f nvm node npm npx yarn pnpm
+    unset -f nvm node npm npx yarn
     . "$NVM_DIR/nvm.sh"
   }
   nvm() {
@@ -154,21 +149,32 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
     nvm_load
     yarn "$@"
   }
-  pnpm() {
-    nvm_load
-    pnpm "$@"
-  }
 fi
 
 # ############################################
 # #                   PNPM                  #
 # ############################################
 
-export PNPM_HOME="/home/aditya/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
+
+# ############################################
+# #              CONDA / MAMBA              #
+# ############################################
+
+# Lazy init (auto_activate is false); `conda` routes to `mamba`.
+export MAMBA_ROOT_PREFIX="${MAMBA_ROOT_PREFIX:-$HOME/.miniforge3}"
+export MAMBA_EXE="$MAMBA_ROOT_PREFIX/bin/mamba"
+_mamba_init() {
+  unset -f conda mamba 2>/dev/null
+  eval "$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+  alias conda='mamba'
+}
+conda() { _mamba_init; mamba "$@"; }
+mamba() { _mamba_init; mamba "$@"; }
 
 # ############################################
 # #                 STARSHIP                #
