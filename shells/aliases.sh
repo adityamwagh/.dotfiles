@@ -1,8 +1,9 @@
 #!/bin/bash
 # Shared aliases for bash and zsh
 
-alias clr="clear"
-alias cls="clear"
+alias clr="/bin/clear"
+alias cls="/bin/clear"
+alias clear="/bin/clear"
 
 alias ls='eza --git --group-directories-first'
 alias la='eza -a --git --group-directories-first'
