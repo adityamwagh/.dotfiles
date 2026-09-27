@@ -31,7 +31,14 @@ elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
   brew_bin="$HOME/.linuxbrew/bin/brew"
 fi
 
-[ -n "$brew_bin" ] && eval "$("$brew_bin" shellenv)"
+if [ -n "$brew_bin" ]; then
+  # Cache brew shellenv (stable output) to skip ~60ms of brew startup per shell.
+  __brew_env="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew_shellenv.zsh"
+  mkdir -p "${__brew_env:h}"
+  [[ -s "$__brew_env" && ! "$brew_bin" -nt "$__brew_env" ]] || "$brew_bin" shellenv > "$__brew_env"
+  . "$__brew_env"
+  unset __brew_env
+fi
 
 # Keep Linux system tools ahead of Homebrew by appending brew paths.
 if [ "$(uname -s)" = "Linux" ] && [ -n "${HOMEBREW_PREFIX:-}" ]; then
@@ -218,33 +225,20 @@ command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 # opencode
 export PATH=/home/aditya/.opencode/bin:$PATH
 
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/aditya/.miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/aditya/.miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/aditya/.miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/aditya/.miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE='/home/aditya/.miniforge3/bin/mamba';
-export MAMBA_ROOT_PREFIX='/home/aditya/.miniforge3';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+# >>> conda / mamba (lazy) >>>
+# Lazy init: auto_activate is false, so nothing is needed until first use.
+# This avoids ~210ms of conda/mamba python startup on every shell.
+export MAMBA_EXE='/home/aditya/.miniforge3/bin/mamba'
+export MAMBA_ROOT_PREFIX='/home/aditya/.miniforge3'
+__conda_bin='/home/aditya/.miniforge3/bin/conda'
+_conda_init() {
+  unset -f conda
+  eval "$("$__conda_bin" shell.zsh hook 2>/dev/null)"
+}
+_mamba_init() {
+  unset -f mamba
+  eval "$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+}
+conda() { _conda_init; conda "$@"; }
+mamba() { _mamba_init; mamba "$@"; }
+# <<< conda / mamba (lazy) <<<
