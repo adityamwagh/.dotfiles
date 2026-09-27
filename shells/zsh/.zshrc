@@ -55,6 +55,9 @@ fi
 # ############################################
 
 fpath+=(~/.zfunc)
+# Homebrew package completions live here (uv, bun, gh, pnpm, ...).
+[ -n "${HOMEBREW_PREFIX:-}" ] && [ -d "$HOMEBREW_PREFIX/share/zsh/site-functions" ] && \
+  fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 # shellcheck disable=SC2296
@@ -123,13 +126,6 @@ elif command -v fzf >/dev/null 2>&1; then
 fi
 
 # ############################################
-# #             UV COMPLETIONS              #
-# ############################################
-
-if command -v uv  >/dev/null 2>&1; then eval "$(uv  generate-shell-completion zsh  2>/dev/null)"; fi
-if command -v uvx >/dev/null 2>&1; then eval "$(uvx --generate-shell-completion zsh  2>/dev/null)"; fi
-
-# ############################################
 # #                   BUN                   #
 # ############################################
 
@@ -138,7 +134,6 @@ case ":$PATH:" in
   *":$BUN_INSTALL/bin:"*) ;;
   *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
 esac
-[ -s "$HOME/.bun/_bun" ] && . "$HOME/.bun/_bun"
 
 # ############################################
 # #                    GH                   #
@@ -218,9 +213,6 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 # zsh-patina must initialize at the end of .zshrc
 command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # opencode
 export PATH=/home/aditya/.opencode/bin:$PATH
