@@ -72,12 +72,14 @@ zstyle ':completion:*' cache-path ~/.cache/zsh/completion
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' squeeze-slashes true
 # Full compinit only if the dump is missing or >1 day old, else fast cached path.
-# The glob qualifier (#qN.md+1) tests age natively — no `find $HOME` subprocess.
-if [[ -n ~/.zcompdump(#qN.md+1) ]]; then
+# Globbing must go through an array: qualifiers are ignored inside [[ -n ... ]].
+_zcompdumps=( ~/.zcompdump(Nmd+1) )
+if (( ${#_zcompdumps} )); then
   compinit
 else
   compinit -C
 fi
+unset _zcompdumps
 
 # ############################################
 # #                 HISTORY                 #
