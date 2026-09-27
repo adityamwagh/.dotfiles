@@ -29,7 +29,8 @@ alias vim='nvim'
 
 alias pip='noglob pip'
 alias pip3='noglob pip3'
-alias uv='noglob uv'
+alias uv='noglob uv --no-sync'
+alias bun='bun --no-save'
 
 alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
 alias envvars='$EDITOR ~/.dotfiles/shells/envvars.sh'
