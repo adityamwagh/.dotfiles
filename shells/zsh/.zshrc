@@ -214,8 +214,6 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# opencode
-export PATH=/home/aditya/.opencode/bin:$PATH
 
 # >>> conda / mamba (lazy) >>>
 # Lazy init: auto_activate is false, so nothing is needed until first use.
