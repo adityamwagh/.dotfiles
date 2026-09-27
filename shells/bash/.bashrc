@@ -109,13 +109,6 @@ elif command -v fzf >/dev/null 2>&1; then
 fi
 
 # ############################################
-# #             UV COMPLETIONS              #
-# ############################################
-
-if command -v uv >/dev/null 2>&1; then eval "$(uv generate-shell-completion bash 2>/dev/null)"; fi
-if command -v uvx >/dev/null 2>&1; then eval "$(uvx --generate-shell-completion bash 2>/dev/null)"; fi
-
-# ############################################
 # #                   BUN                   #
 # ############################################
 
