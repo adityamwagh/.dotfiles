@@ -4,7 +4,7 @@ config-file = ?config-local
 cursor-style = bar
 cursor-style-blink = true
 focus-follows-mouse = false
-font-family = Noto Sans Mono
+font-family = Office Code Pro
 font-family = Symbols Nerd Font Mono
 font-size = 10
 keybind = ctrl+enter=unbind
