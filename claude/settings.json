@@ -1,74 +1,11 @@
 {
-  "agentPushNotifEnabled": true,
+  "cleanupPeriodDays": 90,
   "attribution": {
     "commit": "",
     "pr": "",
     "sessionUrl": false
   },
-  "autoCompactEnabled": true,
-  "autoDreamEnabled": true,
-  "autoMemoryEnabled": true,
-  "autoScrollEnabled": true,
-  "cleanupPeriodDays": 90,
-  "effortLevel": "high",
-  "enabledPlugins": {
-    "caveman@caveman": false,
-    "clangd-lsp@claude-plugins-official": false,
-    "claude-code-setup@claude-plugins-official": false,
-    "code-review@claude-plugins-official": false,
-    "code-simplifier@claude-plugins-official": false,
-    "context7@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": false,
-    "github@claude-plugins-official": false,
-    "greptile@claude-plugins-official": false,
-    "hookify@claude-plugins-official": true,
-    "learning-output-style@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": false,
-    "pyright-lsp@claude-plugins-official": false,
-    "ralph-loop@claude-plugins-official": false,
-    "superpowers@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "caveman": {
-      "source": {
-        "repo": "juliusbrussee/caveman",
-        "source": "github"
-      }
-    }
-  },
-  "fileCheckpointingEnabled": true,
-  "hooks": {
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('tool_input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ],
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); t=d.get('tool_input',{}); c=str(t.get('content',''))+str(t.get('new_string','')); pats=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; f=[p for p in pats if re.search(p,c)]; print(json.dumps({'hookSpecificOutput':{'hookEventName':'PreToolUse','permissionDecision':'deny'},'systemMessage':'Secret pattern detected: '+', '.join(f)}) if f else '{}')\"",
-            "type": "command"
-          }
-        ],
-        "matcher": "Write|Edit"
-      }
-    ]
-  },
-  "inputNeededNotifEnabled": true,
-  "model": "opus[1m]",
   "permissions": {
-    "additionalDirectories": [
-      "/tmp"
-    ],
     "allow": [
       "Read",
       "Grep",
@@ -134,27 +71,89 @@
       "Bash(ls *)",
       "Bash(brew tap)"
     ],
-    "defaultMode": "plan",
     "deny": [
       "Bash(rm -rf *)",
       "Edit(/etc/**)",
       "Edit(.env*)"
+    ],
+    "defaultMode": "plan",
+    "additionalDirectories": [
+      "/tmp"
     ]
   },
-  "preferredNotifChannel": "ghostty",
-  "remoteControlAtStartup": true,
-  "showMessageTimestamps": true,
-  "showThinkingSummaries": true,
-  "showTurnDuration": true,
-  "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "command": "cship",
-    "type": "command"
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('tool_input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); t=d.get('tool_input',{}); c=str(t.get('content',''))+str(t.get('new_string','')); pats=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; f=[p for p in pats if re.search(p,c)]; print(json.dumps({'hookSpecificOutput':{'hookEventName':'PreToolUse','permissionDecision':'deny'},'systemMessage':'Secret pattern detected: '+', '.join(f)}) if f else '{}')\""
+          }
+        ]
+      }
+    ]
   },
-  "theme": "auto",
+  "statusLine": {
+    "type": "command",
+    "command": "cship"
+  },
+  "enabledPlugins": {
+    "caveman@caveman": false,
+    "clangd-lsp@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "code-review@claude-plugins-official": false,
+    "code-simplifier@claude-plugins-official": false,
+    "context7@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": false,
+    "github@claude-plugins-official": false,
+    "greptile@claude-plugins-official": false,
+    "hookify@claude-plugins-official": true,
+    "learning-output-style@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
+    "pyright-lsp@claude-plugins-official": false,
+    "ralph-loop@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "juliusbrussee/caveman"
+      }
+    }
+  },
+  "effortLevel": "high",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto",
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": true,
+  "autoScrollEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "showTurnDuration": true,
+  "showMessageTimestamps": true,
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
   "voiceEnabled": true
 }
