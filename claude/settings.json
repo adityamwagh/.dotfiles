@@ -14,7 +14,6 @@
       "WebSearch",
       "Skill(code-review:code-review)",
       "Skill(code-review:code-review:*)",
-      "Read(//home/aditya/**)",
       "Bash(pip show *)",
       "Bash(git status)",
       "Bash(git diff *)",
