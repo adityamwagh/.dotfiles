@@ -178,13 +178,6 @@ if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -f "$HOMEBREW_PREFIX/share/fzf-tab/fzf-tab
   . "$HOMEBREW_PREFIX/share/fzf-tab/fzf-tab.zsh"
 fi
 
-expand-alias-or-space() {
-  zle _expand_alias 2>/dev/null
-  zle self-insert
-}
-zle -N expand-alias-or-space
-bindkey ' ' expand-alias-or-space
-
 # zsh-autosuggestions
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
