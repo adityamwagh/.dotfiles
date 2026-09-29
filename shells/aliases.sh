@@ -28,7 +28,8 @@ alias vim='nvim'
 
 alias pip='noglob pip'
 alias pip3='noglob pip3'
-alias uv='noglob uv --no-sync'
+alias uv='noglob uv'
+alias uvrun='noglob uv run --no-sync'
 alias bun='bun --no-save'
 
 alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
@@ -72,7 +73,7 @@ alias sudo='sudo '
 
 alias update-dotfiles='~/.dotfiles/install'
 
-alias claude='claude --allow-dangerously-skip-permissions'
+alias claude='claude --allow-dangerously-skip-permissions --remote-control'
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
 [ -f "$HOME/.local/shell/functions.sh" ] && . "$HOME/.local/shell/functions.sh"
