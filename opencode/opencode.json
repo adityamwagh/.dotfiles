@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "lithosai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LithosAI",
+      "options": {
+        "baseURL": "https://api.lithosai.cloud/v1",
+        "apiKey": "{env:LITHOS_API_KEY}"
+      },
+      "models": {
+        "deepseek-ai/DeepSeek-V4.1-Flash": { "name": "DeepSeek V4.1 Flash" }
+      }
+    }
+  },
+  "model": "lithosai/deepseek-ai/DeepSeek-V4.1-Flash"
+}
