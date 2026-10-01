@@ -1,6 +1,60 @@
 #!/bin/bash
 # Shared shell functions for bash and zsh
 
+# Lazy-load nvm: nothing runs until the first nvm/node/npm/npx/yarn call.
+nvm_lazy_init() {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] || return 0
+
+  nvm_load() {
+    unset -f nvm node npm npx yarn
+    . "$NVM_DIR/nvm.sh"
+  }
+  nvm() {
+    nvm_load
+    nvm "$@"
+  }
+  node() {
+    nvm_load
+    node "$@"
+  }
+  npm() {
+    nvm_load
+    npm "$@"
+  }
+  npx() {
+    nvm_load
+    npx "$@"
+  }
+  yarn() {
+    nvm_load
+    yarn "$@"
+  }
+}
+
+# Lazy-load conda/mamba: auto_activate is false, and `conda` routes to `mamba`.
+# Both initialize the shell hook on first use.
+mamba_lazy_init() {
+  local shell_name="$1"
+  export MAMBA_ROOT_PREFIX="${MAMBA_ROOT_PREFIX:-$HOME/.miniforge3}"
+  export MAMBA_EXE="$MAMBA_ROOT_PREFIX/bin/mamba"
+  [ -x "$MAMBA_EXE" ] || return 0
+
+  _mamba_init() {
+    unset -f conda mamba 2>/dev/null
+    eval "$("$MAMBA_EXE" shell hook --shell "$shell_name" --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+    alias conda='mamba'
+  }
+  conda() {
+    _mamba_init
+    mamba "$@"
+  }
+  mamba() {
+    _mamba_init
+    mamba "$@"
+  }
+}
+
 pp() {
   google-chrome "https://www.perplexity.ai/search?q=$*"
 }

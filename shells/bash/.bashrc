@@ -19,7 +19,6 @@ esac
 # #                HOMEBREW                 #
 # ############################################
 
-brew_bin=""
 if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -x "${HOMEBREW_PREFIX}/bin/brew" ]; then
   brew_bin="${HOMEBREW_PREFIX}/bin/brew"
 elif command -v brew >/dev/null 2>&1; then
@@ -32,7 +31,16 @@ elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
   brew_bin="$HOME/.linuxbrew/bin/brew"
 fi
 
-[ -n "$brew_bin" ] && eval "$("$brew_bin" shellenv)"
+if [ -n "${brew_bin:-}" ]; then
+  # Cache brew shellenv (stable output) to skip ~60ms of brew startup per shell.
+  __brew_env="${XDG_CACHE_HOME:-$HOME/.cache}/bash/brew_shellenv.bash"
+  mkdir -p "${__brew_env%/*}"
+  [ -s "$__brew_env" ] && [ ! "$brew_bin" -nt "$__brew_env" ] || "$brew_bin" shellenv >"$__brew_env"
+  # shellcheck source=/dev/null
+  . "$__brew_env"
+  unset __brew_env
+fi
+unset brew_bin
 
 # Keep Linux system tools ahead of Homebrew by appending brew paths.
 if [ "$(uname -s)" = "Linux" ] && [ -n "${HOMEBREW_PREFIX:-}" ]; then
@@ -123,33 +131,7 @@ esac
 # #                   NVM                   #
 # ############################################
 
-export NVM_DIR="$HOME/.nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  nvm_load() {
-    unset -f nvm node npm npx yarn
-    . "$NVM_DIR/nvm.sh"
-  }
-  nvm() {
-    nvm_load
-    nvm "$@"
-  }
-  node() {
-    nvm_load
-    node "$@"
-  }
-  npm() {
-    nvm_load
-    npm "$@"
-  }
-  npx() {
-    nvm_load
-    npx "$@"
-  }
-  yarn() {
-    nvm_load
-    yarn "$@"
-  }
-fi
+nvm_lazy_init
 
 # ############################################
 # #                   PNPM                  #
@@ -166,15 +148,7 @@ esac
 # ############################################
 
 # Lazy init (auto_activate is false); `conda` routes to `mamba`.
-export MAMBA_ROOT_PREFIX="${MAMBA_ROOT_PREFIX:-$HOME/.miniforge3}"
-export MAMBA_EXE="$MAMBA_ROOT_PREFIX/bin/mamba"
-_mamba_init() {
-  unset -f conda mamba 2>/dev/null
-  eval "$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
-  alias conda='mamba'
-}
-conda() { _mamba_init; mamba "$@"; }
-mamba() { _mamba_init; mamba "$@"; }
+mamba_lazy_init bash
 
 # ############################################
 # #                 STARSHIP                #
