@@ -27,6 +27,9 @@
     ~/.config/nvim:
       recursive: false
       force: false
+    ~/.config/tmux:
+      recursive: false
+      force: false
     ~/.config/zed:
       recursive: false
       force: false
@@ -90,6 +93,9 @@
 
     # Contour (Flatpak on Linux; config is read from the sandbox path)
     ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml: terminals/contour/contour.yml
+
+    # tmux (useful on both desktops and servers)
+    ~/.config/tmux/tmux.conf: terminals/tmux/tmux.conf
 
     # Sublime Text settings and colour schemes live in one flat User dir.
     ~/.config/sublime-text/Packages/User/:
@@ -177,6 +183,8 @@
       - tar:
           filter: linux
       - git:
+          filter: linux
+      - tmux:
           filter: linux
 
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
