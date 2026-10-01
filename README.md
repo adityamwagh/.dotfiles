@@ -25,6 +25,14 @@ Re-run the installer any time after pulling updates:
 
 The installer links configs into `$HOME`, cleans stale repo-managed links, applies `Brewfile` when Homebrew is available, and runs the font installer.
 
+For a headless server, use the `--server` profile:
+
+```bash
+~/.dotfiles/install --server
+```
+
+This installs a server-appropriate subset: shell configs, starship, completions, zsh-patina, Claude Code, neovim, and CLI tools via the native package manager. It does **not** install Homebrew, GUI apps/terminals/editors, fonts, or LLM runtimes.
+
 Run checks before committing:
 
 ```bash

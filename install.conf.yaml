@@ -59,7 +59,9 @@
     ~/.gitconfig: .gitconfig
 
     # Packages
-    ~/.Brewfile: Brewfile
+    ~/.Brewfile:
+      path: Brewfile
+      if: '[ -z "$DOTFILES_SERVER" ]'
 
     # Prompt
     ~/.config/starship.toml: starship/starship.toml
@@ -70,10 +72,18 @@
     ~/.config/nvim/lua: editors/nvim/lua
 
     # Zed
-    ~/.config/zed/settings.json: editors/zed/settings.json
-    ~/.config/zed/tasks.json: editors/zed/tasks.json
-    ~/.config/zed/themes: editors/zed/themes
-    ~/.config/zed/keymap.json: editors/zed/keymap.json
+    ~/.config/zed/settings.json:
+      path: editors/zed/settings.json
+      if: '[ -z "$DOTFILES_SERVER" ]'
+    ~/.config/zed/tasks.json:
+      path: editors/zed/tasks.json
+      if: '[ -z "$DOTFILES_SERVER" ]'
+    ~/.config/zed/themes:
+      path: editors/zed/themes
+      if: '[ -z "$DOTFILES_SERVER" ]'
+    ~/.config/zed/keymap.json:
+      path: editors/zed/keymap.json
+      if: '[ -z "$DOTFILES_SERVER" ]'
 
     # Contour (Flatpak on Linux; config is read from the sandbox path)
     ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml: terminals/contour/contour.yml
@@ -82,21 +92,21 @@
     ~/.config/sublime-text/Packages/User/:
       glob: true
       path: editors/sublime-text/*
-      if: "[ $(uname) = Linux ]"
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
     ~/Library/Application Support/Sublime Text/Packages/User/:
       glob: true
       path: editors/sublime-text/*
-      if: "[ $(uname) = Darwin ]"
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
 
     # Konsole colorschemes
     ~/.local/share/konsole/:
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
-      if: "[ $(uname) = Linux ]"
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
     ~/Library/Application Support/konsole/:
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
-      if: "[ $(uname) = Darwin ]"
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
 
     # zsh-patina
     ~/.config/zsh-patina: shells/zsh/patina
@@ -110,10 +120,18 @@
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
 # missing. Tools that touch system directories or hardware belong here
 # on Linux; everything else comes from the Brewfile.
+#
+# Server profile (`./install --server`): headless, no Homebrew. The
+# unipkg blocks below cover both profiles; the desktop-only hardware and
+# the server-only CLI tools are split out accordingly.
+- unipkg:
+    if: '[ -z "$DOTFILES_SERVER" ]'
+    install:
+      - ddcutil: # monitor brightness control (hardware)
+          filter: linux
+
 - unipkg:
     - install:
-        - ddcutil:
-            filter: linux
         - eza:
             filter: linux
         - zsh:
@@ -121,25 +139,67 @@
         - zstd: # ollama's installer needs it for extraction
             filter: linux
 
+# Server-only CLI tools and apps installed from the native package manager
+# (no Homebrew on servers).
+- unipkg:
+    if: '[ -n "$DOTFILES_SERVER" ]'
+    install:
+      - neovim:
+          alt_name: nvim
+          filter: linux
+      - fzf:
+          filter: linux
+      - zoxide:
+          filter: linux
+      - ripgrep:
+          filter: linux
+      - fd:
+          alt_name: fd-find
+          filter: linux
+      - bat:
+          alt_name: batcat
+          filter: linux
+      - git-delta:
+          filter: linux
+      - jq:
+          filter: linux
+      - yq:
+          filter: linux
+      - gh:
+          filter: linux
+      - curl:
+          filter: linux
+      - unzip:
+          filter: linux
+      - tar:
+          filter: linux
+      - git:
+          filter: linux
+
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
+# Skipped entirely on servers: no Homebrew on a server.
 - brewfile:
-    - Brewfile
+    if: '[ -z "$DOTFILES_SERVER" ]'
+    brewfile:
+      - Brewfile
 
 - shell:
     - [
         "[ -f ~/.gitconfig.local ] || printf '# Machine-local Git overrides (identity, employer setup); loaded last by ~/.gitconfig.\\n' > ~/.gitconfig.local",
         "Seed ~/.gitconfig.local",
       ]
-    - ["~/.dotfiles/scripts/install-custom-iosevka-extended.sh", "Install custom Iosevka Extended"]
-    - ["~/.dotfiles/scripts/install-helvetica-now.sh", "Install HelveticaNow"]
-    - ["~/.dotfiles/scripts/install-segoe-ui.sh", "Install Segoe UI (Linux)"]
-    - ["~/.dotfiles/scripts/install-sf-pro.sh", "Install SF Pro (Linux)"]
-    - ["~/.dotfiles/scripts/install-source-code-pro.sh", "Install Source Code Pro (Linux)"]
+    # Desktop-only steps; the guard short-circuits on servers.
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-custom-iosevka-extended.sh', "Install custom Iosevka Extended"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-helvetica-now.sh', "Install HelveticaNow"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-segoe-ui.sh', "Install Segoe UI (Linux)"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-sf-pro.sh', "Install SF Pro (Linux)"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-source-code-pro.sh', "Install Source Code Pro (Linux)"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-codex.sh', "Install Codex"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-llama.sh', "Install llama.cpp"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-ollama.sh', "Install Ollama"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-rustup.sh', "Install Rust toolchain"]
+    # Both profiles.
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-cship.sh", "Install cship statusline"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
     - ["~/.dotfiles/scripts/install-claude-code.sh", "Install Claude Code"]
-    - ["~/.dotfiles/scripts/install-codex.sh", "Install Codex"]
-    - ["~/.dotfiles/scripts/install-llama.sh", "Install llama.cpp"]
-    - ["~/.dotfiles/scripts/install-ollama.sh", "Install Ollama"]
-    - ["~/.dotfiles/scripts/install-rustup.sh", "Install Rust toolchain"]
