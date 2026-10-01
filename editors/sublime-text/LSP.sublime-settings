@@ -1,0 +1,22 @@
+// LSP client overrides mirroring editors/nvim/lua/plugins/lsp.lua.
+//
+// The LSP-clangd/LSP-lua/LSP-rust-analyzer helper packages ship their own
+// defaults; only settings that differ from nvim are overridden here. The
+// session name is the helper package name, so the keys keep their LSP- prefix.
+{
+    "clients": {
+        "LSP-clangd": {
+            "binary": "auto", // Prefer system clangd, fall back to GitHub.
+            "initialization_options": {
+                "clangd.background-index": true, // Match nvim --background-index.
+                "clangd.clang-tidy": true, // Match nvim --clang-tidy.
+            },
+        },
+        "LSP-lua": {
+            "settings": {
+                "Lua.diagnostics.globals": ["vim"],
+                "Lua.runtime.version": "LuaJIT", // Match nvim's LuaJIT runtime.
+            },
+        },
+    },
+}
