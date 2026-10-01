@@ -9,6 +9,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 ## Key Commands
 
 - `~/.dotfiles/install` — apply/update symlinks, cleanup stale repo links, and run bootstrap steps
+- `~/.dotfiles/install --server` — headless profile: no Homebrew, GUI apps, fonts, or LLM runtimes; includes neovim + CLI tools
 - `~/.dotfiles/install -n` — dry run before applying
 - `pre-commit run --all-files` — run repo checks (trailing whitespace hook)
 - `brew bundle --file ~/.dotfiles/Brewfile` — install/update Homebrew packages
@@ -17,8 +18,10 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 ## Architecture
 
 **Entry points:**
-- `install` — bash bootstrap script; fetches Dotbot if missing, then runs it
-- `install.conf.yaml` — Dotbot config: declares symlinks, clean targets, Homebrew bundle install, and font install
+- `install` — bash bootstrap script; fetches Dotbot if missing, then runs it. `--server` is consumed here (set to `DOTFILES_SERVER=1`, stripped from dotbot args)
+- `install.conf.yaml` — Dotbot config: declares symlinks, clean targets, native/Homebrew package install, and font install
+
+**Server profile:** `--server` exports `DOTFILES_SERVER=1`. Desktop-only items are guarded with `if: '[ -z "$DOTFILES_SERVER" ]'`; server-only items with `if: '[ -n "$DOTFILES_SERVER" ]'`. `link` supports `if:` natively; `unipkg` and `brewfile` do too (both submodules are forked forks that add block-level `if:`). The built-in `shell` directive does **not** support `if:`, so shell steps use a short-circuit guard instead: `'[ -z "$DOTFILES_SERVER" ] || <script>'` (desktop-only) — the guard always exits 0 so dotbot sees success whether or not the script runs.
 
 **Config is grouped by domain:** `shells/`, `editors/`, `terminals/`, `starship/`
 
@@ -28,9 +31,9 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Neovim config** (`editors/nvim/`) uses Lazy.nvim with modular Lua files under `lua/plugins/`. Stylua formatting: 2-space indent (see `.stylua.toml`).
 
-**dotbot/**, **dotbot-brew/**, and **dotbot-unipkg/** are vendored submodules — treat as upstream.
+**dotbot/** is vendored upstream. **dotbot-brew/** and **dotbot-unipkg/** are the user's forks (`adityamwagh/dotbot-brew`, `adityamwagh/dotbot-unipkg`) that add block-level `if:` support; keep changes upstreamable.
 
-**Package split:** tools that touch system directories or hardware (e.g. `eza`, `ddcutil`, `zsh`) install via the native package manager on Linux (`unipkg` directive); everything else comes from the Brewfile.
+**Package split:** tools that touch system directories or hardware (e.g. `eza`, `ddcutil`, `zsh`) install via the native package manager (`unipkg` directive); on desktop everything else comes from the Brewfile. Servers (`--server`) get no Homebrew; their CLI tools and neovim come from `unipkg`.
 
 ## Theme and Config Policy
 
