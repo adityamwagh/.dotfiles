@@ -6,3 +6,12 @@ disable=SC1091
 
 # Don't require shebangs — many files here are sourced, not executed
 disable=SC2148
+
+# Lazy-loader functions are defined here but invoked later/interactively.
+disable=SC2329
+
+# Commands inside lazy-loaders look unreachable to the analyzer.
+disable=SC2317
+
+# A && B || C is intentional for cache-refresh-if-stale checks.
+disable=SC2015

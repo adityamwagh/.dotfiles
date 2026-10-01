@@ -8,7 +8,6 @@ case ":$PATH:" in
   *":$HOME/.local/bin:$HOME/bin:"*) ;;
   *) PATH="$HOME/.local/bin:$HOME/bin:$PATH" ;;
 esac
-export PATH
 
 export EDITOR="nvim"
 export PYTEST_ADDOPTS="--color=yes -sv -o log_cli=true --log-cli-level=INFO"

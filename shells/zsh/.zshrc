@@ -18,8 +18,7 @@
 # #                HOMEBREW                 #
 # ############################################
 
-brew_bin=""
-if   [ -n "${HOMEBREW_PREFIX:-}" ] && [ -x "${HOMEBREW_PREFIX}/bin/brew" ]; then
+if [ -n "${HOMEBREW_PREFIX:-}" ] && [ -x "${HOMEBREW_PREFIX}/bin/brew" ]; then
   brew_bin="${HOMEBREW_PREFIX}/bin/brew"
 elif command -v brew >/dev/null 2>&1; then
   brew_bin="$(command -v brew)"
@@ -31,7 +30,7 @@ elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
   brew_bin="$HOME/.linuxbrew/bin/brew"
 fi
 
-if [ -n "$brew_bin" ]; then
+if [ -n "${brew_bin:-}" ]; then
   # Cache brew shellenv (stable output) to skip ~60ms of brew startup per shell.
   __brew_env="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew_shellenv.zsh"
   mkdir -p "${__brew_env:h}"
@@ -39,6 +38,7 @@ if [ -n "$brew_bin" ]; then
   . "$__brew_env"
   unset __brew_env
 fi
+unset brew_bin
 
 # Keep Linux system tools ahead of Homebrew by appending brew paths.
 if [ "$(uname -s)" = "Linux" ] && [ -n "${HOMEBREW_PREFIX:-}" ]; then
@@ -142,15 +142,7 @@ esac
 # #                   NVM                   #
 # ############################################
 
-export NVM_DIR="$HOME/.nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  nvm_load() { unset -f nvm node npm npx yarn; . "$NVM_DIR/nvm.sh"; }
-  nvm()  { nvm_load; nvm  "$@"; }
-  node() { nvm_load; node "$@"; }
-  npm()  { nvm_load; npm  "$@"; }
-  npx()  { nvm_load; npx  "$@"; }
-  yarn() { nvm_load; yarn "$@"; }
-fi
+nvm_lazy_init
 
 # ############################################
 # #                   PNPM                  #
@@ -203,17 +195,5 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# >>> conda / mamba (lazy) >>>
-# Lazy init: auto_activate is false, so nothing is needed until first use.
-# `conda` routes to `mamba`; both initialize the shell hook on first use.
-export MAMBA_ROOT_PREFIX="${MAMBA_ROOT_PREFIX:-$HOME/.miniforge3}"
-export MAMBA_EXE="$MAMBA_ROOT_PREFIX/bin/mamba"
-_mamba_init() {
-  unset -f conda mamba 2>/dev/null
-  eval "$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
-  alias conda='mamba'
-}
-conda() { _mamba_init; mamba "$@"; }
-mamba() { _mamba_init; mamba "$@"; }
-# <<< conda / mamba (lazy) <<<
+# conda / mamba (lazy); first use initializes the shell hook.
+mamba_lazy_init zsh
