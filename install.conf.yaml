@@ -66,6 +66,9 @@
     # Prompt
     ~/.config/starship.toml: starship/starship.toml
 
+    # OpenCode (API key comes from $LITHOS_API_KEY, e.g. via ~/.env)
+    ~/.config/opencode/opencode.json: opencode/opencode.json
+
     # Neovim
     ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
     ~/.config/nvim/init.lua: editors/nvim/init.lua
