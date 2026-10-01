@@ -1,9 +1,9 @@
 #!/bin/bash
 # Shared aliases for bash and zsh
 
-alias clr="/bin/clear"
-alias cls="/bin/clear"
-alias clear="/bin/clear"
+alias clr="/usr/bin/clear"
+alias cls="/usr/bin/clear"
+alias clear="/usr/bin/clear"
 
 alias ls='eza --git --group-directories-first'
 alias la='eza -a --git --group-directories-first'
@@ -22,14 +22,16 @@ if command -v ddcutil >/dev/null 2>&1; then
   alias brightness="ddcutil setvcp 10"
 fi
 
-alias rm='rm -I'
+alias rm='rm -i'
 alias vi='nvim'
 alias vim='nvim'
 
-alias pip='noglob pip'
-alias pip3='noglob pip3'
-alias uv='noglob uv'
-alias uvrun='noglob uv run --no-sync'
+if [ -n "$ZSH_VERSION" ]; then
+  alias pip='noglob pip'
+  alias pip3='noglob pip3'
+  alias uv='noglob uv'
+  alias uvrun='noglob uv run --no-sync'
+fi
 alias bun='bun --no-save'
 
 alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
