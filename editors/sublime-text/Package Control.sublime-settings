@@ -1,8 +1,32 @@
 // Packages Package Control installs on first run.
+//
+// Mirrors editors/nvim (LSP servers, ruff/selene linting, icons, indent
+// guides) and editors/zed/auto_install_extensions (extra syntaxes).
+// Python uses pyrefly (LanguageServers.sublime-settings), which has no
+// Package Control helper, so there is no LSP-pyright entry here.
 {
-    "installed_packages": ["AutoAppearance",        "Package Control",
+    "installed_packages": [
+        "A File Icon",
+        "AutoAppearance",
+        "Dockerfile Syntax Highlighting",
+        "GitGutter",
+        "Just",
+        "LSP",
+        "LSP-clangd",
+        "LSP-lua",
+        "LSP-rust-analyzer",
+        "Nix",
+        "Origami",
+        "Package Control",
+        "rainbow_csv",
+        "RainbowIndent",
+        "SideBarEnhancements",
+        "SublimeLinter",
+        "SublimeLinter-contrib-ruff",
+        "SublimeLinter-contrib-selene",
+        "Terminus",
+        "TOML",
     ],
-    "in_process_packages":
-    [
+    "in_process_packages": [
     ],
 }

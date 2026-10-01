@@ -1,0 +1,12 @@
+// Custom LSP servers that have no Package Control helper package.
+//
+// Pyrefly replaces pyright here; it is installed from the Brewfile so
+// `pyrefly` is on PATH. LSP-clangd, LSP-lua and LSP-rust-analyzer are
+// configured by their own helper packages (see LSP.sublime-settings).
+{
+    "pyrefly": {
+        "command": ["pyrefly", "lsp"],
+        "enabled": true,
+        "selector": "source.python",
+    },
+}
