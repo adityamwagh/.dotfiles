@@ -1,4 +1,8 @@
 // Packages Package Control installs on first run.
 {
-    "installed_packages": ["AutoAppearance"],
+    "installed_packages": ["AutoAppearance",        "Package Control",
+    ],
+    "in_process_packages":
+    [
+    ],
 }
