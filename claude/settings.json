@@ -80,6 +80,7 @@
       "/tmp"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
@@ -125,7 +126,9 @@
     "pr-review-toolkit@claude-plugins-official": false,
     "pyright-lsp@claude-plugins-official": false,
     "ralph-loop@claude-plugins-official": false,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -135,7 +138,20 @@
       }
     }
   },
+  "outputStyle": "Concise",
+  "feedbackDrafts": "notify",
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5-5": {
+      "autoCompactWindow": 300000
+    },
+    "claude-sonnet-5-5": {
+      "autoCompactWindow": 400000
+    }
+  },
   "voice": {
     "enabled": true,
     "mode": "hold"
@@ -145,7 +161,8 @@
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
-  "preferredNotifChannel": "ghostty",
+  "verbose": true,
+  "preferredNotifChannel": "auto",
   "autoCompactEnabled": true,
   "autoScrollEnabled": true,
   "fileCheckpointingEnabled": true,
