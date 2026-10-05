@@ -1,0 +1,135 @@
+# Contour terminal configuration.
+# Kept minimal; values mirror the preferences used in the other terminals.
+# Full option reference: https://contour-terminal.org/configuration/
+
+# Flatpak installs Contour from Flathub; the GUI uses the platform plugin.
+platform_plugin: auto
+
+default_profile: main
+
+profiles:
+    main:
+        shell: /usr/bin/zsh
+        initial_working_directory: "~"
+        # Escape the Flatpak sandbox so the shell and tools run on the host.
+        escape_sandbox: true
+
+        # Server-side window decorations: let the compositor draw the title bar.
+        show_title_bar: false
+
+        # Open new windows maximized, like the previous terminals.
+        maximized: true
+
+        # Keep a large scrollback history.
+        history:
+            limit: 10000000
+            auto_scroll_on_update: true
+            scroll_multiplier: 3
+
+        scrollbar:
+            position: Hidden
+
+        mouse:
+            hide_while_typing: true
+
+        # Window padding, in pixels.
+        margins:
+            horizontal: 12
+            vertical: 12
+
+        font:
+            size: 10
+            locator: Native
+            render_mode: Gray
+            strict_spacing: true
+            text_shaping:
+                engine: harfbuzz
+            regular:
+                family: "Iosevka Extended"
+                weight: Regular
+                slant: Normal
+            bold:
+                family: "Iosevka Extended"
+                weight: Bold
+
+        # Follow the system dark/light appearance.
+        colors:
+            dark: flexoki-dark
+            light: flexoki-light
+
+color_schemes:
+    # Flexoki Dark, from https://stephango.com/flexoki
+    flexoki-dark:
+        default:
+            background: '#100F0F'
+            foreground: '#CECDC3'
+            bright_foreground: '#FFFCF0'
+            dimmed_foreground: '#878580'
+        # Normal colors
+        normal:
+            black:   '#100F0F'
+            red:     '#AF3029'
+            green:   '#66800B'
+            yellow:  '#AD8301'
+            blue:    '#205EA6'
+            magenta: '#5E409D'
+            cyan:    '#24837B'
+            white:   '#CECDC3'
+        # Bright colors
+        bright:
+            black:   '#575653'
+            red:     '#D14D41'
+            green:   '#879A39'
+            yellow:  '#D0A215'
+            blue:    '#4385BE'
+            magenta: '#8B7EC8'
+            cyan:    '#3AA99F'
+            white:   '#FFFCF0'
+        # Text selection
+        selection:
+            foreground: CellForeground
+            foreground_alpha: 1
+            background: '#282726'
+            background_alpha: 1
+        # Hovered hyperlink decoration.
+        hyperlink_decoration:
+            normal: '#D0A215'
+            hover: '#D14D41'
+
+    # Flexoki Light, from https://stephango.com/flexoki
+    flexoki-light:
+        default:
+            background: '#FFFCF0'
+            foreground: '#100F0F'
+            bright_foreground: '#100F0F'
+            dimmed_foreground: '#6F6E69'
+        # Normal colors
+        normal:
+            black:   '#100F0F'
+            red:     '#AF3029'
+            green:   '#66800B'
+            yellow:  '#AD8301'
+            blue:    '#205EA6'
+            magenta: '#A02F6F'
+            cyan:    '#24837B'
+            white:   '#DAD8CE'
+        # Bright colors
+        bright:
+            black:   '#B7B5AC'
+            red:     '#D14D41'
+            green:   '#879A39'
+            yellow:  '#D0A215'
+            blue:    '#4385BE'
+            magenta: '#CE5D97'
+            cyan:    '#3AA99F'
+            white:   '#E6E4D9'
+        # Text selection
+        selection:
+            foreground: '#100F0F'
+            foreground_alpha: 1
+            background: '#E6E4D9'
+            background_alpha: 1
+        # Hovered hyperlink decoration.
+        hyperlink_decoration:
+            normal: '#AD8301'
+            hover: '#D14D41'

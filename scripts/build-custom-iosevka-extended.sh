@@ -6,7 +6,7 @@ set -euo pipefail
 # tool and is NOT run by ./install -- it rebuilds the .ttf bytes committed under
 # fonts/IosevkaExtended/ from that directory's private-build-plans.toml.
 #
-# Output: all 9 weights, upright only, at Extended width (9 TTF files).
+# Output: 4 weights, upright only, at the 600-unit width, no ligatures (4 TTF files).
 #
 # Usage: scripts/build-custom-iosevka-extended.sh [dotfiles_root]
 #   IOSEVKA_VERSION env var overrides the pinned source tag.
