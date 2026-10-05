@@ -2,8 +2,9 @@
 set -euo pipefail
 
 # Install the repo-vendored custom Iosevka Extended fonts (built from Iosevka's
-# Docker build plan, all weights at Extended width). Cross-platform: the bytes
-# ship in this repo (no upstream download), so it runs on both macOS and Linux.
+# Docker build plan: 4 weights at the 600-unit width, upright only, no
+# ligatures). Cross-platform: the bytes ship in this repo (no upstream download),
+# so it runs on macOS and Linux.
 
 root_dir="${1:-$HOME/.dotfiles}"
 src_dir="$root_dir/fonts/IosevkaExtended"
