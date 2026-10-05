@@ -65,6 +65,7 @@ alias gst='git stash'
 alias gstp='git stash pop'
 alias gstl='git stash list'
 
+alias e='exit'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
