@@ -34,7 +34,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 ## Theme and Config Policy
 
-**Themes:** each tool keeps its theme files under its own theme directory (Neovim `colors/`, Zed `themes/`, Ghostty `themes/`, WezTerm `colors/`, Konsole colorschemes). Which theme is active is set in each tool's own config and is the user's choice — do not change the active theme or record specific theme names in this file. When adding or editing a theme, keep all of its variants consistent and mirror upstream colors faithfully.
+**Themes:** each tool keeps its theme files under its own theme directory (Neovim `colors/`, Zed `themes/`, Contour `contour.yml`, Konsole colorschemes). Which theme is active is set in each tool's own config and is the user's choice — do not change the active theme or record specific theme names in this file. When adding or editing a theme, keep all of its variants consistent and mirror upstream colors faithfully.
 
 **Zed settings:** Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
 

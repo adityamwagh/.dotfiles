@@ -18,13 +18,13 @@
     ~/.config: # Clean direct config links.
       recursive: false # Avoid scanning app internals.
       force: false # Preserve non-dotfile broken links.
-    ~/.config/ghostty: # Clean per-file app links from older layouts.
+    ~/.config/contour: # Clean Contour config link (native layout).
+      recursive: false
+      force: false
+    ~/.var/app/org.contourterminal.Contour/config/contour: # Clean Contour config link (Flatpak).
       recursive: false
       force: false
     ~/.config/nvim:
-      recursive: false
-      force: false
-    ~/.config/wezterm:
       recursive: false
       force: false
     ~/.config/zed:
@@ -75,12 +75,8 @@
     ~/.config/zed/themes: editors/zed/themes
     ~/.config/zed/keymap.json: editors/zed/keymap.json
 
-    # Ghostty (themes are built in; no theme dir to link)
-    ~/.config/ghostty/config.ghostty: terminals/ghostty/config.ghostty
-
-    # WezTerm
-    ~/.wezterm.lua: terminals/wezterm/.wezterm.lua
-    ~/.config/wezterm/colors: terminals/wezterm/colors
+    # Contour (Flatpak on Linux; config is read from the sandbox path)
+    ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml: terminals/contour/contour.yml
 
     # Sublime Text settings and colour schemes live in one flat User dir.
     ~/.config/sublime-text/Packages/User/:
@@ -109,18 +105,6 @@
     ~/.config/cship.toml: cship/cship.toml
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
-
-# Ghostty per-OS local config: separate link blocks because the same
-# target key twice in one block would collide in YAML.
-- link:
-    ~/.config/ghostty/config-local:
-      path: terminals/ghostty/config-local-linux
-      if: "[ $(uname) = Linux ]"
-
-- link:
-    ~/.config/ghostty/config-local:
-      path: terminals/ghostty/config-local-macos
-      if: "[ $(uname) = Darwin ]"
 
 # Install system-integrated packages with the native package manager
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
