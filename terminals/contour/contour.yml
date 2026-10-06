@@ -14,15 +14,19 @@ profiles:
         # Escape the Flatpak sandbox so the shell and tools run on the host.
         escape_sandbox: true
 
-        # Server-side window decorations: let the compositor draw the title bar.
-        show_title_bar: false
+        # Native server-side window decorations (real title bar).
+        show_title_bar: true
 
         # Open new windows maximized, like the previous terminals.
         maximized: true
 
+        # Quiet the bell; skips Qt Multimedia init (audio probe) at startup.
+        bell:
+            sound: "off"
+
         # Keep a large scrollback history.
         history:
-            limit: 10000000
+            limit: 50000
             auto_scroll_on_update: true
             scroll_multiplier: 3
 
@@ -41,7 +45,7 @@ profiles:
             size: 10
             locator: Native
             render_mode: Gray
-            strict_spacing: true
+            strict_spacing: false
             text_shaping:
                 engine: harfbuzz
             regular:
