@@ -2,16 +2,18 @@
 # Kept minimal; values mirror the preferences used in the other terminals.
 # Full option reference: https://contour-terminal.org/configuration/
 
-# Flatpak installs Contour from Flathub; the GUI uses the platform plugin.
+# Auto-detect the platform plugin (cocoa on macOS, xcb on Linux, etc.).
 platform_plugin: auto
 
 default_profile: main
 
 profiles:
     main:
-        shell: /usr/bin/zsh
+        # No shell override: Contour uses the user's default login shell,
+        # which keeps this config portable across macOS (/bin/zsh) and
+        # Linux (/usr/bin/zsh).
         initial_working_directory: "~"
-        # Escape the Flatpak sandbox so the shell and tools run on the host.
+        # No-op outside Flatpak; escapes the sandbox on Linux Flatpak installs.
         escape_sandbox: true
 
         # Native server-side window decorations (real title bar).
