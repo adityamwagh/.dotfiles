@@ -24,6 +24,9 @@
     ~/.var/app/org.contourterminal.Contour/config/contour: # Clean Contour config link (Flatpak).
       recursive: false
       force: false
+    ~/Library/Application Support/contour: # Clean Contour config link (macOS).
+      recursive: false
+      force: false
     ~/.config/nvim:
       recursive: false
       force: false
@@ -91,8 +94,11 @@
       path: editors/zed/keymap.json
       if: '[ -z "$DOTFILES_SERVER" ]'
 
-    # Contour (Flatpak on Linux; config is read from the sandbox path)
-    ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml: terminals/contour/contour.yml
+    # Contour: native layout on macOS/Linux, sandbox layout on Linux Flatpak.
+    ~/.config/contour/contour.yml: terminals/contour/contour.yml
+    ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml:
+      path: terminals/contour/contour.yml
+      if: "[ $(uname) = Linux ]"
 
     # tmux (useful on both desktops and servers)
     ~/.config/tmux/tmux.conf: terminals/tmux/tmux.conf
