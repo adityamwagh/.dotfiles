@@ -1,0 +1,13 @@
+[Desktop Entry]
+DefaultProfile=Main.profile
+
+[General]
+ConfigVersion=1
+
+[LightDarkTheme]
+SyncProfileWithSystemTheme=true
+LightThemeProfile=Main
+DarkThemeProfile=Main Dark
+
+[UiSettings]
+ColorScheme=

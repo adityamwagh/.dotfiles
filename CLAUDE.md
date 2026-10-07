@@ -41,7 +41,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Zed settings:** Preserve the file header comment in `editors/zed/settings.json`. Keep option comments inline. Pane border size should be `active_pane_modifiers.border_size = 1.0`. Keep the explicit spacing-related Zed options unless there is a concrete reason to change them.
 
-**KDE/Konsole settings:** Dotbot may link Konsole colorscheme files only. Do not manage Konsole profiles, `konsolerc`, Plasma themes, KDE services, or other KDE settings through these dotfiles.
+**KDE/Konsole settings:** Dotbot links Konsole colorscheme files and the shared `Main.profile`/`Main Dark.profile` profiles. Shared profiles must stay machine-independent (no hardcoded home directory or machine paths). Machine-local values live in untracked `<Profile>.local.profile` files in the Konsole data dir that inherit the shared profile via `Parent=`; `konsolerc` is local and untracked too, since it selects the local profiles by name. Do not manage Plasma themes, KDE services, or other KDE settings through these dotfiles. `konsolerc.example` documents the expected local `konsolerc` shape.
 
 **Comments:** keep config option comments as short one-line inline comments where the file format supports it. File-level headers, such as the Zed settings documentation header, may remain as standalone comments.
 
