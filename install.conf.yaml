@@ -48,7 +48,7 @@
     ~/.local/share/konsole: # Clean Konsole colorscheme links (Linux).
       recursive: false
       force: false
-    ~/Library/Application Support/konsole: # Clean Konsole colorscheme links (macOS).
+    ~/Library/Application Support/konsole: # Clean Konsole colorscheme/profile links (macOS).
       recursive: false
       force: false
 
@@ -113,14 +113,28 @@
       path: editors/sublime-text/*
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
 
-    # Konsole colorschemes
+    # Konsole colorschemes and shared profiles. Machine-local overrides live in
+    # the Konsole data dir as untracked <Profile>.local.profile files that
+    # inherit the shared profile via Parent=; konsolerc itself is local too.
     ~/.local/share/konsole/:
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
+    ~/.local/share/konsole/Main.profile:
+      path: terminals/konsole/Main.profile
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
+    ~/.local/share/konsole/Main Dark.profile:
+      path: terminals/konsole/Main Dark.profile
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
     ~/Library/Application Support/konsole/:
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
+    ~/Library/Application Support/konsole/Main.profile:
+      path: terminals/konsole/Main.profile
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
+    ~/Library/Application Support/konsole/Main Dark.profile:
+      path: terminals/konsole/Main Dark.profile
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
 
     # zsh-patina
