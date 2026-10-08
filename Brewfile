@@ -1,8 +1,10 @@
+tap "anomalyco/tap"
 tap "gromgit/brewtils"
 tap "michel-kraemer/zsh-patina" if OS.mac?
 tap "oven-sh/bun"
 
 brew "act"
+brew "anomalyco/tap/opencode-v2"
 brew "asciinema"
 brew "bash-completion@2"
 brew "bash-language-server"
@@ -24,7 +26,6 @@ brew "jq"
 brew "just"
 brew "mdformat"
 brew "michel-kraemer/zsh-patina/zsh-patina" if OS.mac? # Linux: scripts/install-zsh-patina.sh (tap has no Linux builds)
-brew "opencode"
 brew "oven-sh/bun/bun"
 brew "panache"
 brew "pnpm"
