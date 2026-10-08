@@ -55,7 +55,8 @@ time_format = "%H:%M:%S"
 success_symbol = "[❱](bold yellow)[❱](bold green)[❱](bold red)" # Prompt symbol after successful commands.
 error_symbol = "[❱](bold yellow)[❱](bold green)[❱](bold red)"   # Prompt symbol after failed commands.
 
-# Claude Code statusline profile — rendered via `starship statusline claude-code`
+# Claude Code statusline profile — rendered via `scripts/claude-statusline.sh`,
+# which runs `starship statusline claude-code` and appends rate-limit fields.
 [profiles]
 claude-code = "$claude_model$git_branch$claude_context$claude_cost"
 
@@ -74,10 +75,36 @@ gauge_full_symbol = '█'                  # Filled gauge segment.
 gauge_partial_symbol = '▒'               # Partial gauge segment.
 gauge_empty_symbol = '░'                 # Empty gauge segment.
 disabled = false
-# display: threshold-based styling; add entries with threshold, style, hidden fields.
+
+[[claude_context.display]] # Hide the gauge until context is meaningfully used.
+threshold = 0
+hidden = true
+
+[[claude_context.display]]
+threshold = 30
+style = 'bold green'
+
+[[claude_context.display]]
+threshold = 60
+style = 'bold yellow'
+
+[[claude_context.display]]
+threshold = 80
+style = 'bold red'
 
 [claude_cost]
 format = '[$symbol(\$$cost)]($style) ' # Session cost with dollar sign.
 symbol = '💰 '                          # Icon before cost.
 disabled = false
-# display: threshold-based styling; add entries with threshold (USD), style, hidden fields.
+
+[[claude_cost.display]] # Keep cost hidden until the session costs real money.
+threshold = 0.0
+hidden = true
+
+[[claude_cost.display]]
+threshold = 1.0
+style = 'bold yellow'
+
+[[claude_cost.display]]
+threshold = 5.0
+style = 'bold red'

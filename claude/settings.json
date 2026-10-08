@@ -108,7 +108,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "cship"
+    "command": "claude-statusline"
   },
   "enabledPlugins": {
     "caveman@caveman": false,
