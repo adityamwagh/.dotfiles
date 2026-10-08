@@ -18,6 +18,9 @@
     ~/.config: # Clean direct config links.
       recursive: false # Avoid scanning app internals.
       force: false # Preserve non-dotfile broken links.
+    ~/.config/opencode: # Clean OpenCode config links.
+      recursive: false
+      force: false
     ~/.config/contour: # Clean Contour config link (native layout).
       recursive: false
       force: false
@@ -76,6 +79,8 @@
 
     # OpenCode (API key comes from $LITHOSAI_API_KEY, e.g. via ~/.env)
     ~/.config/opencode/opencode.json: opencode/opencode.json
+    ~/.config/opencode/cli.json: opencode/cli.json
+    ~/.config/opencode/plugins: opencode/plugins
 
     # Neovim
     ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
