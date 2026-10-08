@@ -6,6 +6,7 @@ disabled = false        # Enable the operating-system segment.
 style = "bold yellow"   # Render the operating-system segment in yellow.
 
 [shell]
+style = "bold dimmed"   # Match the gh: segment look.
 disabled = false        # Show the active shell segment.
 bash_indicator = "bash" # Label Bash sessions explicitly.
 
