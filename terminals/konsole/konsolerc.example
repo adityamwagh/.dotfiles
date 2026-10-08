@@ -1,11 +1,14 @@
 [Desktop Entry]
-DefaultProfile=Main.profile
+DefaultProfile=Light.profile
 
 [General]
 ConfigVersion=1
 
+[KonsoleWindow]
+EnableSecuritySensitiveDBusAPI=true
+
 [LightDarkTheme]
-SyncProfileWithSystemTheme=true
+SyncProfileWithSystemTheme=false
 LightThemeProfile=Main
 DarkThemeProfile=Main Dark
 

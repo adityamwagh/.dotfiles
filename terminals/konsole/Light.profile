@@ -1,5 +1,5 @@
 [General]
-Name=Main
+Name=Light
 Parent=FALLBACK/
 LocalTabTitleFormat=%n
 RemoteTabTitleFormat=%u
@@ -8,7 +8,7 @@ TerminalMargin=12
 
 [Appearance]
 ColorScheme=flexoki-light
-Font=Iosevka Extended,15,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0
+Font=Iosevka Extended,11,-1,5,50,0,0,0,0,0
 
 [Scrolling]
 HistoryMode=2
