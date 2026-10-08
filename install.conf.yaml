@@ -45,11 +45,13 @@
     ~/Library/Application Support/Sublime Text/Packages/User: # Clean Sublime Text links (macOS).
       recursive: false
       force: false
-    ~/.local/share/konsole: # Clean Konsole colorscheme links (Linux).
+    ~/.local/share/konsole: # Clean Konsole colorscheme/profile links (Linux).
       recursive: false
       force: false
     ~/Library/Application Support/konsole: # Clean Konsole colorscheme/profile links (macOS).
       recursive: false
+      force: false
+    ~/.local/share/scripts/theme_switch.sh: # Clean Plasma theme toggle link (Linux).
       force: false
 
 - link:
@@ -72,7 +74,7 @@
     # Prompt
     ~/.config/starship.toml: starship/starship.toml
 
-    # OpenCode (API key comes from $LITHOS_API_KEY, e.g. via ~/.env)
+    # OpenCode (API key comes from $LITHOSAI_API_KEY, e.g. via ~/.env)
     ~/.config/opencode/opencode.json: opencode/opencode.json
 
     # Neovim
@@ -120,30 +122,37 @@
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
-    ~/.local/share/konsole/Main.profile:
-      path: terminals/konsole/Main.profile
+    ~/.local/share/konsole/Light.profile:
+      path: terminals/konsole/Light.profile
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
-    ~/.local/share/konsole/Main Dark.profile:
-      path: terminals/konsole/Main Dark.profile
+    ~/.local/share/konsole/Dark.profile:
+      path: terminals/konsole/Dark.profile
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
     ~/Library/Application Support/konsole/:
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
-    ~/Library/Application Support/konsole/Main.profile:
-      path: terminals/konsole/Main.profile
+    ~/Library/Application Support/konsole/Light.profile:
+      path: terminals/konsole/Light.profile
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
-    ~/Library/Application Support/konsole/Main Dark.profile:
-      path: terminals/konsole/Main Dark.profile
+    ~/Library/Application Support/konsole/Dark.profile:
+      path: terminals/konsole/Dark.profile
       if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
+
+    # Plasma light/dark toggle that keeps the KDE Flatpaks (Konsole, Kate,
+    # KWrite) in step. Linked where the KDE global shortcut expects it; the
+    # Flatpak D-Bus and filesystem overrides it relies on are applied below.
+    ~/.local/share/scripts/theme_switch.sh:
+      path: scripts/theme_switch.sh
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
 
     # zsh-patina
     ~/.config/zsh-patina: shells/zsh/patina
 
     # Coding Agents
-    ~/.config/cship.toml: cship/cship.toml
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
+    ~/.local/bin/claude-statusline: scripts/claude-statusline.sh
 
 # Install system-integrated packages with the native package manager
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
@@ -231,6 +240,5 @@
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-rustup.sh', "Install Rust toolchain"]
     # Both profiles.
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
-    - ["~/.dotfiles/scripts/install-cship.sh", "Install cship statusline"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
     - ["~/.dotfiles/scripts/install-claude-code.sh", "Install Claude Code"]
