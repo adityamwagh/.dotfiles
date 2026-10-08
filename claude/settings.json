@@ -80,7 +80,7 @@
       "/tmp"
     ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
@@ -152,6 +152,10 @@
       "autoCompactWindow": 400000
     }
   },
+  "emojiCompletionEnabled": false,
+  "awaySummaryEnabled": true,
+  "tui": "fullscreen",
+  "editorMode": "vim",
   "voice": {
     "enabled": true,
     "mode": "hold"
@@ -171,5 +175,6 @@
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "prStatusFooterEnabled": true
 }
