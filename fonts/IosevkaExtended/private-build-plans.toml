@@ -51,3 +51,4 @@ angle = 0         # degrees, valid range [0, 15]
 shape = "upright" # slope used for variant selection
 menu = "upright"  # slope grade used in font names
 css = "normal"    # webfont font-style
+
