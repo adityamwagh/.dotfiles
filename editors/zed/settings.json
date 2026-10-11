@@ -79,11 +79,11 @@
     },
     "drop_target_size": 0.2, // Size the drag-and-drop split target as a fraction of the editor.
     "edit_predictions": {
-        "provider": "open_ai_compatible_api", // Local Sweep v2 next-edit server.
+        "provider": "open_ai_compatible_api", // DeepSeek FIM (tab completion).
         "open_ai_compatible_api": {
-            "api_url": "http://127.0.0.1:8002/v1/completions",
-            "model": "sweep-next-edit-v2-7B",
-            "prompt_format": "sweep", // Sweep rewrite-window format.
+            "api_url": "https://api.deepseek.com/beta/completions",
+            "model": "deepseek-flash",
+            "prompt_format": "deepseek_coder", // DeepSeek FIM markers.
             "max_output_tokens": 512,
         },
     },

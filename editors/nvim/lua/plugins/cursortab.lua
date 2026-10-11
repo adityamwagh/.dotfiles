@@ -10,11 +10,18 @@ return {
         config = function()
             require("cursortab").setup({
                 provider = {
-                    -- Sweep next-edit completions from the local llama.cpp
-                    -- server (see systemd/sweep-next-edit.service).
-                    type = "sweep",
-                    url = "http://127.0.0.1:8002",
-                    model = "sweep-next-edit-v2-7B",
+                    -- DeepSeek FIM completions (beta endpoint). v0.7.8 always
+                    -- tokenizes FIM, so use DeepSeek's unicode markers.
+                    -- Key comes from $DEEPSEEK_API_KEY (see ~/.env).
+                    type = "fim",
+                    url = "https://api.deepseek.com/beta",
+                    model = "deepseek-flash",
+                    api_key_env = "DEEPSEEK_API_KEY",
+                    fim_tokens = {
+                        prefix = "⸤", -- U+2E24
+                        suffix = "⸥", -- U+2E25
+                        middle = "⸦", -- U+2E26
+                    },
                 },
             })
         end,
