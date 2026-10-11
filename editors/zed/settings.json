@@ -194,7 +194,41 @@
             },
         },
     },
+    "languages": {
+        "Python": {
+            // Use ty for type checking and ruff for linting/formatting;
+            // omitting basedpyright, pyright, and pylsp disables them.
+            "language_servers": [
+                "ty",
+                "ruff",
+            ],
+            // Run ruff's import sorting and auto-fixes on save.
+            "code_actions_on_format": {
+                "source.fixAll.ruff": true, // Apply all auto-fixable lint violations.
+                "source.organizeImports.ruff": true, // Sort and organize imports.
+            },
+            "formatter": {
+                "language_server": {
+                    "name": "ruff", // Format Python with ruff.
+                },
+            },
+        },
+    },
     "line_indicator_format": "long", // Use verbose line and column display.
+    "lsp": {
+        "ty": {
+            "binary": {
+                "path": "ty", // Resolve ty from PATH.
+                "arguments": ["server"],
+            },
+        },
+        "ruff": {
+            "binary": {
+                "path": "ruff", // Resolve ruff from PATH.
+                "arguments": ["server"],
+            },
+        },
+    },
     "minimap": {
         "max_width_columns": 80, // Cap the minimap width to 80 columns.
     },

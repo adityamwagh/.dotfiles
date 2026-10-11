@@ -30,8 +30,6 @@ return {
 
             local servers = {
                 clangd = { cmd = { "clangd", "--background-index", "--clang-tidy" } },
-                pyright = {},
-                rust_analyzer = {},
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -41,7 +39,16 @@ return {
                         },
                     },
                 },
+                ruff = { cmd = { "ruff", "server" } },
+                rust_analyzer = {},
+                ty = { cmd = { "ty", "server" } },
             }
+
+            for name, opts in pairs(servers) do
+                opts.capabilities = capabilities
+                vim.lsp.config(name, opts)
+                vim.lsp.enable(name)
+            end
         end,
     },
 }

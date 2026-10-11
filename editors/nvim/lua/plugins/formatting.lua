@@ -7,10 +7,12 @@ return {
                 formatters_by_ft = {
                     lua = { "stylua" },
                     cpp = { "clang-tidy" },
-                    python = { "black" },
+                    -- Python formatting is handled by the ruff language server
+                    -- (see lsp.lua); conform falls back to LSP formatting.
+                    python = {},
                 },
                 format_on_save = {
-                    lsp_fallback = true,
+                    lsp_format = "fallback",
                     async = false,
                     timeout_ms = 500,
                 },
@@ -24,7 +26,7 @@ return {
         "mfussenegger/nvim-lint",
         config = function()
             require("lint").linters_by_ft = {
-                python = { "ruff" },
+                -- Python linting is handled by the ruff language server (see lsp.lua).
                 lua = { "selene" },
             }
         end,
