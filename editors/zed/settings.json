@@ -79,11 +79,11 @@
     },
     "drop_target_size": 0.2, // Size the drag-and-drop split target as a fraction of the editor.
     "edit_predictions": {
-        "provider": "open_ai_compatible_api", // Local FIM server for edit predictions.
+        "provider": "open_ai_compatible_api", // Local Sweep v2 next-edit server.
         "open_ai_compatible_api": {
-            "api_url": "http://127.0.0.1:8000/v1/completions",
-            "model": "qwen2.5-coder-1.5b",
-            "prompt_format": "qwen", // Qwen/CodeGemma FIM markers.
+            "api_url": "http://127.0.0.1:8002/v1/completions",
+            "model": "sweep-next-edit-v2-7B",
+            "prompt_format": "sweep", // Sweep rewrite-window format.
             "max_output_tokens": 512,
         },
     },

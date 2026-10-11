@@ -10,19 +10,11 @@ return {
         config = function()
             require("cursortab").setup({
                 provider = {
-                    -- FIM completions from the local llama.cpp server
-                    -- (see systemd/llama-fim.service).
-                    type = "fim",
-                    url = "http://127.0.0.1:8000",
-                    model = "qwen2.5-coder-1.5b",
-                    -- Qwen FIM tokens; repo_name/file_sep enable cross-file context.
-                    fim_tokens = {
-                        prefix = "<|fim_prefix|>",
-                        suffix = "<|fim_suffix|>",
-                        middle = "<|fim_middle|>",
-                        repo_name = "<|repo_name|>",
-                        file_sep = "<|file_sep|>",
-                    },
+                    -- Sweep next-edit completions from the local llama.cpp
+                    -- server (see systemd/sweep-next-edit.service).
+                    type = "sweep",
+                    url = "http://127.0.0.1:8002",
+                    model = "sweep-next-edit-v2-7B",
                 },
             })
         end,
