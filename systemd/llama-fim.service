@@ -1,0 +1,16 @@
+[Unit]
+Description=Local llama.cpp FIM server for AI tab completion
+Documentation=https://github.com/ggml-org/llama.cpp
+After=network.target
+
+[Service]
+Type=simple
+# Qwen2.5-Coder 1.5B is llama.vim's recommended FIM model for <8GB VRAM.
+# Serves an OpenAI-compatible /v1/completions endpoint consumed by Zed edit
+# predictions and the cursortab.nvim FIM provider.
+ExecStart=%h/.local/bin/llama serve --fim-qwen-1.5b-default --host 127.0.0.1 --port 8000 --ctx-size 16384
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

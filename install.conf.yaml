@@ -56,6 +56,9 @@
       force: false
     ~/.local/share/scripts/theme_switch.sh: # Clean Plasma theme toggle link (Linux).
       force: false
+    ~/.config/systemd/user: # Clean systemd user unit links.
+      recursive: false
+      force: false
 
 - link:
     # Shell
@@ -159,6 +162,12 @@
     ~/.claude/keybindings.json: claude/keybindings.json
     ~/.local/bin/claude-statusline: scripts/claude-statusline.sh
 
+    # Local llama.cpp FIM server for AI tab completion (shared by Zed and
+    # Neovim). Linked as a systemd user unit; enabled in the shell block below.
+    ~/.config/systemd/user/llama-fim.service:
+      path: systemd/llama-fim.service
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Linux ]"
+
 # Install system-integrated packages with the native package manager
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
 # missing. Tools that touch system directories or hardware belong here
@@ -241,6 +250,7 @@
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-source-code-pro.sh', "Install Source Code Pro (Linux)"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-codex.sh', "Install Codex"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-llama.sh', "Install llama.cpp"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/enable-llama-fim.sh', "Enable local FIM server"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-ollama.sh', "Install Ollama"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-rustup.sh', "Install Rust toolchain"]
     # Both profiles.

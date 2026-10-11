@@ -79,7 +79,13 @@
     },
     "drop_target_size": 0.2, // Size the drag-and-drop split target as a fraction of the editor.
     "edit_predictions": {
-        "provider": "mercury", // Use Mercury for edit predictions.
+        "provider": "open_ai_compatible_api", // Local FIM server for edit predictions.
+        "open_ai_compatible_api": {
+            "api_url": "http://127.0.0.1:8000/v1/completions",
+            "model": "qwen2.5-coder-1.5b",
+            "prompt_format": "qwen", // Qwen/CodeGemma FIM markers.
+            "max_output_tokens": 512,
+        },
     },
     "file_finder": {
         "modal_max_width": "small", // Keep the file finder compact.
