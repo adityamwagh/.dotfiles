@@ -107,6 +107,93 @@
         "active_line_width": 1, // Use 1px active indent guide lines.
         "line_width": 1, // Use 1px indent guide lines.
     },
+    "language_models": {
+        "openai_compatible": {
+            "lithosai": {
+                "api_url": "https://api.lithosai.cloud/v1",
+                "available_models": [
+                    {
+                        "name": "deepseek-ai/DeepSeek-V4.1-Flash", // Fast default; matches the OpenCode model.
+                        "display_name": "DeepSeek V4.1 Flash",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "deepseek-ai/DeepSeek-V4.1-Flash-fast",
+                        "display_name": "DeepSeek V4.1 Flash fast",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "deepseek-ai/DeepSeek-V4.1-Flash-ultra",
+                        "display_name": "DeepSeek V4.1 Flash ultra",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "deepseek-ai/DeepSeek-V4.1-Flash-ultra-chat",
+                        "display_name": "DeepSeek V4.1 Flash ultra chat",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "zai-org/GLM-5.3",
+                        "display_name": "GLM 5.3",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "zai-org/GLM-5.3-ultra-chat",
+                        "display_name": "GLM 5.3 ultra chat",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "zai-org/GLM-5.3-Flash",
+                        "display_name": "GLM 5.3 Flash",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "zai-org/GLM-5.3-Flash-ultra",
+                        "display_name": "GLM 5.3 Flash ultra",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "zai-org/GLM-5.3-Flash-ultra-chat",
+                        "display_name": "GLM 5.3 Flash ultra chat",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "moonshotai/Kimi-K3",
+                        "display_name": "Kimi K3",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "moonshotai/Kimi-K3-fast",
+                        "display_name": "Kimi K3 fast",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "moonshotai/Kimi-K3-ultra",
+                        "display_name": "Kimi K3 ultra",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                    {
+                        "name": "moonshotai/Kimi-K3-ultra-chat",
+                        "display_name": "Kimi K3 ultra chat",
+                        "max_tokens": 1048576,
+                        "max_output_tokens": 32768,
+                    },
+                ],
+            },
+        },
+    },
     "line_indicator_format": "long", // Use verbose line and column display.
     "minimap": {
         "max_width_columns": 80, // Cap the minimap width to 80 columns.
