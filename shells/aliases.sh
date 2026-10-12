@@ -72,11 +72,16 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias sudo='sudo '
+alias sudo='sudo env PATH=$PATH'
 
 alias update-dotfiles='~/.dotfiles/install'
 
 alias claude='claude --allow-dangerously-skip-permissions --remote-control'
+
+# Run mini-swe-agent with the LithosAI key injected from 1Password
+if command -v op >/dev/null 2>&1; then
+  alias mini="op run --env-file=$HOME/.config/mini-swe-agent/lithosai.env -- mini"
+fi
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
 [ -f "$HOME/.local/shell/functions.sh" ] && . "$HOME/.local/shell/functions.sh"
