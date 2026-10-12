@@ -46,8 +46,10 @@ profiles:
     font:
       size: 10
       locator: Native
-      render_mode: Gray
+      render_mode: LCD  # subpixel rendering; Gray softens Iosevka's thin stems
       strict_spacing: false
+      builtin_box_drawing: true  # pixel-perfect box drawing / block glyphs
+      max_fallback_count: 4  # few fallbacks: Nerd Font variants mismatched Iosevka's metrics
       text_shaping:
         engine: harfbuzz
       regular:
