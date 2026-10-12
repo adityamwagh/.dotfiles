@@ -15,11 +15,10 @@ map("v", "<C-a>", "<Esc>ggVG", { desc = "Select all" })
 -- gcip = comment inner paragraph
 -- gcG = comment from here to end of file
 
-map("n", "<C-a>", "^", { desc = "Move to start of the line" })
 map("n", "<C-e>", "$", { desc = "Move to end of the line" })
 
 -- VS Code style Ctrl+/ shortcuts
 map("n", toggle_key, "gcc", { desc = "Toggle comment", remap = true })
 map("x", toggle_key, "gc", { desc = "Toggle comment", remap = true })
 map("i", toggle_key, "<Esc>gcca", { desc = "Toggle comment", remap = true })
-map("n", toggle_key, "<C-p>FzfLua files", { desc = "Find files", remap = true })
+map("n", "<C-p>", "<cmd>FzfLua files<cr>", { desc = "Find files" })

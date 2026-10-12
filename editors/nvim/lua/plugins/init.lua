@@ -7,5 +7,8 @@ return {
     require("plugins.comments"),
     require("plugins.ui"),
     require("plugins.treesitter"),
+    require("plugins.motions"),
+    require("plugins.explorer"),
+    require("plugins.session"),
     require("plugins.deps"),
 }
