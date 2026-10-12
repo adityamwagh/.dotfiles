@@ -71,8 +71,7 @@
       "Bash(brew tap)"
     ],
     "deny": [
-      "Bash(rm -rf *)",
-      "Edit(/etc/**)",
+      "Bash(rm -r *)",
       "Edit(.env*)"
     ],
     "defaultMode": "plan",
@@ -80,7 +79,7 @@
       "/tmp"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
@@ -146,7 +145,7 @@
       "effortLevel": "medium"
     },
     "claude-opus-5-5": {
-      "autoCompactWindow": 300000
+      "autoCompactWindow": 400000
     },
     "claude-sonnet-5-5": {
       "autoCompactWindow": 400000
@@ -155,7 +154,6 @@
   "emojiCompletionEnabled": false,
   "awaySummaryEnabled": true,
   "tui": "fullscreen",
-  "editorMode": "vim",
   "voice": {
     "enabled": true,
     "mode": "hold"
@@ -165,6 +163,7 @@
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
+  "editorMode": "vim",
   "verbose": true,
   "preferredNotifChannel": "auto",
   "autoCompactEnabled": true,
