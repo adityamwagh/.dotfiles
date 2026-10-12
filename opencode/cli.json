@@ -1,4 +1,8 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
-  "plugins": ["~/.config/opencode/plugins/session-cost"]
+  "plugins": ["~/.config/opencode/plugins/session-cost"],
+  "theme": {
+    "name": "github",
+    "mode": "system"
+  }
 }

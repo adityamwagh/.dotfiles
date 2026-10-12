@@ -52,6 +52,7 @@
     "dockerfile": true,
     "git-firefly": true,
     "github-actions": true,
+    "github-theme": true,
     "html": true,
     "just": true,
     "liquid": true,
@@ -70,6 +71,7 @@
     "dockerfile": true,
     "git-firefly": true,
     "github-actions": true,
+    "github-theme": true,
     "html": true,
     "just": true,
     "liquid": true,
@@ -91,9 +93,9 @@
     }
   },
   "base_keymap": "VSCode",
-  "buffer_font_fallbacks": ["Symbols Nerd Font"],
+  "buffer_font_fallbacks": ["Iosevka Extended"],
   "buffer_font_family": "Iosevka Extended",
-  "buffer_font_size": 12,
+  "buffer_font_size": 13.6,
   "buffer_font_weight": 400,
   "buffer_line_height": "comfortable",
   "centered_layout": {

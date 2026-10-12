@@ -88,6 +88,7 @@
     ~/.config/opencode/opencode.json: opencode/opencode.json
     ~/.config/opencode/cli.json: opencode/cli.json
     ~/.config/opencode/plugins: opencode/plugins
+    ~/.config/opencode/themes: opencode/themes
 
     # LiteLLM: Claude Code runs against LithosAI models through a local proxy.
     ~/.config/litellm/claude.yaml: litellm/claude.yaml
