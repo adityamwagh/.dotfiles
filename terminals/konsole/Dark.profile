@@ -1,6 +1,6 @@
 [Appearance]
-ColorScheme=TokyoNight
-Font=Iosevka Extended,9,-1,5,50,0,0,0,0,0
+ColorScheme=GitHub Dark Default
+Font=Twilio Sans Mono Retina,9,-1,5,51,0,0,0,0,0,Regular
 
 [Cursor Options]
 CursorShape=1

@@ -51,17 +51,22 @@ profiles:
             text_shaping:
                 engine: harfbuzz
             regular:
-                family: "Iosevka Extended"
+                family: "Twilio Sans Mono Retina"
                 weight: Regular
                 slant: Normal
             bold:
-                family: "Iosevka Extended"
+                # No "Retina" family face; bold lives in the base family.
+                family: "Twilio Sans Mono"
                 weight: Bold
 
         # Follow the system dark/light appearance.
         colors:
             dark: flexoki-dark
             light: flexoki-light
+
+        # Hide the VT indicator status line (stats, clock, title, tabs).
+        status_line:
+            display: none
 
 color_schemes:
     # Flexoki Dark, from https://stephango.com/flexoki

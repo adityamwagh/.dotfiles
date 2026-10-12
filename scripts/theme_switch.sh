@@ -160,8 +160,8 @@ fi
 
 # plasma-apply-colorscheme does not switch the icon theme; set it to match
 # the scheme before the icon waves below.
-icon_theme="breeze"
-[ "$scheme" = "BreezeDark" ] && icon_theme="breeze-dark"
+icon_theme="Tela-light"
+[ "$scheme" = "BreezeDark" ] && icon_theme="Tela-dark"
 run kwriteconfig5 --file kdeglobals --group Icons --key Theme "$icon_theme"
 log "icon theme: $icon_theme"
 
