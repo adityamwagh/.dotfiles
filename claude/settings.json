@@ -1,5 +1,8 @@
 {
   "cleanupPeriodDays": 36500,
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "~/.claude/mods/code-colors"
+  },
   "attribution": {
     "commit": "",
     "pr": "",
