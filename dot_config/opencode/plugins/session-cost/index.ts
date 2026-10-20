@@ -6,4 +6,4 @@
 export default {
   id: "session-cost",
   setup() {},
-}
+};
