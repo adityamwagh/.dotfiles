@@ -19,5 +19,7 @@ Library
 {{ end -}}
 
 {{ if or (ne .chezmoi.os "linux") (env "DOTFILES_SERVER") -}}
+.config/sublime-text
 .config/systemd
+.local/share/konsole
 {{ end -}}
