@@ -1,0 +1,96 @@
+[init]
+# Use main for newly initialized repositories.
+defaultBranch = main
+
+[push]
+# Push new branches to a same-named upstream automatically.
+autoSetupRemote = true
+
+[credential "https://github.com"]
+# Delegate GitHub credentials to the GitHub CLI.
+helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+# Delegate Gist credentials to the GitHub CLI.
+helper = !gh auth git-credential
+
+[filter "lfs"]
+# Clean large files through Git LFS.
+clean = git-lfs clean -- %f
+# Restore large files through Git LFS.
+smudge = git-lfs smudge -- %f
+# Use the long-running Git LFS filter process.
+process = git-lfs filter-process
+# Require Git LFS filters for repositories that use them.
+required = true
+
+[core]
+# Use Sublime Text as the blocking Git editor.
+editor = subl -w
+
+[branch]
+# Sort branches by most recently updated first.
+sort = -committerdate
+# Track upstream branches automatically when creating a branch from a remote-tracking branch.
+autoSetupMerge = true
+
+[tag]
+# Sort version-like tags naturally.
+sort = version:refname
+
+[status]
+# Show branch and stash details in status output.
+branch = true
+showStash = true
+# Summarize submodule changes in status output.
+submoduleSummary = true
+
+[fetch]
+# Remove remote-tracking branches that disappeared upstream.
+prune = true
+# Remove local tags that disappeared upstream.
+pruneTags = true
+# Fetch submodules only when the superproject needs them.
+recurseSubmodules = on-demand
+
+[pull]
+# Rebase local commits when pulling instead of creating merge commits.
+rebase = true
+
+[rebase]
+# Reapply local work around rebases automatically.
+autoStash = true
+# Move dependent branches forward when their base is rewritten.
+updateRefs = true
+
+[checkout]
+# Prefer origin when checking out a branch name that exists on one remote.
+defaultRemote = origin
+
+[commit]
+# Include the staged diff in the commit message editor.
+verbose = true
+
+[worktree]
+# Guess the remote branch when adding a worktree for a branch name.
+guessRemote = true
+
+[rerere]
+# Remember conflict resolutions and reuse them.
+enabled = true
+
+[diff]
+# Use Sublime Text for visual diffs.
+tool = subl
+
+[difftool "subl"]
+# Open both sides in Sublime Text; it has no dedicated diff view.
+cmd = subl -w $LOCAL $REMOTE
+
+[merge]
+# Use Sublime Text for merge conflict resolution.
+tool = subl
+
+[mergetool "subl"]
+# Open Sublime Text on the merged file for mergetool invocations.
+cmd = subl -w $MERGED
