@@ -4,7 +4,7 @@ This file provides guidance to coding agents when working with code in this repo
 
 ## What This Repo Does
 
-Personal dotfiles managed with [chezmoi](https://www.chezmoi.io). This repository _is_ the chezmoi source state: `sourceDir` points here (set in the machine-local `~/.config/chezmoi/chezmoi.toml`). `chezmoi apply` renders the source into `$HOME` and runs the bootstrap scripts when their content changes.
+Personal dotfiles managed with [chezmoi](https://www.chezmoi.io). This repository _is_ the chezmoi source state: `sourceDir` points here (set in the machine-local `~/.config/chezmoi/chezmoi.toml`, documented by `chezmoi.toml.example`). `chezmoi apply` renders the source into `$HOME` and runs the bootstrap scripts when their content changes.
 
 ## Key Commands
 

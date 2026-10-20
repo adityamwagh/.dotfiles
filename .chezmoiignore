@@ -6,6 +6,7 @@
 AGENTS.md
 CLAUDE.md
 README.md
+chezmoi.toml.example
 assets/
 .claude/mods/code-colors/.claude-plugin/types
 

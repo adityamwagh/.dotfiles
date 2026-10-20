@@ -10,7 +10,7 @@ On a new machine, install chezmoi, clone the source, and point chezmoi at it:
 brew install chezmoi                       # or: sh -c "$(curl -fsLS get.chezmoi.io)"
 git clone https://github.com/adityamwagh/.dotfiles.git ~/.dotfiles
 mkdir -p ~/.config/chezmoi
-printf 'sourceDir = "~/.dotfiles"\n' > ~/.config/chezmoi/chezmoi.toml
+cp ~/.dotfiles/chezmoi.toml.example ~/.config/chezmoi/chezmoi.toml
 chezmoi apply
 ```
 

@@ -1,0 +1,6 @@
+# Machine-local chezmoi configuration.
+#
+# Copy to ~/.config/chezmoi/chezmoi.toml before the first `chezmoi apply`:
+# chezmoi must know sourceDir in order to find this repository, so this file
+# cannot be applied by chezmoi itself.
+sourceDir = "~/.dotfiles"
