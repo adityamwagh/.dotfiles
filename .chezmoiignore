@@ -7,11 +7,15 @@ AGENTS.md
 CLAUDE.md
 README.md
 assets/
+.claude/mods/code-colors/.claude-plugin/types
 
 {{ if (env "DOTFILES_SERVER") -}}
 .Brewfile
 .config/zed
-Library/Application Support/Sublime Text
+{{ end -}}
+
+{{ if or (env "DOTFILES_SERVER") (ne .chezmoi.os "darwin") -}}
+Library
 {{ end -}}
 
 {{ if or (ne .chezmoi.os "linux") (env "DOTFILES_SERVER") -}}

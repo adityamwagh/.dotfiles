@@ -3,6 +3,7 @@ packages:
     desktop:
       - ddcutil
       - eza
+      - watchman
       - zsh
       - zstd
     server:
