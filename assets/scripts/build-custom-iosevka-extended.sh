@@ -3,19 +3,20 @@ set -euo pipefail
 
 # Regenerate the vendored "Iosevka Extended" fonts via Iosevka's official Docker
 # build (the docker/ context in the Iosevka repo). This is a manual developer
-# tool and is NOT run by ./install -- it rebuilds the .ttf bytes committed under
-# fonts/IosevkaExtended/ from that directory's private-build-plans.toml.
+# tool and is NOT run by chezmoi -- it rebuilds the .ttf bytes committed under
+# assets/fonts/IosevkaExtended/ from that directory's private-build-plans.toml.
 #
 # Output: 4 weights, upright only, at the 600-unit width, no ligatures (4 TTF files).
 #
-# Usage: scripts/build-custom-iosevka-extended.sh [dotfiles_root]
+# Usage: assets/scripts/build-custom-iosevka-extended.sh [dotfiles_root]
 #   IOSEVKA_VERSION env var overrides the pinned source tag.
 
 IOSEVKA_VERSION="${IOSEVKA_VERSION:-v34.7.0}"
 image="iosevka-builder"
 plan_name="IosevkaExtended"
 
-root_dir="${1:-$HOME/.dotfiles}"
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+root_dir="${1:-$script_dir/..}"
 font_dir="$root_dir/fonts/IosevkaExtended"
 plan_file="$font_dir/private-build-plans.toml"
 

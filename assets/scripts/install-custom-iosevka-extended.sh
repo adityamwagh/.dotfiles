@@ -6,7 +6,8 @@ set -euo pipefail
 # ligatures). Cross-platform: the bytes ship in this repo (no upstream download),
 # so it runs on macOS and Linux.
 
-root_dir="${1:-$HOME/.dotfiles}"
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+root_dir="${1:-$script_dir/..}"
 src_dir="$root_dir/fonts/IosevkaExtended"
 
 if [ ! -d "$src_dir" ]; then

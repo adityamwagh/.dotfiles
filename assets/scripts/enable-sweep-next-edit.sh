@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Enable and (re)start the local Sweep next-edit server as a systemd user unit.
-# The unit is linked by dotbot; this only activates it. Linux + systemd only.
+# The unit is managed by chezmoi; this only activates it. Linux + systemd only.
 
 [ "$(uname -s)" = "Linux" ] || exit 0
 command -v systemctl >/dev/null 2>&1 || exit 0

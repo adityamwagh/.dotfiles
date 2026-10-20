@@ -1,4 +1,4 @@
-# zsh-patina config; linked to ~/.config/zsh-patina by dotbot.
+# zsh-patina config; managed at ~/.config/zsh-patina by chezmoi.
 
 [highlighting]
 theme = "file:~/.config/zsh-patina/bold-callables.toml"

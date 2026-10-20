@@ -1,37 +1,53 @@
 # Dotfiles
 
-Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
+Personal dotfiles managed with [chezmoi](https://www.chezmoi.io). This repository is the chezmoi source state.
 
 ## Use
 
-Clone the repo and run the installer:
+On a new machine, install chezmoi, clone the source, and point chezmoi at it:
 
 ```bash
+brew install chezmoi                       # or: sh -c "$(curl -fsLS get.chezmoi.io)"
 git clone https://github.com/adityamwagh/.dotfiles.git ~/.dotfiles
-~/.dotfiles/install
+mkdir -p ~/.config/chezmoi
+printf 'sourceDir = "~/.dotfiles"\n' > ~/.config/chezmoi/chezmoi.toml
+chezmoi apply
 ```
 
 Preview changes before applying them:
 
 ```bash
-~/.dotfiles/install -n
+chezmoi apply -n -v
 ```
 
-Re-run the installer any time after pulling updates:
+Apply updates after pulling:
 
 ```bash
-~/.dotfiles/install
+chezmoi update
 ```
 
-The installer links configs into `$HOME`, cleans stale repo-managed links, applies `Brewfile` when Homebrew is available, and runs the font installer.
-
-For a headless server, use the `--server` profile:
+For a headless server, set the profile for the apply:
 
 ```bash
-~/.dotfiles/install --server
+DOTFILES_SERVER=1 chezmoi apply
 ```
 
-This installs a server-appropriate subset: shell configs, starship, completions, zsh-patina, Claude Code, neovim, and CLI tools via the native package manager. It does **not** install Homebrew, GUI apps/terminals/editors, fonts, or LLM runtimes.
+The server profile installs shell configs, neovim, tmux, Claude Code, and CLI tools from the native package manager. It does **not** install Homebrew, GUI apps/terminals/editors, fonts, or LLM runtimes.
+
+## Editing
+
+- Edit the source and apply: `chezmoi edit ~/.zshrc && chezmoi apply`
+- Edit a live file and capture it: `chezmoi add ~/.zshrc` (or `chezmoi re-add` for everything)
+- Working in `~/.dotfiles` directly is fine; run `chezmoi apply` afterwards
+
+## Layout
+
+- `dot_*` / `private_*` — the source state (`dot_zshrc` → `~/.zshrc`); only hidden target names carry `dot_`
+- `.chezmoiscripts/` — `run_once_`/`run_onchange_` bootstrap scripts
+- `.chezmoidata/packages.yaml` — Linux desktop/server package lists
+- `.chezmoiignore` — templated platform/server gating and repo-only files
+- `dot_Brewfile` — macOS packages
+- `assets/` — repo-only installer scripts and font sources
 
 Run checks before committing:
 

@@ -7,7 +7,7 @@ if command -v ollama >/dev/null 2>&1; then
   exit 0
 fi
 
-# The installer cleans old versions with sudo, and dotbot runs this step
+# The installer cleans old versions with sudo, and the chezmoi bootstrap runs this step
 # without a TTY, so sudo cannot prompt. Skip instead of failing the run.
 if ! sudo -n true 2>/dev/null; then
   echo "Skipping ollama install: needs interactive sudo." >&2

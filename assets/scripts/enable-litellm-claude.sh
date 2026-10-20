@@ -24,10 +24,10 @@ fi
 [ -n "$litellm_bin" ] || exit 0
 
 case "$(uname -s)" in
-Darwin)
-  command -v launchctl >/dev/null 2>&1 || exit 0
-  mkdir -p "$log_dir" "$(dirname "$plist")"
-  cat >"$plist" <<EOF
+  Darwin)
+    command -v launchctl >/dev/null 2>&1 || exit 0
+    mkdir -p "$log_dir" "$(dirname "$plist")"
+    cat >"$plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -47,16 +47,16 @@ Darwin)
 </dict>
 </plist>
 EOF
-  launchctl bootout "gui/$(id -u)/$label" >/dev/null 2>&1 || true
-  launchctl bootstrap "gui/$(id -u)" "$plist"
-  launchctl enable "gui/$(id -u)/$label"
-  launchctl kickstart -k "gui/$(id -u)/$label"
-  ;;
-Linux)
-  command -v systemctl >/dev/null 2>&1 || exit 0
-  systemctl --user show-environment >/dev/null 2>&1 || exit 0
-  mkdir -p "$log_dir" "$(dirname "$unit")"
-  cat >"$unit" <<EOF
+    launchctl bootout "gui/$(id -u)/$label" >/dev/null 2>&1 || true
+    launchctl bootstrap "gui/$(id -u)" "$plist"
+    launchctl enable "gui/$(id -u)/$label"
+    launchctl kickstart -k "gui/$(id -u)/$label"
+    ;;
+  Linux)
+    command -v systemctl >/dev/null 2>&1 || exit 0
+    systemctl --user show-environment >/dev/null 2>&1 || exit 0
+    mkdir -p "$log_dir" "$(dirname "$unit")"
+    cat >"$unit" <<EOF
 [Unit]
 Description=LiteLLM proxy serving Claude Code on LithosAI models
 After=network-online.target
@@ -71,11 +71,11 @@ RestartSec=10
 [Install]
 WantedBy=default.target
 EOF
-  systemctl --user daemon-reload
-  systemctl --user enable --now lithos-claude-proxy.service
-  systemctl --user restart lithos-claude-proxy.service
-  ;;
-*) exit 0 ;;
+    systemctl --user daemon-reload
+    systemctl --user enable --now lithos-claude-proxy.service
+    systemctl --user restart lithos-claude-proxy.service
+    ;;
+  *) exit 0 ;;
 esac
 
 # Give it a moment, then report whether the proxy actually came up.
