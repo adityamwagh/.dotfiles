@@ -11,7 +11,6 @@ esac
 
 export EDITOR="nvim"
 export PYTEST_ADDOPTS="--color=yes -sv -o log_cli=true --log-cli-level=INFO"
-export CLAUDE_CODE_DISABLE_MOUSE=1
 export CLAUDE_CODE_NO_FLICKER=1
 export CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT=1
 export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1
