@@ -1,6 +1,11 @@
 .pre-commit-config.yaml
 .oxfmtrc.json
 .stylua.toml
+.gitignore
+.shellcheckrc
+AGENTS.md
+CLAUDE.md
+README.md
 assets/
 
 {{ if (env "DOTFILES_SERVER") -}}
