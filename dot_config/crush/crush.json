@@ -1,0 +1,8 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "options": {
+    "tui": {
+      "active_theme": "github-dark-default"
+    }
+  }
+}

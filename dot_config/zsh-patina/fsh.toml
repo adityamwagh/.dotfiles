@@ -1,0 +1,40 @@
+# Port of the fast-syntax-highlighting custom styles previously set in .zshrc.
+# Extends "classic", patina's fsh-default-inspired theme. Scope names:
+# `zsh-patina list-scopes`. No patina equivalent exists for fsh suffix-alias,
+# global-alias, subcommand, or per-level bracket styles.
+
+# commands: bold everything runnable; builtins yellow like fsh `builtin`
+"dynamic.callable" = { foreground = "green", bold = true }
+"dynamic.callable.builtin" = { foreground = "yellow", bold = true }
+"dynamic.callable.missing" = { foreground = "red", bold = true }
+"variable.function" = { foreground = "green", bold = true }
+
+# precommands (sudo, command, exec, ...)
+"precommand" = { foreground = "green", underline = true }
+
+# reserved words
+"keyword.control" = "yellow"
+
+# options (-x and --long)
+"variable.parameter" = "yellow"
+
+# quoted arguments
+"string.quoted" = "yellow"
+
+# command separators (;, &&, ||, |) and redirections
+"keyword.operator.logical" = "magenta"
+"punctuation.separator" = "magenta"
+"keyword.operator.assignment.redirection" = "magenta"
+
+# globbing and history expansion
+"keyword.operator.regexp" = { foreground = "blue", bold = true }
+"meta.group.expansion.history" = { foreground = "blue", bold = true }
+
+# paths
+"dynamic.path" = { foreground = "white", underline = true }
+
+# comments
+"comment" = { foreground = "black", bold = true }
+
+[metadata]
+extends = "classic"

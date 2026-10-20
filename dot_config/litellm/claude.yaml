@@ -1,0 +1,82 @@
+# LiteLLM Anthropic Messages proxy for LithosAI (port 4001)
+#
+# Claude Code only speaks the Anthropic Messages API and LithosAI only serves
+# Chat Completions, so `lithos-claude` runs this proxy in front of LithosAI.
+# The hosted_vllm/ prefix is required: it translates /v1/messages requests into
+# Chat Completions calls. See https://docs.lithosai.com/agent-integrations/claude-code
+#
+# Model list and context/output limits mirror opencode/opencode.json.
+# API key comes from $LITHOSAI_API_KEY (e.g. via ~/.env).
+
+model_list:
+  - model_name: deepseek-v4.1-flash
+    litellm_params:
+      model: hosted_vllm/deepseek-ai/DeepSeek-V4.1-Flash
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: deepseek-v4.1-flash-fast
+    litellm_params:
+      model: hosted_vllm/deepseek-ai/DeepSeek-V4.1-Flash-fast
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: deepseek-v4.1-flash-ultra
+    litellm_params:
+      model: hosted_vllm/deepseek-ai/DeepSeek-V4.1-Flash-ultra
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: deepseek-v4.1-flash-ultra-chat
+    litellm_params:
+      model: hosted_vllm/deepseek-ai/DeepSeek-V4.1-Flash-ultra-chat
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: glm-5.3
+    litellm_params:
+      model: hosted_vllm/zai-org/GLM-5.3
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: glm-5.3-ultra-chat
+    litellm_params:
+      model: hosted_vllm/zai-org/GLM-5.3-ultra-chat
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: glm-5.3-flash
+    litellm_params:
+      model: hosted_vllm/zai-org/GLM-5.3-Flash
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: glm-5.3-flash-ultra
+    litellm_params:
+      model: hosted_vllm/zai-org/GLM-5.3-Flash-ultra
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: glm-5.3-flash-ultra-chat
+    litellm_params:
+      model: hosted_vllm/zai-org/GLM-5.3-Flash-ultra-chat
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: kimi-k3
+    litellm_params:
+      model: hosted_vllm/moonshotai/Kimi-K3
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: kimi-k3-fast
+    litellm_params:
+      model: hosted_vllm/moonshotai/Kimi-K3-fast
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: kimi-k3-ultra
+    litellm_params:
+      model: hosted_vllm/moonshotai/Kimi-K3-ultra
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+  - model_name: kimi-k3-ultra-chat
+    litellm_params:
+      model: hosted_vllm/moonshotai/Kimi-K3-ultra-chat
+      api_base: https://api.lithosai.cloud/v1
+      api_key: os.environ/LITHOSAI_API_KEY
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-claude-proxy

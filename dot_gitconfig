@@ -1,0 +1,24 @@
+[include]
+# Load shared Git defaults from the dotfiles repo.
+path = ~/.dotfiles/.gitconfig.shared
+
+[user]
+# Default Git identity; override per machine in ~/.gitconfig.local.
+	name = adityamwagh
+	email = adityamwagh@outlook.com
+
+[credential "https://github.com"]
+# Clear inherited helpers before using gh for GitHub.
+	helper =
+# Delegate GitHub credentials to the GitHub CLI.
+	helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+# Clear inherited helpers before using gh for Gist.
+	helper =
+# Delegate Gist credentials to the GitHub CLI.
+	helper = !gh auth git-credential
+
+[include]
+# Machine-specific overrides (identity, employer setup); skipped if absent.
+	path = ~/.gitconfig.local
