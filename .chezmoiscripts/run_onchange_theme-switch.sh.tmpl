@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# {{ include "assets/scripts/theme_switch.sh" | sha256sum }}
+{{- if and (eq .chezmoi.os "linux") (not (env "DOTFILES_SERVER")) }}
+set -euo pipefail
+install -d -m 700 "$HOME/.local/share/scripts"
+install -m 755 "{{ .chezmoi.sourceDir }}/assets/scripts/theme_switch.sh" \
+  "$HOME/.local/share/scripts/theme_switch.sh"
+{{- end }}

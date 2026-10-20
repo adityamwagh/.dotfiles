@@ -1,0 +1,16 @@
+[Unit]
+Description=Local Sweep v2 next-edit server for AI edit prediction
+Documentation=https://huggingface.co/sweepai/sweep-next-edit-v2-7B
+After=network.target
+
+[Service]
+Type=simple
+# Sweep next-edit-v2-7B (Q4_0, official ggml-org conversion). Serves an
+# OpenAI-compatible /v1/completions endpoint consumed by Zed edit predictions
+# and the cursortab.nvim sweep provider.
+ExecStart=%h/.local/bin/llama serve --hf-repo shaylinc/sweep-next-edit-v2-7B-Q4_0-GGUF:Q4_0 --host 127.0.0.1 --port 8002 --ctx-size 32768
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

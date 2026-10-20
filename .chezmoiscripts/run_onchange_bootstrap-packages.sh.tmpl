@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# {{ include "dot_Brewfile" | sha256sum }}
+{{- if (env "DOTFILES_SERVER") }}
+{{- if eq .chezmoi.os "linux" }}
+set -euo pipefail
+pkgs=(neovim fzf zoxide ripgrep fd-find bat git-delta jq yq gh curl unzip tar git tmux)
+if command -v apt-get >/dev/null 2>&1; then
+  sudo apt-get update -qq
+  sudo apt-get install -y "${pkgs[@]}"
+elif command -v dnf >/dev/null 2>&1; then
+  sudo dnf install -y "${pkgs[@]}"
+fi
+{{- end }}
+{{- else if eq .chezmoi.os "darwin" }}
+set -euo pipefail
+command -v brew >/dev/null 2>&1 && brew bundle --file "$HOME/.Brewfile"
+{{- else if eq .chezmoi.os "linux" }}
+set -euo pipefail
+pkgs=(ddcutil eza zsh zstd)
+if command -v apt-get >/dev/null 2>&1; then
+  sudo apt-get update -qq
+  sudo apt-get install -y "${pkgs[@]}"
+elif command -v dnf >/dev/null 2>&1; then
+  sudo dnf install -y "${pkgs[@]}"
+fi
+{{- end }}

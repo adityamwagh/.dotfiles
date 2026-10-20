@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+{{- if not (env "DOTFILES_SERVER") }}
+set -euo pipefail
+assets="{{ .chezmoi.sourceDir }}/assets"
+bash "$assets/scripts/install-custom-iosevka-extended.sh" "$assets"
+bash "$assets/scripts/install-helvetica-now.sh" "$assets"
+bash "$assets/scripts/install-segoe-ui.sh"
+bash "$assets/scripts/install-sf-pro.sh"
+bash "$assets/scripts/install-source-code-pro.sh"
+bash "$assets/scripts/install-codex.sh"
+bash "$assets/scripts/install-konsole.sh"
+bash "$assets/scripts/install-llama.sh"
+bash "$assets/scripts/install-ollama.sh"
+bash "$assets/scripts/install-rustup.sh"
+bash "$assets/scripts/enable-sweep-next-edit.sh"
+{{- end }}

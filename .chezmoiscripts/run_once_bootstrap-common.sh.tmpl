@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+assets="{{ .chezmoi.sourceDir }}/assets"
+bash "$assets/scripts/install-zsh-patina.sh"
+bash "$assets/scripts/set-default-shell.sh"
+bash "$assets/scripts/install-claude-code.sh"
+bash "$assets/scripts/install-litellm.sh"
+bash "$assets/scripts/enable-litellm-claude.sh"
