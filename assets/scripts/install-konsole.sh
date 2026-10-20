@@ -22,12 +22,19 @@ fi
   exit 0
 }
 
+# KDE CI publishes a moving, unchecksummed build; require an explicit opt-in.
+if [ "${KONSOLE_ALLOW_UNPINNED:-0}" != "1" ]; then
+  printf 'install-konsole: skipping unpinned KDE CI download; set KONSOLE_ALLOW_UNPINNED=1 to allow it.\n' >&2
+  exit 0
+fi
+
 work="$(mktemp -d)"
 mount="$work/mnt"
 trap 'hdiutil detach "$mount" >/dev/null 2>&1 || true; rm -rf "$work"' EXIT
 
 # The index lists exactly one DMG; take its href rather than guessing the name.
-dmg_name="$(curl -fsSL "$BASE_URL" | grep -oE 'konsole-[^"]+\.dmg' | head -1)"
+index="$(curl -fsSL "$BASE_URL")"
+dmg_name="$(printf '%s\n' "$index" | grep -oE 'konsole-[^"]+\.dmg' | sed -n '1p')"
 [ -n "$dmg_name" ] || {
   printf 'Could not find a Konsole DMG at %s\n' "$BASE_URL" >&2
   exit 1
