@@ -68,5 +68,5 @@ Group commits by **semantic change, not by tool**. One logical change that spans
 - Small, composable config files per domain rather than monolithic files
 - Commits: Conventional Commits prefixes (`feat:`, `fix:`, `refactor:`), scoped by subsystem
 - Before committing, always run `./install -v` and fix any errors first
-- Keep history aligned with `origin/main`; do not rewrite or squash commits unless explicitly requested.
+- Keep history linear: no merge commits. Integrate branches only by squash merge or rebase; never rewrite published history.
 - Alphabetical order: when a list's element order does not affect behavior (e.g. `.gitignore` rules, `auto_install_extensions`, package/font lists), keep entries alphabetically sorted, and re-check the ordering whenever you add or edit such a list. Never reorder order-sensitive content (font fallback chains, `tap` before `brew` in the Brewfile, positional ANSI arrays, code).
