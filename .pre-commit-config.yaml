@@ -4,11 +4,21 @@ repos:
     hooks:
       - id: trailing-whitespace
 
-  - repo: https://github.com/biomejs/pre-commit
-    rev: v2.5.15
+  - repo: local
     hooks:
-      - id: biome-format
+      - id: oxfmt
+        name: oxfmt
+        entry: oxfmt
+        language: system
+        types: [text]
+        files: '\.(c|m)?(js|ts)x?$|\.json[c5]?$|\.ya?ml$|\.toml$|\.(md|mdx|css|scss|less|html|vue|svelte|graphql|gql)$'
         exclude: '^dot_claude/|^dot_config/zed/empty_tasks\.json$' # app-owned / empty file
+      - id: oxlint
+        name: oxlint
+        entry: oxlint
+        language: system
+        types: [text]
+        files: '\.(c|m)?(js|ts)x?$'
 
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v0.20.0
@@ -21,12 +31,7 @@ repos:
       - id: shfmt
         args: [--write, --indent, "2", --case-indent, --language-dialect, bash]
         types: [text]
-        files: '^(dot_config/shell/|dot_local/bin/)|^dot_(bashrc|bash_profile|profile)$'
-
-  - repo: https://github.com/ComPWA/taplo-pre-commit
-    rev: v0.9.3
-    hooks:
-      - id: taplo-format
+        files: "^(dot_config/shell/|dot_local/bin/)|^dot_(bashrc|bash_profile|profile)$"
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
@@ -34,12 +39,4 @@ repos:
       - id: shellcheck
         args: [-s, bash, --severity=warning]
         types: [text]
-        files: '^(dot_config/shell/|dot_local/bin/)|^dot_(bashrc|bash_profile|profile)$'
-
-  - repo: local
-    hooks:
-      - id: yamlfmt
-        name: yamlfmt
-        entry: yamlfmt
-        language: system
-        types: [yaml]
+        files: "^(dot_config/shell/|dot_local/bin/)|^dot_(bashrc|bash_profile|profile)$"

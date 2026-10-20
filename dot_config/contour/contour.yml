@@ -76,50 +76,50 @@ color_schemes:
   # GitHub Dark Default, from github-nvim-theme (Primer ansi palette).
   github-dark-default:
     default:
-      background: '#0d1117'
-      foreground: '#e6edf3'
-      bright_foreground: '#ffffff'
-      dimmed_foreground: '#848d97'
+      background: "#0d1117"
+      foreground: "#e6edf3"
+      bright_foreground: "#ffffff"
+      dimmed_foreground: "#848d97"
     normal:
-      black: '#484f58'
-      red: '#ff7b72'
-      green: '#3fb950'
-      yellow: '#d29922'
-      blue: '#58a6ff'
-      magenta: '#bc8cff'
-      cyan: '#39c5cf'
-      white: '#b1bac4'
+      black: "#484f58"
+      red: "#ff7b72"
+      green: "#3fb950"
+      yellow: "#d29922"
+      blue: "#58a6ff"
+      magenta: "#bc8cff"
+      cyan: "#39c5cf"
+      white: "#b1bac4"
     bright:
-      black: '#6e7681'
-      red: '#ffa198'
-      green: '#56d364'
-      yellow: '#e3b341'
-      blue: '#79c0ff'
-      magenta: '#d2a8ff'
-      cyan: '#56d4dd'
-      white: '#ffffff'
+      black: "#6e7681"
+      red: "#ffa198"
+      green: "#56d364"
+      yellow: "#e3b341"
+      blue: "#79c0ff"
+      magenta: "#d2a8ff"
+      cyan: "#56d4dd"
+      white: "#ffffff"
   # GitHub Light Default, from github-nvim-theme (Primer ansi palette).
   github-light-default:
     default:
-      background: '#ffffff'
-      foreground: '#1f2328'
-      bright_foreground: '#8c959f'
-      dimmed_foreground: '#656d76'
+      background: "#ffffff"
+      foreground: "#1f2328"
+      bright_foreground: "#8c959f"
+      dimmed_foreground: "#656d76"
     normal:
-      black: '#24292f'
-      red: '#cf222e'
-      green: '#116329'
-      yellow: '#4d2d00'
-      blue: '#0969da'
-      magenta: '#8250df'
-      cyan: '#1b7c83'
-      white: '#6e7781'
+      black: "#24292f"
+      red: "#cf222e"
+      green: "#116329"
+      yellow: "#4d2d00"
+      blue: "#0969da"
+      magenta: "#8250df"
+      cyan: "#1b7c83"
+      white: "#6e7781"
     bright:
-      black: '#57606a'
-      red: '#a40e26'
-      green: '#1a7f37'
-      yellow: '#633c01'
-      blue: '#218bff'
-      magenta: '#a475f9'
-      cyan: '#3192aa'
-      white: '#8c959f'
+      black: "#57606a"
+      red: "#a40e26"
+      green: "#1a7f37"
+      yellow: "#633c01"
+      blue: "#218bff"
+      magenta: "#a475f9"
+      cyan: "#3192aa"
+      white: "#8c959f"

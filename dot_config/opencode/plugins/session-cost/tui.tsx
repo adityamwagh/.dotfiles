@@ -29,10 +29,7 @@ const RATES: Record<string, [number, number, number]> = {
   "moonshotai/Kimi-K3-ultra-chat": [5.6, 28.0, 0.56],
 };
 
-function lithosCost(
-  modelID: string,
-  tokens: Record<string, any> | undefined,
-): number | null {
+function lithosCost(modelID: string, tokens: Record<string, any> | undefined): number | null {
   const rates = RATES[modelID];
   if (!rates || !tokens) return null;
   const [input, output, cacheRead] = rates;
@@ -71,15 +68,13 @@ export default Plugin.define({
     // In-session: composer footer status segment.
     context.ui.slot({
       append: "prompt.footer.status",
-      render: (props: { sessionID?: string } | undefined) =>
-        segment(props?.sessionID),
+      render: (props: { sessionID?: string } | undefined) => segment(props?.sessionID),
     });
 
     // Home screen: session-list footer status segment.
     context.ui.slot({
       append: "home.footer.status",
-      render: (props: { sessionID?: string } | undefined) =>
-        segment(props?.sessionID),
+      render: (props: { sessionID?: string } | undefined) => segment(props?.sessionID),
     });
   },
 });

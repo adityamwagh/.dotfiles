@@ -1,7 +1,6 @@
 .pre-commit-config.yaml
+.oxfmtrc.json
 .stylua.toml
-biome.json
-.yamlfmt
 assets/
 
 {{ if (env "DOTFILES_SERVER") -}}

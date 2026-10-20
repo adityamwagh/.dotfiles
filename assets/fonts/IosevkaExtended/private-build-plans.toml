@@ -9,11 +9,11 @@
 
 [buildPlans.IosevkaExtended]
 family = "Iosevka Extended" # menu family; filenames become IosevkaExtended-<Weight>.ttf
-spacing = "term"            # normal | term | fontconfig-mono | fixed
-serifs = "sans"             # sans | slab
-noCvSs = false              # keep cv##/ss## OpenType features available
-exportGlyphNames = true     # needed for ligature support in Kitty
-noLigation = true           # disable ligations entirely
+spacing = "term" # normal | term | fontconfig-mono | fixed
+serifs = "sans" # sans | slab
+noCvSs = false # keep cv##/ss## OpenType features available
+exportGlyphNames = true # needed for ligature support in Kitty
+noLigation = true # disable ligations entirely
 
 # Explicit weights: shapes map to the usual four grades.
 [buildPlans.IosevkaExtended.weights.Regular]
@@ -40,14 +40,14 @@ css = 600
 # slot) on purpose so no width token is appended to the family name: shape = 600
 # gives the extended glyphs while the family stays "Iosevka Extended".
 [buildPlans.IosevkaExtended.widths.Normal]
-shape = 600    # extended geometry; unit width in 1/1000 em (500 = normal)
-menu = 5       # default width grade -> no width token in font names
+shape = 600 # extended geometry; unit width in 1/1000 em (500 = normal)
+menu = 5 # default width grade -> no width token in font names
 css = "normal"
 
 # Defining a slopes block restricts output to the slopes listed, so this yields
 # upright only (no Italic, no Oblique).
 [buildPlans.IosevkaExtended.slopes.Upright]
-angle = 0         # degrees, valid range [0, 15]
+angle = 0 # degrees, valid range [0, 15]
 shape = "upright" # slope used for variant selection
-menu = "upright"  # slope grade used in font names
-css = "normal"    # webfont font-style
+menu = "upright" # slope grade used in font names
+css = "normal" # webfont font-style
