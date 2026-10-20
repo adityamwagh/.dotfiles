@@ -1,0 +1,23 @@
+packages:
+  linux:
+    desktop:
+      - ddcutil
+      - eza
+      - zsh
+      - zstd
+    server:
+      - bat
+      - curl
+      - fd-find
+      - fzf
+      - gh
+      - git
+      - git-delta
+      - jq
+      - neovim
+      - ripgrep
+      - tar
+      - tmux
+      - unzip
+      - yq
+      - zoxide

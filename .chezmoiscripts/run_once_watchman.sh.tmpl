@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+{{- if or (eq .chezmoi.os "darwin") (eq .chezmoi.os "linux") }}
+if command -v watchman >/dev/null 2>&1; then
+  src="{{ .chezmoi.sourceDir }}"
+  watchman watch "$src" >/dev/null 2>&1 || true
+  watchman --json-command <<EOF >/dev/null
+["trigger", "$src", {"name": "chezmoi-apply", "command": ["chezmoi", "apply", "--force"]}]
+EOF
+fi
+{{- end }}
