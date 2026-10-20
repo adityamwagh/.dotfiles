@@ -12,7 +12,7 @@ repos:
         language: system
         types: [text]
         files: '\.(c|m)?(js|ts)x?$|\.json[c5]?$|\.ya?ml$|\.toml$|\.(md|mdx|css|scss|less|html|vue|svelte|graphql|gql)$'
-        exclude: '^dot_claude/|^dot_config/zed/empty_tasks\.json$|^(CLAUDE|AGENTS|README)\.md$' # app-owned, empty, or prose docs
+        exclude: '^dot_claude/|^dot_config/zed/empty_tasks\.json$' # app-owned / empty file
       - id: oxlint
         name: oxlint
         entry: oxlint
