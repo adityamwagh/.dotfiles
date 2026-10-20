@@ -1,0 +1,10 @@
+#!/bin/sh
+# Merge the versioned policy keys into whatever Claude Code last wrote to
+# ~/.claude/settings.json. Everything not in the base is left untouched, so
+# app-written preferences (theme, tui, modelSettings, ...) stay out of git.
+set -eu
+command -v jq >/dev/null 2>&1 || exec cat
+src=$(chezmoi source-path 2>/dev/null || printf %s "$HOME/.dotfiles")
+base="$src/assets/claude/settings-base.json"
+exec jq --slurpfile base "$base" \
+  '. as $app | reduce ($base[0] | keys_unsorted[]) as $k ($app; .[$k] = $base[0][$k])'
