@@ -3,6 +3,7 @@
 .stylua.toml
 .gitignore
 .shellcheckrc
+.watchmanconfig
 AGENTS.md
 CLAUDE.md
 README.md
