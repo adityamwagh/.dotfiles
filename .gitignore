@@ -22,7 +22,8 @@ __pycache__/
 node_modules/
 
 # Claude Code local state and worktrees
-.claude/
+.claude/settings.local.json
+.claude/worktrees/
 
 # Pre-commit cache
 .pre-commit-cache/
