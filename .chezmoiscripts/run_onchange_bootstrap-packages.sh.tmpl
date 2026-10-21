@@ -23,4 +23,8 @@ if command -v apt-get >/dev/null 2>&1; then
 elif command -v dnf >/dev/null 2>&1; then
   sudo dnf install -y "${pkgs[@]}"
 fi
+# watchman ships no native Linux package; install it from Homebrew when present.
+if ! command -v watchman >/dev/null 2>&1 && command -v brew >/dev/null 2>&1; then
+  brew install watchman
+fi
 {{- end }}
