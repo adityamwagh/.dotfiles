@@ -33,6 +33,14 @@ if ! curl -fsS -m 2 "$proxy_url/health/liveliness" >/dev/null 2>&1; then
     exit 1
   fi
 
+  case "$LITHOSAI_API_KEY" in
+    op://*)
+      echo "lithos-claude: LITHOSAI_API_KEY is an unresolved 1Password reference." >&2
+      echo "  Run this tool under 'op run' or resolve ~/.env with 'op inject'." >&2
+      exit 1
+      ;;
+  esac
+
   litellm --config "$config" --host 127.0.0.1 --port "$proxy_port" >"$log" 2>&1 &
   proxy_pid=$!
 
