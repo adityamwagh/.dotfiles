@@ -278,6 +278,10 @@
         '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-source-code-pro.sh',
         "Install Source Code Pro (Linux)",
       ]
+    - [
+        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/patch-tex-gyre-heros.sh',
+        "Patch TeX Gyre Heros metrics",
+      ]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-codex.sh', "Install Codex"]
     - [
         '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-konsole.sh',

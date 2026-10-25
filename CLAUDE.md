@@ -30,7 +30,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Coding agents:** Claude Code runs against LithosAI models through a local LiteLLM proxy. `litellm/claude.yaml` is linked to `~/.config/litellm/`, `scripts/install-litellm.sh` installs the proxy, and `scripts/enable-litellm-claude.sh` writes a launchd/systemd unit. The `claude` alias (in `shells/aliases.sh`) runs `~/.local/bin/lithos-claude`, which reuses that proxy or starts a throwaway one. The `code-colors` mod under `claude/mods/` is linked into `~/.claude/mods`. Claude Code re-serializes its own settings, so the live `~/.claude/settings.json` is **not** a symlink: `install` seeds it once from `claude/settings-base.json`, and later app writes stay local.
 
-**Font management:** per-font scripts in `scripts/` (`install-custom-iosevka-extended.sh`, `install-helvetica-now.sh`, `install-segoe-ui.sh`, `install-sf-pro.sh`, `install-source-code-pro.sh`) install fonts from `fonts/` sources or remote downloads; other fonts come from Brewfile casks.
+**Font management:** per-font scripts in `scripts/` (`install-custom-iosevka-extended.sh`, `install-helvetica-now.sh`, `install-segoe-ui.sh`, `install-sf-pro.sh`, `install-source-code-pro.sh`) install fonts from `fonts/` sources or remote downloads; `patch-tex-gyre-heros.sh` rewrites the installed TeX Gyre Heros vertical metrics (widths stay Helvetica-compatible) so the cap block is centred and the full ink bounds fit in Linux UI line boxes; other fonts come from Brewfile casks.
 
 **Neovim config** (`editors/nvim/`) uses Lazy.nvim with modular Lua files under `lua/plugins/`. Stylua formatting: 2-space indent (see `.stylua.toml`).
 
