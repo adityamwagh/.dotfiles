@@ -68,6 +68,8 @@
     "defaultMode": "auto",
     "deny": ["Bash(rm -r *)", "Edit(.env*)"]
   },
+  "model": "claude-opus-5-5",
+  "fallbackModel": ["claude-sonnet-5-5"],
   "hooks": {
     "Notification": [
       {
@@ -229,5 +231,23 @@
     "pr": "",
     "sessionUrl": false
   },
-  "cleanupPeriodDays": 36500
+  "cleanupPeriodDays": 36500,
+  "feedbackDrafts": "notify",
+  "emojiCompletionEnabled": false,
+  "awaySummaryEnabled": true,
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
+  "verbose": true,
+  "preferredNotifChannel": "auto",
+  "autoCompactEnabled": true,
+  "autoScrollEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "showTurnDuration": true,
+  "showMessageTimestamps": true,
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "prStatusFooterEnabled": true
 }
