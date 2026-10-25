@@ -161,6 +161,7 @@
     # Coding Agents
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
+    ~/.claude/mods: claude/mods
     ~/.local/bin/claude-statusline: scripts/claude-statusline.sh
 
     # Local Sweep v2 next-edit server for AI edit prediction (shared by Zed
