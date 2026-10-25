@@ -37,11 +37,41 @@ return {
             },
         },
         keys = {
-            { "<leader>qs", function() require("auto-session").RestoreSession() end, desc = "Restore session" },
-            { "<leader>qS", function() require("auto-session").SelectSession() end, desc = "Select session" },
-            { "<leader>ql", function() require("auto-session").RestoreSessionForCwd() end, desc = "Restore session for cwd" },
-            { "<leader>qd", function() require("auto-session").DeleteSession() end, desc = "Delete session" },
-            { "<leader>qD", function() require("auto-session").PurgeDeletedSession() end, desc = "Purge deleted sessions" },
+            {
+                "<leader>qs",
+                function()
+                    require("auto-session").RestoreSession()
+                end,
+                desc = "Restore session",
+            },
+            {
+                "<leader>qS",
+                function()
+                    require("auto-session").SelectSession()
+                end,
+                desc = "Select session",
+            },
+            {
+                "<leader>ql",
+                function()
+                    require("auto-session").RestoreSessionForCwd()
+                end,
+                desc = "Restore session for cwd",
+            },
+            {
+                "<leader>qd",
+                function()
+                    require("auto-session").DeleteSession()
+                end,
+                desc = "Delete session",
+            },
+            {
+                "<leader>qD",
+                function()
+                    require("auto-session").PurgeDeletedSession()
+                end,
+                desc = "Purge deleted sessions",
+            },
         },
     },
 }

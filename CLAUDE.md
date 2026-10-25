@@ -18,6 +18,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 ## Architecture
 
 **Entry points:**
+
 - `install` — bash bootstrap script; fetches Dotbot if missing, then runs it. `--server` is consumed here (set to `DOTFILES_SERVER=1`, stripped from dotbot args)
 - `install.conf.yaml` — Dotbot config: declares symlinks, clean targets, native/Homebrew package install, and font install
 

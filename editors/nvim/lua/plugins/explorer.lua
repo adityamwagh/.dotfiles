@@ -78,7 +78,8 @@ return {
                         if vim.fn.winnr("$") ~= 1 then
                             return
                         end
-                        local ft = vim.bo[vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())].filetype
+                        local ft =
+                            vim.bo[vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())].filetype
                         if ft == "NvimTree" then
                             vim.cmd("quitall")
                         end

@@ -110,12 +110,12 @@ kde_flatpaks() {
 switch_konsole_sessions() {
   local services svc nodes n
   services="$(gdbus call --session --dest org.freedesktop.DBus \
-    --object-path /org/freedesktop/DBus --method org.freedesktop.DBus.ListNames 2>/dev/null \
-    | tr ',' '\n' | grep -oE 'org\.kde\.konsole[^"]*' | tr -d " '\"")" || true
+    --object-path /org/freedesktop/DBus --method org.freedesktop.DBus.ListNames 2>/dev/null |
+    tr ',' '\n' | grep -oE 'org\.kde\.konsole[^"]*' | tr -d " '\"")" || true
   log "konsole services: ${services:-none}"
   for svc in $services; do
-    nodes="$(gdbus introspect --session --dest "$svc" --object-path /Sessions 2>/dev/null \
-      | grep -oE 'node [0-9]+' | awk '{print $2}')" || true
+    nodes="$(gdbus introspect --session --dest "$svc" --object-path /Sessions 2>/dev/null |
+      grep -oE 'node [0-9]+' | awk '{print $2}')" || true
     for n in $nodes; do
       run gdbus call --session --dest "$svc" --object-path "/Sessions/$n" \
         --method org.kde.konsole.Session.setProfile "$profile"
@@ -180,8 +180,8 @@ fi
 # without touching the portal.
 if command -v dbus-send >/dev/null 2>&1; then
   palette_services="$(gdbus call --session --dest org.freedesktop.DBus \
-    --object-path /org/freedesktop/DBus --method org.freedesktop.DBus.ListNames 2>/dev/null \
-    | tr ',' '\n' | grep -oE 'org\.kde\.(kate|kwrite|konsole)[^"]*' | tr -d " '\"")" || true
+    --object-path /org/freedesktop/DBus --method org.freedesktop.DBus.ListNames 2>/dev/null |
+    tr ',' '\n' | grep -oE 'org\.kde\.(kate|kwrite|konsole)[^"]*' | tr -d " '\"")" || true
   for svc in $palette_services; do
     run dbus-send --session --type=signal --dest="$svc" /KGlobalSettings \
       org.kde.KGlobalSettings.notifyChange int32:0 int32:0
