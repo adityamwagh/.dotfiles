@@ -264,6 +264,7 @@
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-sf-pro.sh', "Install SF Pro (Linux)"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-source-code-pro.sh', "Install Source Code Pro (Linux)"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-codex.sh', "Install Codex"]
+    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-konsole.sh', "Install Konsole (macOS)"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-llama.sh', "Install llama.cpp"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/enable-sweep-next-edit.sh', "Enable local next-edit server"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-ollama.sh', "Install Ollama"]
