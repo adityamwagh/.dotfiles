@@ -85,6 +85,10 @@
     ~/.config/opencode/cli.json: opencode/cli.json
     ~/.config/opencode/plugins: opencode/plugins
 
+    # LiteLLM: Claude Code runs against LithosAI models through a local proxy.
+    ~/.config/litellm/claude.yaml: litellm/claude.yaml
+    ~/.local/bin/lithos-claude: scripts/lithos-claude.sh
+
     # Neovim
     ~/.config/nvim/.stylua.toml: editors/nvim/.stylua.toml
     ~/.config/nvim/init.lua: editors/nvim/init.lua
@@ -256,4 +260,6 @@
     # Both profiles.
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
+    - ["~/.dotfiles/scripts/install-litellm.sh", "Install LiteLLM"]
+    - ["~/.dotfiles/scripts/enable-litellm-claude.sh", "Enable the LiteLLM proxy service"]
     - ["~/.dotfiles/scripts/install-claude-code.sh", "Install Claude Code"]

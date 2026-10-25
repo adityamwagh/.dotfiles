@@ -76,11 +76,13 @@ alias sudo='sudo env PATH=$PATH'
 
 alias update-dotfiles='~/.dotfiles/install'
 
-alias claude='claude --allow-dangerously-skip-permissions --remote-control'
+# Claude Code runs on LithosAI models through the local LiteLLM proxy (scripts/lithos-claude.sh).
+# Remote Control is omitted: it needs a claude.ai login, which the proxy replaces.
+alias claude='~/.local/bin/lithos-claude --allow-dangerously-skip-permissions'
 
 # Run mini-swe-agent with the LithosAI key injected from 1Password
 if command -v op >/dev/null 2>&1; then
-  alias mini="op run --env-file=$HOME/.config/mini-swe-agent/lithosai.env -- mini"
+  alias mini="op run --env-file=\$HOME/.config/mini-swe-agent/lithosai.env -- mini"
 fi
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
