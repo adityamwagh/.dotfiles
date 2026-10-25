@@ -72,8 +72,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias sudo='sudo env PATH=$PATH'
-
 alias update-dotfiles='~/.dotfiles/install'
 
 # Claude Code runs on LithosAI models through the local LiteLLM proxy (scripts/lithos-claude.sh).
