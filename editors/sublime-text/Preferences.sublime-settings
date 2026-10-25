@@ -8,8 +8,8 @@
 // rewrites "color_scheme" and "theme" from the dark_/light_ pairs below; the values
 // checked in here are just the startup defaults it overwrites.
 {
-    "color_scheme": "Flexoki Dark.sublime-color-scheme",
-    "dark_color_scheme": "Flexoki Dark.sublime-color-scheme",
+    "color_scheme": "GitHub Dark Default.sublime-color-scheme",
+    "dark_color_scheme": "GitHub Dark Default.sublime-color-scheme",
     "dark_theme": "Default Dark.sublime-theme",
     "default_line_ending": "unix", // Match .stylua.toml line_endings.
     "ensure_newline_at_eof_on_save": true,
@@ -18,7 +18,7 @@
     "highlight_line": true, // Match nvim cursorline.
     "ignored_packages": ["Vintage",
     ],
-    "light_color_scheme": "Flexoki Light.sublime-color-scheme",
+    "light_color_scheme": "GitHub Light Default.sublime-color-scheme",
     "light_theme": "Default.sublime-theme",
     "line_numbers": true, // Match nvim number.
     "rulers": [88, 120], // Match Zed wrap_guides.

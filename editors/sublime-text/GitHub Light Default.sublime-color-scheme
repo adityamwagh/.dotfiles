@@ -1,0 +1,80 @@
+{
+    "name": "GitHub Light Default",
+    "author": "GitHub (github-nvim-theme palette)",
+    "variables": {
+        "bg": "#ffffff",
+        "fg": "#1f2328",
+        "accent": "#0969da",
+        "comment": "#57606a"
+    },
+    "globals": {
+        "background": "var(bg)",
+        "foreground": "var(fg)",
+        "caret": "#1f2328",
+        "line_highlight": "#eaeef280",
+        "selection": "#54aeff66",
+        "selection_foreground": "#1f2328",
+        "selection_border": "#54aeff66",
+        "inactive_selection": "#eaeef280",
+        "gutter": "var(bg)",
+        "gutter_foreground": "#656d76",
+        "line_highlight_gutter": "var(bg)",
+        "highlight": "#54aeff66",
+        "find_highlight": "#54aeff66",
+        "find_highlight_foreground": "#1f2328",
+        "match_brackets": "underline",
+        "shadow": "#f6f8fa"
+    },
+    "rules": [
+        {
+            "name": "Comment",
+            "scope": "comment, punctuation.definition.comment",
+            "foreground": "#57606a"
+        },
+        {
+            "name": "String",
+            "scope": "string",
+            "foreground": "#0a3069"
+        },
+        {
+            "name": "Constant",
+            "scope": "constant, support.constant, variable.other.constant",
+            "foreground": "#0550ae"
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword, storage, storage.type, storage.modifier",
+            "foreground": "#cf222e"
+        },
+        {
+            "name": "Entity",
+            "scope": "entity.name.function, entity.name.type, support.function",
+            "foreground": "#6639ba"
+        },
+        {
+            "name": "Tag",
+            "scope": "entity.name.tag",
+            "foreground": "#116329"
+        },
+        {
+            "name": "Variable",
+            "scope": "variable, variable.parameter",
+            "foreground": "#953800"
+        },
+        {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "#0550ae"
+        },
+        {
+            "name": "Operator",
+            "scope": "keyword.operator",
+            "foreground": "#cf222e"
+        },
+        {
+            "name": "Heading",
+            "scope": "markup.heading entity.name",
+            "foreground": "#0550ae"
+        }
+    ]
+}
