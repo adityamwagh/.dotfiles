@@ -98,9 +98,6 @@
     ~/.config/zed/settings.json:
       path: editors/zed/settings.json
       if: '[ -z "$DOTFILES_SERVER" ]'
-    ~/.config/zed/tasks.json:
-      path: editors/zed/tasks.json
-      if: '[ -z "$DOTFILES_SERVER" ]'
     ~/.config/zed/themes:
       path: editors/zed/themes
       if: '[ -z "$DOTFILES_SERVER" ]'
