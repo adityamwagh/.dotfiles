@@ -255,6 +255,8 @@
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/enable-sweep-next-edit.sh', "Enable local next-edit server"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-ollama.sh', "Install Ollama"]
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-rustup.sh', "Install Rust toolchain"]
+    # watchman ships no native Linux package; install it from Homebrew when present.
+    - ['[ -n "$DOTFILES_SERVER" ] || command -v watchman >/dev/null 2>&1 || ! command -v brew >/dev/null 2>&1 || brew install watchman', "Install watchman"]
     # Both profiles.
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
