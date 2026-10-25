@@ -11,7 +11,7 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 - `~/.dotfiles/install` — apply/update symlinks, cleanup stale repo links, and run bootstrap steps
 - `~/.dotfiles/install --server` — headless profile: no Homebrew, GUI apps, fonts, or LLM runtimes; includes neovim + CLI tools
 - `~/.dotfiles/install -n` — dry run before applying
-- `pre-commit run --all-files` — run repo checks (trailing whitespace hook)
+- `pre-commit run --all-files` — run repo checks (oxfmt/oxlint, StyLua, shfmt, shellcheck, trailing whitespace)
 - `brew bundle --file ~/.dotfiles/Brewfile` — install/update Homebrew packages
 - For install or bootstrap changes, test a fresh clone plus `./install` in Docker before merging, on both `ubuntu:latest` and `fedora:latest` (covers the apt and dnf paths of the `unipkg` directive). Recipe: install `git curl sudo python3 file build tools` (Ubuntu also `procps unzip ca-certificates`), create a non-root user with passwordless sudo (Homebrew refuses root), then as that user `git clone --recurse-submodules https://github.com/adityamwagh/.dotfiles.git ~/.dotfiles && ~/.dotfiles/install -v`. Push commits first (the container clones from GitHub) and run the two distro tests sequentially — parallel runs exhaust the shared 60/hour unauthenticated GitHub API quota and the codex installer fails its version lookup.
 
@@ -23,9 +23,11 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Server profile:** `--server` exports `DOTFILES_SERVER=1`. Desktop-only items are guarded with `if: '[ -z "$DOTFILES_SERVER" ]'`; server-only items with `if: '[ -n "$DOTFILES_SERVER" ]'`. `link` supports `if:` natively; `unipkg` and `brewfile` do too (both submodules are forked forks that add block-level `if:`). The built-in `shell` directive does **not** support `if:`, so shell steps use a short-circuit guard instead: `'[ -z "$DOTFILES_SERVER" ] || <script>'` (desktop-only) — the guard always exits 0 so dotbot sees success whether or not the script runs.
 
-**Config is grouped by domain:** `shells/`, `editors/`, `terminals/`, `starship/`
+**Config is grouped by domain:** `shells/`, `editors/`, `terminals/`, `starship/`, `opencode/`, `claude/`, `crush/`, `litellm/`
 
-**Scripts** in `scripts/` are installer helpers run as dotbot `shell` steps during `./install`; they are not linked onto PATH.
+**Scripts** in `scripts/` are installer helpers run as dotbot `shell` steps during `./install`; they are not linked onto PATH except `lithos-claude` and `claude-statusline`, which `install.conf.yaml` links into `~/.local/bin`.
+
+**Coding agents:** Claude Code runs against LithosAI models through a local LiteLLM proxy. `litellm/claude.yaml` is linked to `~/.config/litellm/`, `scripts/install-litellm.sh` installs the proxy, and `scripts/enable-litellm-claude.sh` writes a launchd/systemd unit. The `claude` alias (in `shells/aliases.sh`) runs `~/.local/bin/lithos-claude`, which reuses that proxy or starts a throwaway one. The `code-colors` mod under `claude/mods/` is linked into `~/.claude/mods`. Claude Code re-serializes its own settings, so the live `~/.claude/settings.json` is **not** a symlink: `install` seeds it once from `claude/settings-base.json`, and later app writes stay local.
 
 **Font management:** per-font scripts in `scripts/` (`install-custom-iosevka-extended.sh`, `install-helvetica-now.sh`, `install-segoe-ui.sh`, `install-sf-pro.sh`, `install-source-code-pro.sh`) install fonts from `fonts/` sources or remote downloads; other fonts come from Brewfile casks.
 
