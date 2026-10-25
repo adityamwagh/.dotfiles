@@ -31,6 +31,8 @@ fi
 
 if ! grep -qs 'LITHOSAI_API_KEY' "$HOME/.env" 2>/dev/null; then
   printf 'enable-litellm-claude: LITHOSAI_API_KEY is not in ~/.env; the service may fail to start (continuing).\n' >&2
+elif grep -qs 'LITHOSAI_API_KEY=.*op://' "$HOME/.env" 2>/dev/null; then
+  printf 'enable-litellm-claude: LITHOSAI_API_KEY is an unresolved 1Password reference; resolve ~/.env with op inject (continuing).\n' >&2
 fi
 
 if ! (
