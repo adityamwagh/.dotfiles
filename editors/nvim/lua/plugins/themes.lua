@@ -1,5 +1,13 @@
 return {
-    { "kepano/flexoki-neovim", name = "flexoki" },
+    {
+        "projekt0n/github-nvim-theme",
+        name = "github-theme",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("github-theme").setup({})
+        end,
+    },
     {
         "f-person/auto-dark-mode.nvim",
         opts = {
@@ -7,11 +15,11 @@ return {
             fallback = "dark",
             set_dark_mode = function()
                 vim.opt.background = "dark"
-                vim.cmd.colorscheme("flexoki-dark") -- Flexoki Dark colorscheme.
+                vim.cmd.colorscheme("github_dark_default") -- GitHub Dark Default colorscheme.
             end,
             set_light_mode = function()
                 vim.opt.background = "light"
-                vim.cmd.colorscheme("flexoki-light") -- Flexoki Light colorscheme.
+                vim.cmd.colorscheme("github_light_default") -- GitHub Light Default colorscheme.
             end,
         },
     },

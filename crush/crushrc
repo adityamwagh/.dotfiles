@@ -1,0 +1,75 @@
+# Crush config (API key comes from $LITHOSAI_API_KEY, e.g. via ~/.env)
+
+# LSPs
+lsp add rust_analyzer \
+  --command rust-analyzer \
+  --filetypes rust \
+  --root-markers Cargo.toml \
+  --root-markers rust-toolchain.toml \
+  --root-markers .git
+
+lsp add pyrefly \
+  --command pyrefly \
+  --args lsp \
+  --filetypes python \
+  --root-markers pyrefly.toml \
+  --root-markers pyproject.toml \
+  --root-markers setup.py \
+  --root-markers setup.cfg \
+  --root-markers requirements.txt \
+  --root-markers Pipfile \
+  --root-markers .git
+
+provider add lithosai \
+  --name "LithosAI" \
+  --type openai-compat \
+  --base-url "https://api.lithosai.cloud/v1" \
+  --api-key "$LITHOSAI_API_KEY"
+
+# DeepSeek
+model add lithosai/deepseek-ai/DeepSeek-V4.1-Flash --name "DeepSeek V4.1 Flash" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.15 --price-output 0.6 --price-cache-hit 0.003 --price-cache-create 0
+model add lithosai/deepseek-ai/DeepSeek-V4.1-Flash-fast --name "DeepSeek V4.1 Flash fast" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.25 --price-output 1.0 --price-cache-hit 0.005 --price-cache-create 0
+model add lithosai/deepseek-ai/DeepSeek-V4.1-Flash-ultra --name "DeepSeek V4.1 Flash ultra" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.35 --price-output 1.4 --price-cache-hit 0.007 --price-cache-create 0
+model add lithosai/deepseek-ai/DeepSeek-V4.1-Flash-ultra-chat --name "DeepSeek V4.1 Flash ultra chat" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.35 --price-output 1.4 --price-cache-hit 0.007 --price-cache-create 0
+
+# GLM
+model add lithosai/zai-org/GLM-5.3 --name "GLM 5.3" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 1.05 --price-output 3.3 --price-cache-hit 0.195 --price-cache-create 0
+model add lithosai/zai-org/GLM-5.3-ultra-chat --name "GLM 5.3 ultra chat" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 1.05 --price-output 3.3 --price-cache-hit 0.195 --price-cache-create 0
+model add lithosai/zai-org/GLM-5.3-Flash --name "GLM 5.3 Flash" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.15 --price-output 0.5 --price-cache-hit 0.03 --price-cache-create 0
+model add lithosai/zai-org/GLM-5.3-Flash-ultra --name "GLM 5.3 Flash ultra" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.15 --price-output 0.5 --price-cache-hit 0.03 --price-cache-create 0
+model add lithosai/zai-org/GLM-5.3-Flash-ultra-chat --name "GLM 5.3 Flash ultra chat" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 0.15 --price-output 0.5 --price-cache-hit 0.03 --price-cache-create 0
+
+# Kimi
+model add lithosai/moonshotai/Kimi-K3 --name "Kimi K3" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 2.4 --price-output 12.0 --price-cache-hit 0.24 --price-cache-create 0
+model add lithosai/moonshotai/Kimi-K3-fast --name "Kimi K3 fast" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 4.0 --price-output 20.0 --price-cache-hit 0.4 --price-cache-create 0
+model add lithosai/moonshotai/Kimi-K3-ultra --name "Kimi K3 ultra" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 5.6 --price-output 28.0 --price-cache-hit 0.56 --price-cache-create 0
+model add lithosai/moonshotai/Kimi-K3-ultra-chat --name "Kimi K3 ultra chat" \
+  --context-window 1048576 --default-max-tokens 32768 \
+  --price-input 5.6 --price-output 28.0 --price-cache-hit 0.56 --price-cache-create 0
+
+model large lithosai/deepseek-ai/DeepSeek-V4.1-Flash
+model small lithosai/deepseek-ai/DeepSeek-V4.1-Flash

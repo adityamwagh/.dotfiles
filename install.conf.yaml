@@ -105,6 +105,14 @@
       path: editors/zed/keymap.json
       if: '[ -z "$DOTFILES_SERVER" ]'
 
+    # Crush keeps its config and themes in one directory.
+    ~/.config/crush: crush
+
+    # iTerm2 dynamic profile (macOS only).
+    ~/Library/Application Support/iTerm2/DynamicProfiles/github.json:
+      path: terminals/iterm2/github.json
+      if: "[ -z \"$DOTFILES_SERVER\" ] && [ $(uname) = Darwin ]"
+
     # Contour: native layout on macOS/Linux, sandbox layout on Linux Flatpak.
     ~/.config/contour/contour.yml: terminals/contour/contour.yml
     ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml:
