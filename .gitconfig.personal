@@ -1,0 +1,7 @@
+# Personal identity for the dotfiles repo and its submodules.
+# Work laptops set a machine-wide work identity in ~/.gitconfig.local; this
+# include comes last so the dotfiles repo keeps its own author. Harmless
+# elsewhere: it matches the same identity as the default above.
+[user]
+	name = adityamwagh
+	email = adityamwagh@outlook.com

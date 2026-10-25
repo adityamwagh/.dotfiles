@@ -22,3 +22,9 @@ path = ~/.dotfiles/.gitconfig.shared
 [include]
 # Machine-specific overrides (identity, employer setup); skipped if absent.
 	path = ~/.gitconfig.local
+
+[includeIf "gitdir:~/.dotfiles/"]
+# Keep the dotfiles repo authored by its owner even when a machine-wide
+# identity is set above; loaded last so it wins.
+	path = ~/.dotfiles/.gitconfig.personal
+
