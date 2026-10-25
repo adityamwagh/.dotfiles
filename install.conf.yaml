@@ -159,7 +159,6 @@
     ~/.config/zsh-patina: shells/zsh/patina
 
     # Coding Agents
-    ~/.claude/settings.json: claude/settings.json
     ~/.claude/keybindings.json: claude/keybindings.json
     ~/.claude/mods: claude/mods
     ~/.local/bin/claude-statusline: scripts/claude-statusline.sh
@@ -243,6 +242,12 @@
     - [
         "[ -f ~/.gitconfig.local ] || printf '# Machine-local Git overrides (identity, employer setup); loaded last by ~/.gitconfig.\\n' > ~/.gitconfig.local",
         "Seed ~/.gitconfig.local",
+      ]
+    # Claude Code re-serializes its settings, so keep the tracked base separate
+    # and seed the live file once; later app writes stay out of git.
+    - [
+        "if [ -L ~/.claude/settings.json ] && [ ! -e ~/.claude/settings.json ]; then rm ~/.claude/settings.json; fi; [ -e ~/.claude/settings.json ] || cp ~/.dotfiles/claude/settings-base.json ~/.claude/settings.json",
+        "Seed ~/.claude/settings.json",
       ]
     # Desktop-only steps; the guard short-circuits on servers.
     - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-custom-iosevka-extended.sh', "Install custom Iosevka Extended"]

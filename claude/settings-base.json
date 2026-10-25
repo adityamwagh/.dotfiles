@@ -1,0 +1,233 @@
+{
+  "permissions": {
+    "additionalDirectories": ["/tmp"],
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "LS",
+      "WebSearch",
+      "Skill(code-review:code-review)",
+      "Skill(code-review:code-review:*)",
+      "Bash(pip show *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git fetch *)",
+      "Bash(git branch *)",
+      "Bash(git show *)",
+      "Bash(git remote *)",
+      "Bash(git stash)",
+      "Bash(git stash pop)",
+      "Bash(gs)",
+      "Bash(gd)",
+      "Bash(gd *)",
+      "Bash(gf)",
+      "Bash(gl)",
+      "Bash(gll)",
+      "Bash(gla)",
+      "Bash(gstl)",
+      "Bash(uv run *)",
+      "Bash(uv sync *)",
+      "Bash(uv pip show *)",
+      "Bash(uv tool list)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Bash(gh run *)",
+      "Bash(gh api *)",
+      "Bash(pre-commit run --color=always --all-files)",
+      "Bash(pcra)",
+      "Bash(ll)",
+      "Bash(ll *)",
+      "Bash(l)",
+      "Bash(l *)",
+      "Bash(la)",
+      "Bash(la *)",
+      "Bash(lsd)",
+      "Bash(lt)",
+      "Bash(tree)",
+      "Bash(tree *)",
+      "Bash(find *)",
+      "Bash(rg *)",
+      "Bash(bun run *)",
+      "Bash(bun install)",
+      "Bash(brew list)",
+      "Bash(brew info *)",
+      "Bash(act *)",
+      "Bash(cargo build *)",
+      "Bash(cargo test *)",
+      "Bash(cargo check *)",
+      "Bash(cargo clippy *)",
+      "Bash(gh repo view *)",
+      "Bash(gh workflow *)",
+      "Bash(uvx *)",
+      "Bash(which *)",
+      "Bash(ls *)",
+      "Bash(brew tap)"
+    ],
+    "defaultMode": "auto",
+    "deny": ["Bash(rm -r *)", "Edit(.env*)"]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); cmd=d.get('tool_input',{}).get('command',''); open('/tmp/claude-bash-audit.log','a').write(datetime.datetime.now().isoformat()+' '+cmd[:200]+'\\n') if any(x in cmd for x in ['git push','git commit','gh pr create','gh pr merge']) else None\"",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "python3 -c \"import sys,json,re; d=json.load(sys.stdin); t=d.get('tool_input',{}); c=str(t.get('content',''))+str(t.get('new_string','')); pats=['AKIA[A-Z0-9]{16}','ghp_[A-Za-z0-9]{36}','-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY']; f=[p for p in pats if re.search(p,c)]; print(json.dumps({'hookSpecificOutput':{'hookEventName':'PreToolUse','permissionDecision':'deny'},'systemMessage':'Secret pattern detected: '+', '.join(f)}) if f else '{}')\"",
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit"
+      },
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "~/.claude/mods/code-colors"
+  },
+  "statusLine": {
+    "command": "claude-statusline",
+    "type": "command"
+  },
+  "enabledPlugins": {
+    "caveman@caveman": false,
+    "cc-plugin-you-should-know@builtin": true,
+    "clangd-lsp@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "code-review@claude-plugins-official": false,
+    "code-simplifier@claude-plugins-official": false,
+    "context7@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": false,
+    "github@claude-plugins-official": false,
+    "greptile@claude-plugins-official": false,
+    "hookify@claude-plugins-official": true,
+    "learning-output-style@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
+    "pyright-lsp@claude-plugins-official": false,
+    "ralph-loop@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "repo": "juliusbrussee/caveman",
+        "source": "github"
+      }
+    }
+  },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "cleanupPeriodDays": 36500
+}
