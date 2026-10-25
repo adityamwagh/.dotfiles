@@ -19,14 +19,14 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot).
 
 **Entry points:**
 
-- `install` — bash bootstrap script; fetches Dotbot if missing, then runs it. `--server` is consumed here (set to `DOTFILES_SERVER=1`, stripped from dotbot args)
-- `install.conf.yaml` — Dotbot config: declares symlinks, clean targets, native/Homebrew package install, and font install
+- `install` — bash bootstrap script; fetches Dotbot if missing, filters `install.conf.yaml` for the selected profile, then runs it. `--server` is consumed here (set to `DOTFILES_SERVER=1`, stripped from dotbot args)
+- `install.conf.yaml` — Dotbot config: declares symlinks, clean targets, native/Homebrew package install, font install, and top-level `server:` profile markers
 
-**Server profile:** `--server` exports `DOTFILES_SERVER=1`. Desktop-only items are guarded with `if: '[ -z "$DOTFILES_SERVER" ]'`; server-only items with `if: '[ -n "$DOTFILES_SERVER" ]'`. `link` supports `if:` natively; `unipkg` and `brewfile` do too (both submodules are forked forks that add block-level `if:`). The built-in `shell` directive does **not** support `if:`, so shell steps use a short-circuit guard instead: `'[ -z "$DOTFILES_SERVER" ] || <script>'` (desktop-only) — the guard always exits 0 so dotbot sees success whether or not the script runs.
+**Server profile:** `--server` exports `DOTFILES_SERVER=1`. `install` runs `scripts/filter-install-config.py` before Dotbot: a `server:` marker runs only on the matching profile (`true` = server, `false` = desktop, omitted = both). It works at task level and per entry in `link` targets, `shell` items, `unipkg` packages, and `create`/`clean` targets; the filter strips markers before dispatch. Use `if:` only for non-profile conditions (OS, command availability); `link` supports it natively, `unipkg` and `brewfile` via the forks. LiteLLM and its proxy service are desktop-only; servers get Claude Code without the proxy.
 
 **Config is grouped by domain:** `shells/`, `editors/`, `terminals/`, `starship/`, `opencode/`, `claude/`, `crush/`, `litellm/`
 
-**Scripts** in `scripts/` are installer helpers run as dotbot `shell` steps during `./install`; they are not linked onto PATH except `lithos-claude` and `claude-statusline`, which `install.conf.yaml` links into `~/.local/bin`.
+**Scripts** in `scripts/` are installer helpers: `filter-install-config.py` runs directly from `install`, the rest run as dotbot `shell` steps during `./install`; they are not linked onto PATH except `lithos-claude` and `claude-statusline`, which `install.conf.yaml` links into `~/.local/bin`.
 
 **Coding agents:** Claude Code runs against LithosAI models through a local LiteLLM proxy. `litellm/claude.yaml` is linked to `~/.config/litellm/`, `scripts/install-litellm.sh` installs the proxy, and `scripts/enable-litellm-claude.sh` writes a launchd/systemd unit. The `claude` alias (in `shells/aliases.sh`) runs `~/.local/bin/lithos-claude`, which reuses that proxy or starts a throwaway one. The `code-colors` mod under `claude/mods/` is linked into `~/.claude/mods`. Claude Code re-serializes its own settings, so the live `~/.claude/settings.json` is **not** a symlink: `install` seeds it once from `claude/settings-base.json`, and later app writes stay local.
 

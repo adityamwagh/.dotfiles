@@ -17,11 +17,20 @@ for arg in "$@"; do
   esac
 done
 
-if [ ! -x "$DOTBOT_DIR/bin/dotbot" ] || [ ! -f "$DOTFILES_DIR/dotbot-brew/brew.py" ] ||
+if [ ! -x "$DOTBOT_DIR/bin/dotbot" ] ||
+  [ ! -f "$DOTBOT_DIR/lib/pyyaml/lib/yaml/__init__.py" ] ||
+  [ ! -f "$DOTFILES_DIR/dotbot-brew/brew.py" ] ||
   [ ! -f "$DOTFILES_DIR/dotbot-unipkg/unipkg.py" ]; then
   git -C "$DOTFILES_DIR" submodule update --init --recursive
 fi
 
-"$DOTBOT_DIR/bin/dotbot" -d "$DOTFILES_DIR" -c "$DOTFILES_DIR/install.conf.yaml" \
+# Strip tasks whose `server:` marker does not match the current profile.
+filtered_config="$(mktemp)"
+trap 'rm -f "$filtered_config"' EXIT
+PYTHONPATH="$DOTBOT_DIR/lib/pyyaml/lib${PYTHONPATH:+:$PYTHONPATH}" \
+  python3 "$DOTFILES_DIR/scripts/filter-install-config.py" \
+  "$DOTFILES_DIR/install.conf.yaml" "$filtered_config"
+
+"$DOTBOT_DIR/bin/dotbot" -d "$DOTFILES_DIR" -c "$filtered_config" \
   --plugin-dir "$DOTFILES_DIR/dotbot-brew" \
   --plugin-dir "$DOTFILES_DIR/dotbot-unipkg" ${args[@]+"${args[@]}"}

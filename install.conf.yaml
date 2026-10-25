@@ -1,3 +1,7 @@
+# Profile markers: `server: true` runs only with `./install --server`;
+# `server: false` runs only on the desktop; omit it to run on both.
+# The same key works per entry in link targets, shell items, unipkg packages,
+# and create/clean targets.
 - defaults:
     link:
       create: true
@@ -74,8 +78,8 @@
 
     # Packages
     ~/.Brewfile:
+      server: false
       path: Brewfile
-      if: '[ -z "$DOTFILES_SERVER" ]'
 
     # Prompt
     ~/.config/starship.toml: starship/starship.toml
@@ -96,22 +100,23 @@
 
     # Zed
     ~/.config/zed/settings.json:
+      server: false
       path: editors/zed/settings.json
-      if: '[ -z "$DOTFILES_SERVER" ]'
     ~/.config/zed/themes:
+      server: false
       path: editors/zed/themes
-      if: '[ -z "$DOTFILES_SERVER" ]'
     ~/.config/zed/keymap.json:
+      server: false
       path: editors/zed/keymap.json
-      if: '[ -z "$DOTFILES_SERVER" ]'
 
     # Crush keeps its config and themes in one directory.
     ~/.config/crush: crush
 
     # iTerm2 dynamic profile (macOS only).
     ~/Library/Application Support/iTerm2/DynamicProfiles/github.json:
+      server: false
       path: terminals/iterm2/github.json
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Darwin ]'
+      if: "[ $(uname) = Darwin ]"
 
     # Contour: native layout on macOS/Linux, sandbox layout on Linux Flatpak.
     ~/.config/contour/contour.yml: terminals/contour/contour.yml
@@ -124,44 +129,53 @@
 
     # Sublime Text settings and colour schemes live in one flat User dir.
     ~/.config/sublime-text/Packages/User/:
+      server: false
       glob: true
       path: editors/sublime-text/*
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Linux ]'
+      if: "[ $(uname) = Linux ]"
     ~/Library/Application Support/Sublime Text/Packages/User/:
+      server: false
       glob: true
       path: editors/sublime-text/*
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Darwin ]'
+      if: "[ $(uname) = Darwin ]"
 
     # Konsole colorschemes and shared profiles. Machine-local overrides live in
     # the Konsole data dir as untracked <Profile>.local.profile files that
     # inherit the shared profile via Parent=; konsolerc itself is local too.
     ~/.local/share/konsole/:
+      server: false
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Linux ]'
+      if: "[ $(uname) = Linux ]"
     ~/.local/share/konsole/Light.profile:
+      server: false
       path: terminals/konsole/Light.profile
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Linux ]'
+      if: "[ $(uname) = Linux ]"
     ~/.local/share/konsole/Dark.profile:
+      server: false
       path: terminals/konsole/Dark.profile
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Linux ]'
+      if: "[ $(uname) = Linux ]"
     ~/Library/Application Support/konsole/:
+      server: false
       glob: true
       path: terminals/konsole/colorschemes/*.colorscheme
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Darwin ]'
+      if: "[ $(uname) = Darwin ]"
     ~/Library/Application Support/konsole/Light.profile:
+      server: false
       path: terminals/konsole/Light.profile
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Darwin ]'
+      if: "[ $(uname) = Darwin ]"
     ~/Library/Application Support/konsole/Dark.profile:
+      server: false
       path: terminals/konsole/Dark.profile
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Darwin ]'
+      if: "[ $(uname) = Darwin ]"
 
     # Plasma light/dark toggle that keeps the KDE Flatpaks (Konsole, Kate,
     # KWrite) in step. Linked where the KDE global shortcut expects it; the
     # Flatpak D-Bus and filesystem overrides it relies on are applied below.
     ~/.local/share/scripts/theme_switch.sh:
+      server: false
       path: scripts/theme_switch.sh
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Linux ]'
+      if: "[ $(uname) = Linux ]"
 
     # zsh-patina
     ~/.config/zsh-patina: shells/zsh/patina
@@ -174,77 +188,80 @@
     # Local Sweep v2 next-edit server for AI edit prediction (shared by Zed
     # and Neovim). Linked as a systemd user unit; enabled in the shell block.
     ~/.config/systemd/user/sweep-next-edit.service:
+      server: false
       path: systemd/sweep-next-edit.service
-      if: '[ -z "$DOTFILES_SERVER" ] && [ $(uname) = Linux ]'
+      if: "[ $(uname) = Linux ]"
 
 # Install system-integrated packages with the native package manager
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
 # missing. Tools that touch system directories or hardware belong here
 # on Linux; everything else comes from the Brewfile.
-#
-# Server profile (`./install --server`): headless, no Homebrew. The
-# unipkg blocks below cover both profiles; the desktop-only hardware and
-# the server-only CLI tools are split out accordingly.
 - unipkg:
-    if: '[ -z "$DOTFILES_SERVER" ]'
     install:
       - ddcutil: # monitor brightness control (hardware)
+          server: false
           filter: linux
-
-- unipkg:
-    - install:
-        - eza:
-            filter: linux
-        - zsh:
-            filter: linux
-        - zstd: # ollama's installer needs it for extraction
-            filter: linux
-
-# Server-only CLI tools and apps installed from the native package manager
-# (no Homebrew on servers).
-- unipkg:
-    if: '[ -n "$DOTFILES_SERVER" ]'
-    install:
+      - eza:
+          filter: linux
+      - zsh:
+          filter: linux
+      - zstd: # ollama's installer needs it for extraction
+          filter: linux
+      # Server-only CLI tools and apps (no Homebrew on servers).
       - neovim:
+          server: true
           alt_name: nvim
           filter: linux
       - fzf:
+          server: true
           filter: linux
       - zoxide:
+          server: true
           filter: linux
       - ripgrep:
+          server: true
           filter: linux
       - fd:
+          server: true
           alt_name: fd-find
           filter: linux
       - bat:
+          server: true
           alt_name: batcat
           filter: linux
       - git-delta:
+          server: true
           filter: linux
       - jq:
+          server: true
           filter: linux
       - yq:
+          server: true
           filter: linux
       - gh:
+          server: true
           filter: linux
       - curl:
+          server: true
           filter: linux
       - unzip:
+          server: true
           filter: linux
       - tar:
+          server: true
           filter: linux
       - git:
+          server: true
           filter: linux
       - tmux:
+          server: true
           filter: linux
 
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
 # Skipped entirely on servers: no Homebrew on a server.
-- brewfile:
-    if: '[ -z "$DOTFILES_SERVER" ]'
-    brewfile:
-      - Brewfile
+- server: false
+  brewfile:
+    - Brewfile
 
 - shell:
     - [
@@ -257,54 +274,55 @@
         "if [ -L ~/.claude/settings.json ] && [ ! -e ~/.claude/settings.json ]; then rm ~/.claude/settings.json; fi; [ -e ~/.claude/settings.json ] || cp ~/.dotfiles/claude/settings-base.json ~/.claude/settings.json",
         "Seed ~/.claude/settings.json",
       ]
-    # Desktop-only steps; the guard short-circuits on servers.
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-custom-iosevka-extended.sh',
-        "Install custom Iosevka Extended",
-      ]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-helvetica-now.sh',
-        "Install HelveticaNow",
-      ]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-segoe-ui.sh',
-        "Install Segoe UI (Linux)",
-      ]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-sf-pro.sh',
-        "Install SF Pro (Linux)",
-      ]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-source-code-pro.sh',
-        "Install Source Code Pro (Linux)",
-      ]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/patch-tex-gyre-heros.sh',
-        "Patch TeX Gyre Heros metrics",
-      ]
-    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-codex.sh', "Install Codex"]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-konsole.sh',
-        "Install Konsole (macOS)",
-      ]
-    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-llama.sh', "Install llama.cpp"]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/enable-sweep-next-edit.sh',
-        "Enable local next-edit server",
-      ]
-    - ['[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-ollama.sh', "Install Ollama"]
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || ~/.dotfiles/scripts/install-rustup.sh',
-        "Install Rust toolchain",
-      ]
+    # Desktop-only steps.
+    - command: "~/.dotfiles/scripts/install-custom-iosevka-extended.sh"
+      description: "Install custom Iosevka Extended"
+      server: false
+    - command: "~/.dotfiles/scripts/install-helvetica-now.sh"
+      description: "Install HelveticaNow"
+      server: false
+    - command: "~/.dotfiles/scripts/install-segoe-ui.sh"
+      description: "Install Segoe UI (Linux)"
+      server: false
+    - command: "~/.dotfiles/scripts/install-sf-pro.sh"
+      description: "Install SF Pro (Linux)"
+      server: false
+    - command: "~/.dotfiles/scripts/install-source-code-pro.sh"
+      description: "Install Source Code Pro (Linux)"
+      server: false
+    - command: "~/.dotfiles/scripts/patch-tex-gyre-heros.sh"
+      description: "Patch TeX Gyre Heros metrics"
+      server: false
+    - command: "~/.dotfiles/scripts/install-codex.sh"
+      description: "Install Codex"
+      server: false
+    - command: "~/.dotfiles/scripts/install-konsole.sh"
+      description: "Install Konsole (macOS)"
+      server: false
+    - command: "~/.dotfiles/scripts/install-llama.sh"
+      description: "Install llama.cpp"
+      server: false
+    - command: "~/.dotfiles/scripts/enable-sweep-next-edit.sh"
+      description: "Enable local next-edit server"
+      server: false
+    - command: "~/.dotfiles/scripts/install-ollama.sh"
+      description: "Install Ollama"
+      server: false
+    - command: "~/.dotfiles/scripts/install-rustup.sh"
+      description: "Install Rust toolchain"
+      server: false
     # watchman ships no native Linux package; install it from Homebrew when present.
-    - [
-        '[ -n "$DOTFILES_SERVER" ] || command -v watchman >/dev/null 2>&1 || ! command -v brew >/dev/null 2>&1 || brew install watchman',
-        "Install watchman",
-      ]
+    - command: "command -v watchman >/dev/null 2>&1 || ! command -v brew >/dev/null 2>&1 || brew install watchman"
+      description: "Install watchman"
+      server: false
+    # LiteLLM is the desktop proxy for Claude Code; servers stay CLI-only.
+    - command: "~/.dotfiles/scripts/install-litellm.sh"
+      description: "Install LiteLLM"
+      server: false
+    - command: "~/.dotfiles/scripts/enable-litellm-claude.sh"
+      description: "Enable the LiteLLM proxy service"
+      server: false
     # Both profiles.
     - ["~/.dotfiles/scripts/set-default-shell.sh", "Set default shell to zsh"]
     - ["~/.dotfiles/scripts/install-zsh-patina.sh", "Install zsh-patina"]
-    - ["~/.dotfiles/scripts/install-litellm.sh", "Install LiteLLM"]
-    - ["~/.dotfiles/scripts/enable-litellm-claude.sh", "Enable the LiteLLM proxy service"]
     - ["~/.dotfiles/scripts/install-claude-code.sh", "Install Claude Code"]
