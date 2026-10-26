@@ -24,7 +24,7 @@ fi
 if ! curl -fsS -m 2 "$proxy_url/health/liveliness" >/dev/null 2>&1; then
   if ! command -v litellm >/dev/null 2>&1; then
     echo "lithos-claude: litellm not found; install it with" >&2
-    echo "  uv tool install 'litellm[proxy]==1.106.1'" >&2
+    echo "  uv tool install 'litellm[proxy]==1.106.2'" >&2
     exit 1
   fi
 

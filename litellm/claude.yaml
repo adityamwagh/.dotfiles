@@ -75,8 +75,11 @@ model_list:
       api_base: https://api.lithosai.cloud/v1
       api_key: os.environ/LITHOSAI_API_KEY
 
-litellm_settings:
-  drop_params: true
-
 general_settings:
   master_key: sk-claude-proxy
+  # Removes the path unauthenticated input reaches the key-verification query,
+  # the workaround for CVE-2026-42208 (fixed upstream in 1.83.7).
+  disable_error_logs: true
+
+litellm_settings:
+  drop_params: true
