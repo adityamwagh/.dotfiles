@@ -186,13 +186,6 @@
     ~/.claude/mods: claude/mods
     ~/.local/bin/claude-statusline: scripts/claude-statusline.sh
 
-    # Local Sweep v2 next-edit server for AI edit prediction (shared by Zed
-    # and Neovim). Linked as a systemd user unit; enabled in the shell block.
-    ~/.config/systemd/user/sweep-next-edit.service:
-      server: false
-      path: systemd/sweep-next-edit.service
-      if: "[ $(uname) = Linux ]"
-
 # Install system-integrated packages with the native package manager
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is
 # missing. Tools that touch system directories or hardware belong here
@@ -302,9 +295,6 @@
       server: false
     - command: "~/.dotfiles/scripts/install-llama.sh"
       description: "Install llama.cpp"
-      server: false
-    - command: "~/.dotfiles/scripts/enable-sweep-next-edit.sh"
-      description: "Enable local next-edit server"
       server: false
     - command: "~/.dotfiles/scripts/install-ollama.sh"
       description: "Install Ollama"
