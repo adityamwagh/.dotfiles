@@ -28,6 +28,9 @@
     ~/.config/contour: # Clean Contour config link (native layout).
       recursive: false
       force: false
+    ~/.config/ghostty: # Clean per-file app links from older layouts.
+      recursive: false
+      force: false
     ~/.var/app/org.contourterminal.Contour/config/contour: # Clean Contour config link (Flatpak).
       recursive: false
       force: false
@@ -125,6 +128,9 @@
       path: terminals/contour/contour.yml
       if: "[ $(uname) = Linux ]"
 
+    # Ghostty (themes are built in; no theme dir to link)
+    ~/.config/ghostty/config.ghostty: terminals/ghostty/config.ghostty
+
     # tmux (useful on both desktops and servers)
     ~/.config/tmux/tmux.conf: terminals/tmux/tmux.conf
 
@@ -185,6 +191,18 @@
     ~/.claude/keybindings.json: claude/keybindings.json
     ~/.claude/mods: claude/mods
     ~/.local/bin/claude-statusline: scripts/claude-statusline.sh
+
+# Ghostty per-OS local config: separate link blocks because the same
+# target key twice in one block would collide in YAML.
+- link:
+    ~/.config/ghostty/config-local:
+      path: terminals/ghostty/config-local-linux
+      if: "[ $(uname) = Linux ]"
+
+- link:
+    ~/.config/ghostty/config-local:
+      path: terminals/ghostty/config-local-macos
+      if: "[ $(uname) = Darwin ]"
 
 # Install system-integrated packages with the native package manager
 # (dotbot-unipkg plugin). Idempotent: sudo only runs when something is

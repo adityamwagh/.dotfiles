@@ -1,0 +1,55 @@
+# Ghostty configuration.
+# Kept minimal; values mirror the preferences used in the other terminals.
+# Full option reference: https://ghostty.org/docs/config/reference
+
+# Client-side decorations: Ghostty draws its own titlebar and tabs.
+window-decoration = client
+# Matches the Konsole profile's line spacing.
+adjust-cell-height = 4
+command = /bin/zsh
+# Per-OS overrides, linked by install.conf.yaml.
+config-file = ?config-local
+focus-follows-mouse = false
+# Font family and size shared with Konsole and Contour.
+font-family = Iosevka Extended
+# Nerd Font fallback for glyphs missing from Iosevka.
+font-family = Symbols Nerd Font Mono
+font-size = 11
+maximize = true
+# Large scrollback history.
+scrollback-limit = 10000000
+# Follow the system dark/light appearance; themes ship with Ghostty.
+theme = dark:GitHub Dark Default,light:GitHub Light Default
+# Solid block cursor, like the Konsole profile.
+cursor-style = block
+cursor-style-blink = false
+# Quiet the bell: no beep, flash, title change, or focus steal.
+bell-features = no-system,no-audio,no-attention,no-title,no-border
+mouse-hide-while-typing = true
+# Same 3x scroll step as Contour.
+mouse-scroll-multiplier = precision:1,discrete:3
+notify-on-command-finish-after = 10s
+resize-overlay = after-first
+resize-overlay-duration = 750ms
+resize-overlay-position = center
+shell-integration = detect
+split-inherit-working-directory = true
+tab-inherit-working-directory = true
+macos-titlebar-style = tabs
+window-inherit-font-size = true
+window-inherit-working-directory = true
+window-new-tab-position = current
+window-padding-balance = true
+window-padding-color = extend
+# Window padding, in points.
+window-padding-x = 12
+window-padding-y = 12
+window-save-state = never
+window-show-tab-bar = auto
+window-step-resize = false
+window-subtitle = working-directory
+window-theme = auto
+window-vsync = true
+window-height = 9999
+window-width = 9999
+working-directory = home
