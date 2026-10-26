@@ -25,6 +25,10 @@ if [ "$(uname -s)" = "Linux" ] && [ -d /usr/local/cuda ]; then
 fi
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-[ -f "$HOME/.env" ] && . "$HOME/.env"
+[ -f "$HOME/.env" ] && {
+  set -a
+  . "$HOME/.env"
+  set +a
+}
 
 [ -f "$HOME/.local/shell/env.sh" ] && . "$HOME/.local/shell/env.sh"
