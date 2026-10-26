@@ -203,7 +203,7 @@
           filter: linux
       # Server-only CLI tools and apps (no Homebrew on servers).
       - neovim:
-          # Desktop gets Neovim from the Brewfile (see scripts/link-nvim.sh);
+          # Desktop gets Neovim from the Brewfile (see scripts/link-brew-tools.sh);
           # servers have no Homebrew, so install it natively there.
           server: true
           alt_name: nvim
@@ -227,6 +227,10 @@
       - yq:
           filter: linux
       - gh:
+          # Desktop takes gh from the Brewfile; servers have no Homebrew.
+          # Arch names the package github-cli.
+          server: true
+          alt_name: github-cli
           filter: linux
       - curl:
           filter: linux
@@ -275,8 +279,8 @@
     - command: "~/.dotfiles/scripts/patch-tex-gyre-heros.sh"
       description: "Patch TeX Gyre Heros metrics"
       server: false
-    - command: "~/.dotfiles/scripts/link-nvim.sh"
-      description: "Link nvim into /usr/local/bin for sudo"
+    - command: "~/.dotfiles/scripts/link-brew-tools.sh"
+      description: "Link Homebrew tools into /usr/local/bin"
       server: false
     - command: "~/.dotfiles/scripts/install-codex.sh"
       description: "Install Codex"
