@@ -196,6 +196,7 @@
           server: false
           filter: linux
       - eza:
+          server: true
           filter: linux
       - zsh:
           filter: linux
@@ -209,22 +210,30 @@
           alt_name: nvim
           filter: linux
       - fzf:
+          server: true
           filter: linux
       - zoxide:
+          server: true
           filter: linux
       - ripgrep:
+          server: true
           filter: linux
       - fd:
+          server: true
           alt_name: fd-find
           filter: linux
       - bat:
+          server: true
           alt_name: batcat
           filter: linux
       - git-delta:
+          server: true
           filter: linux
       - jq:
+          server: true
           filter: linux
       - yq:
+          server: true
           filter: linux
       - gh:
           # Desktop takes gh from the Brewfile; servers have no Homebrew.
@@ -241,6 +250,7 @@
       - git:
           filter: linux
       - tmux:
+          server: true
           filter: linux
 
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).

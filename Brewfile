@@ -15,7 +15,7 @@ brew "charmbracelet/tap/crush"
 brew "direnv"
 brew "dust"
 brew "entr"
-brew "eza" if OS.mac? # Linux: native package via install.conf.yaml (reads system file metadata)
+brew "eza"
 brew "fd"
 brew "fzf"
 brew "fzf-tab"
