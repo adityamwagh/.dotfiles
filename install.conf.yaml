@@ -203,6 +203,9 @@
           filter: linux
       # Server-only CLI tools and apps (no Homebrew on servers).
       - neovim:
+          # Desktop gets Neovim from the Brewfile (see scripts/link-nvim.sh);
+          # servers have no Homebrew, so install it natively there.
+          server: true
           alt_name: nvim
           filter: linux
       - fzf:
