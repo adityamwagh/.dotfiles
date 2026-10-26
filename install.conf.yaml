@@ -203,52 +203,37 @@
           filter: linux
       # Server-only CLI tools and apps (no Homebrew on servers).
       - neovim:
-          server: true
           alt_name: nvim
           filter: linux
       - fzf:
-          server: true
           filter: linux
       - zoxide:
-          server: true
           filter: linux
       - ripgrep:
-          server: true
           filter: linux
       - fd:
-          server: true
           alt_name: fd-find
           filter: linux
       - bat:
-          server: true
           alt_name: batcat
           filter: linux
       - git-delta:
-          server: true
           filter: linux
       - jq:
-          server: true
           filter: linux
       - yq:
-          server: true
           filter: linux
       - gh:
-          server: true
           filter: linux
       - curl:
-          server: true
           filter: linux
       - unzip:
-          server: true
           filter: linux
       - tar:
-          server: true
           filter: linux
       - git:
-          server: true
           filter: linux
       - tmux:
-          server: true
           filter: linux
 
 # Install Homebrew if missing, then apply the Brewfile (dotbot-brew plugin).
@@ -286,6 +271,9 @@
       server: false
     - command: "~/.dotfiles/scripts/patch-tex-gyre-heros.sh"
       description: "Patch TeX Gyre Heros metrics"
+      server: false
+    - command: "~/.dotfiles/scripts/link-nvim.sh"
+      description: "Link nvim into /usr/local/bin for sudo"
       server: false
     - command: "~/.dotfiles/scripts/install-codex.sh"
       description: "Install Codex"
