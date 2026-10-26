@@ -75,7 +75,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -85,7 +85,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -105,7 +105,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -124,7 +124,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -134,7 +134,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -144,7 +144,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -154,7 +154,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -164,7 +164,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -174,7 +174,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
@@ -184,7 +184,7 @@
       {
         "hooks": [
           {
-            "command": "/Users/aditya/.config/iterm2/cc-status",
+            "command": "[ -x \"$HOME/.config/iterm2/cc-status\" ] && exec \"$HOME/.config/iterm2/cc-status\" || exit 0",
             "type": "command"
           }
         ]
