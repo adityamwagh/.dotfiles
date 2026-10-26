@@ -38,7 +38,11 @@
   "bottom_dock_layout": "contained",
   "agent_servers": {
     "claude-acp": {
-      "type": "registry"
+      "type": "registry",
+      "default_config_options": {
+        "effort": "medium",
+        "mode": "auto"
+      }
     },
     "github-copilot": {
       "type": "registry"

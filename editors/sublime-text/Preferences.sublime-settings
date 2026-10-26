@@ -16,7 +16,9 @@
     "font_face": "Iosevka Extended", // Match Zed buffer_font_family.
     "font_size": 11, // Match Zed buffer_font_size.
     "highlight_line": true, // Match nvim cursorline.
-    "ignored_packages": ["Vintage",
+    "ignored_packages": [
+        "LSP-rust-analyzer",
+        "Vintage",
     ],
     "light_color_scheme": "GitHub Light Default.sublime-color-scheme",
     "light_theme": "Default.sublime-theme",
