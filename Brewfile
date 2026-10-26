@@ -1,4 +1,5 @@
 tap "anomalyco/tap"
+tap "charmbracelet/tap"
 tap "gromgit/brewtils"
 tap "michel-kraemer/zsh-patina" if OS.mac?
 tap "oven-sh/bun"
@@ -10,6 +11,7 @@ brew "bash-completion@2"
 brew "bash-language-server"
 brew "bat"
 brew "git-delta"
+brew "charmbracelet/tap/crush"
 brew "direnv"
 brew "dust"
 brew "entr"
