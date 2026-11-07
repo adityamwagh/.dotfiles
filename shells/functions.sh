@@ -128,7 +128,6 @@ chfont() {
 
   for file in \
     "$root_dir/editors/zed/settings.json" \
-    "$root_dir/terminals/contour/contour.yml" \
     "$HOME/.config/Code/User/settings.json" \
     "$HOME/.config/Cursor/User/settings.json" \
     "$HOME/.config/Windsurf/User/settings.json"; do

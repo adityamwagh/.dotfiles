@@ -41,7 +41,6 @@ alias zshrc='$EDITOR ~/.zshrc'
 alias starshipconf='$EDITOR ~/.config/starship.toml'
 alias nvimc='$EDITOR ~/.config/nvim/'
 alias zedconf='$EDITOR ~/.config/zed/settings.json'
-alias contourconf='$EDITOR ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml'
 
 alias pcra='pre-commit run --color=always --all-files'
 alias pci='pre-commit install'
@@ -68,9 +67,8 @@ alias gstp='git stash pop'
 alias gstl='git stash list'
 
 alias e='exit'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+alias ...='../..'
+alias ....='../../..'
 
 alias update-dotfiles='~/.dotfiles/install'
 

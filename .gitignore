@@ -33,3 +33,6 @@ terminals/konsole/colorschemes/*.profile
 
 # Nix hardware-specific config
 hardware-configuration.nix
+
+# Ghostty machine-local overrides (linked by install.conf.yaml)
+terminals/ghostty/config-local-linux

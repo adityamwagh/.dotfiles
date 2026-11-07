@@ -16,8 +16,8 @@ font-family = Iosevka Extended
 font-family = Symbols Nerd Font Mono
 font-size = 11
 maximize = true
-# Large scrollback history.
-scrollback-limit = 10000000
+# Large scrollback history, in bytes. Renamed from scrollback-limit in 1.2.
+scrollback-limit-bytes = 10000000
 # Follow the system dark/light appearance; themes ship with Ghostty.
 theme = dark:GitHub Dark Default,light:GitHub Light Default
 # Solid block cursor, like the Konsole profile.

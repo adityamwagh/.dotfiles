@@ -89,6 +89,7 @@
     "scss": true,
     "toml": true
   },
+  "read_only_files": ["uv.lock", "bun.lock"],
   "auto_indent_on_paste": true,
   "auto_signature_help": true,
   "autosave": {
@@ -368,13 +369,12 @@
   "preferred_line_length": 88,
   "project_panel": {
     "dock": "left",
-    "entry_spacing": "standard",
-    "hide_hidden": true,
-    "indent_size": 8,
-    "default_width": 420
+    "entry_spacing": "comfortable",
+    "indent_size": 24,
+    "default_width": 320
   },
   "redact_private_values": false,
-  "resize_all_panels_in_dock": ["left"],
+  "resize_all_panels_in_dock": ["left", "right"],
   "restore_on_startup": "last_workspace",
   "scroll_beyond_last_line": "off",
   "preview_tabs": {
