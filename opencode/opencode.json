@@ -3,6 +3,7 @@
   "providers": {
     "lithosai": {
       "name": "LithosAI",
+      "env": ["LITHOSAI_API_KEY"],
       "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
         "baseURL": "https://api.lithosai.cloud/v1"
@@ -178,6 +179,9 @@
           }
         }
       }
+    },
+    "deepseek": {
+      "env": ["DEEPSEEK_API_KEY"]
     }
   },
   "model": "lithosai/deepseek-ai/DeepSeek-V4.1-Flash"
