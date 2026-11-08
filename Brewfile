@@ -60,15 +60,15 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zuban"
 
-cask "font-cascadia-code"
-cask "font-et-book"
-cask "font-hack"
-cask "font-inter"
-cask "font-jetbrains-mono"
-cask "font-jetbrains-mono-nerd-font"
-cask "font-latin-modern-math"
-cask "font-selawik"
+cask "font-cascadia-code" if OS.mac?
+cask "font-et-book" if OS.mac?
+cask "font-hack" if OS.mac?
+cask "font-inter" if OS.mac?
+cask "font-jetbrains-mono" if OS.mac?
+cask "font-jetbrains-mono-nerd-font" if OS.mac?
+cask "font-latin-modern-math" if OS.mac?
+cask "font-selawik" if OS.mac?
 cask "font-sf-pro" if OS.mac?
 cask "font-source-code-pro" if OS.mac? # Linux: scripts/install-source-code-pro.sh
-cask "font-symbols-only-nerd-font"
-cask "font-tex-gyre-heros"
+cask "font-symbols-only-nerd-font" if OS.mac?
+cask "font-tex-gyre-heros" if OS.mac?

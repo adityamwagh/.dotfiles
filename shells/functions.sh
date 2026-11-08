@@ -1,37 +1,6 @@
 #!/bin/bash
 # Shared shell functions for bash and zsh
 
-# Lazy-load nvm: nothing runs until the first nvm/node/npm/npx/yarn call.
-nvm_lazy_init() {
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] || return 0
-
-  nvm_load() {
-    unset -f nvm node npm npx yarn
-    . "$NVM_DIR/nvm.sh"
-  }
-  nvm() {
-    nvm_load
-    nvm "$@"
-  }
-  node() {
-    nvm_load
-    node "$@"
-  }
-  npm() {
-    nvm_load
-    npm "$@"
-  }
-  npx() {
-    nvm_load
-    npx "$@"
-  }
-  yarn() {
-    nvm_load
-    yarn "$@"
-  }
-}
-
 # Lazy-load conda/mamba: auto_activate is false, and `conda` routes to `mamba`.
 # Both initialize the shell hook on first use.
 mamba_lazy_init() {
@@ -55,16 +24,43 @@ mamba_lazy_init() {
   }
 }
 
+# Open a URL in Chrome when it is installed, else the platform's default
+# browser: google-chrome (Arch/Fedora/openSUSE) and google-chrome-stable
+# (Debian/Ubuntu) lead on Linux; macOS has the app bundle plus `open`.
+_open_url() {
+  local __browser
+  for __browser in google-chrome google-chrome-stable chromium chromium-browser; do
+    if command -v "$__browser" >/dev/null 2>&1; then
+      "$__browser" "$1"
+      return
+    fi
+  done
+  if [ "$(uname -s)" = Darwin ] && [ -d "/Applications/Google Chrome.app" ]; then
+    open -a "Google Chrome" "$1"
+    return
+  fi
+  if command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$1"
+    return
+  fi
+  if command -v open >/dev/null 2>&1; then
+    open "$1"
+    return
+  fi
+  echo "open-url: no browser launcher found" >&2
+  return 1
+}
+
 pp() {
-  google-chrome "https://www.perplexity.ai/search?q=$*"
+  _open_url "https://www.perplexity.ai/search?q=$*"
 }
 
 g() {
-  google-chrome "https://www.google.com/search?q=$*"
+  _open_url "https://www.google.com/search?q=$*"
 }
 
 gai() {
-  google-chrome "https://www.google.com/search?udm=50&q=$*"
+  _open_url "https://www.google.com/search?udm=50&q=$*"
 }
 
 chfont-replace-file() {
@@ -129,8 +125,11 @@ chfont() {
   for file in \
     "$root_dir/editors/zed/settings.json" \
     "$HOME/.config/Code/User/settings.json" \
+    "$HOME/Library/Application Support/Code/User/settings.json" \
     "$HOME/.config/Cursor/User/settings.json" \
-    "$HOME/.config/Windsurf/User/settings.json"; do
+    "$HOME/Library/Application Support/Cursor/User/settings.json" \
+    "$HOME/.config/Windsurf/User/settings.json" \
+    "$HOME/Library/Application Support/Windsurf/User/settings.json"; do
     [ -f "$file" ] || continue
     chfont-replace-file "$file" "$current_font" "$new_font" || return 1
   done

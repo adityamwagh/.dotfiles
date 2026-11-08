@@ -1,13 +1,20 @@
-# .bashrc
+# .bashrc — Linux only. macOS defaults to zsh and gets no bash config from
+# this repo; the options below assume bash >= 4 (all supported distros ship 5.x).
 
 # ############################################
 # #               SYSTEM RC                 #
 # ############################################
 
-case "$(uname -s)" in
-  Linux*) [ -f /etc/bashrc ] && . /etc/bashrc ;;
-  Darwin*) [ -f /etc/bash.bashrc ] && . /etc/bash.bashrc ;;
-esac
+# Source the distro's system bashrc. Debian/Ubuntu ship /etc/bash.bashrc,
+# Fedora and openSUSE ship /etc/bashrc; distros that auto-source it make the
+# repeat harmless.
+for __sys_bashrc in /etc/bash.bashrc /etc/bashrc; do
+  if [ -r "$__sys_bashrc" ]; then
+    . "$__sys_bashrc"
+    break
+  fi
+done
+unset __sys_bashrc
 
 # ############################################
 # #                 ENV VARS                #
@@ -126,12 +133,6 @@ esac
 # ############################################
 
 [ -f "$HOME/.dotfiles/shells/tools/gh.sh" ] && . "$HOME/.dotfiles/shells/tools/gh.sh"
-
-# ############################################
-# #                   NVM                   #
-# ############################################
-
-nvm_lazy_init
 
 # ############################################
 # #                   PNPM                  #

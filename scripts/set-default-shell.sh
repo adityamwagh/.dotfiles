@@ -2,7 +2,14 @@
 set -euo pipefail
 
 zsh_bin=""
-for candidate in /usr/bin/zsh /bin/zsh; do
+# Prefer Homebrew's zsh on macOS when it is registered; every supported Linux
+# distro ships zsh in /usr/bin or /bin.
+if [ "$(uname -s)" = Darwin ]; then
+  candidates=(/opt/homebrew/bin/zsh /usr/local/bin/zsh /usr/bin/zsh /bin/zsh)
+else
+  candidates=(/usr/bin/zsh /bin/zsh)
+fi
+for candidate in "${candidates[@]}"; do
   if [ -x "$candidate" ] && grep -Fxq "$candidate" /etc/shells 2>/dev/null; then
     zsh_bin="$candidate"
     break

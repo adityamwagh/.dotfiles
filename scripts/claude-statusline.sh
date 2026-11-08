@@ -8,6 +8,12 @@ set -euo pipefail
 # Line 2: effort level and rate limits, read straight from the JSON, since
 #   starship 1.26.0's claude modules drop rate_limits (and have no $effort).
 
+# Portable epoch → local time: GNU date takes -d @N, BSD and macOS take -r N.
+_epoch_fmt() {
+  local epoch="$1" fmt="$2"
+  date -d "@$epoch" "$fmt" 2>/dev/null || date -r "$epoch" "$fmt" 2>/dev/null || printf '%s' "$epoch"
+}
+
 input=$(cat)
 
 # Starship prints its line without a trailing newline, and pads the end with a
@@ -42,14 +48,14 @@ if [ -n "$five_hour" ]; then
   five_pct=${five_hour%% *}
   reset=${five_hour#* }
   window="5h $(printf '%.0f' "$five_pct")%"
-  [ -n "$reset" ] && window="$window ($(date -d "@$reset" +%H:%M 2>/dev/null || echo "$reset"))"
+  [ -n "$reset" ] && window="$window ($(_epoch_fmt "$reset" +%H:%M))"
   limits="$window"
 fi
 if [ -n "$seven_day" ]; then
   seven_pct=${seven_day%% *}
   reset=${seven_day#* }
   window="7d $(printf '%.0f' "$seven_pct")%"
-  [ -n "$reset" ] && window="$window ($(date -d "@$reset" '+%a %H:%M' 2>/dev/null || echo "$reset"))"
+  [ -n "$reset" ] && window="$window ($(_epoch_fmt "$reset" '+%a %H:%M'))"
   limits="${limits:+$limits }$window"
 fi
 

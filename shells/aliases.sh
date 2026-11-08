@@ -33,6 +33,9 @@ if [ -n "$ZSH_VERSION" ]; then
   alias uvrun='noglob uv run --no-sync'
 fi
 alias bun='bun --no-save'
+# npm is not installed on this machine; bun is the JS package manager.
+# `command bun` bypasses the alias above so `npm install` == `bun install`.
+alias npm='command bun'
 
 alias aliases='$EDITOR ~/.dotfiles/shells/aliases.sh'
 alias envvars='$EDITOR ~/.dotfiles/shells/envvars.sh'

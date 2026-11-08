@@ -202,7 +202,10 @@ fi
 # New Konsole instances start in the matching profile; Konsole's own light/dark
 # sync is disabled in konsolerc for this reason.
 if [ -f "$KONSOLE_CONF" ]; then
-  sed -i "s|^DefaultProfile=.*|DefaultProfile=${profile_file}|" "$KONSOLE_CONF"
+  # -i.bak is the portable spelling: BSD sed (macOS) requires a backup suffix,
+  # GNU sed accepts one too; drop the copy afterwards either way.
+  sed -i.bak "s|^DefaultProfile=.*|DefaultProfile=${profile_file}|" "$KONSOLE_CONF"
+  rm -f "${KONSOLE_CONF}.bak"
 fi
 
 if command -v gdbus >/dev/null 2>&1; then

@@ -31,6 +31,13 @@ if ! command -v brew >/dev/null 2>&1; then
   exit 0
 fi
 
+# macOS already puts the brew prefix on PATH (and /usr/local/bin precedes
+# /opt/homebrew/bin, so linking there would shadow the real binaries).
+if [ "$(uname -s)" = Darwin ]; then
+  echo "Skipping Homebrew PATH links: not needed on macOS" >&2
+  exit 0
+fi
+
 brew_bin="$(brew --prefix)/bin"
 
 for entry in "${tools[@]}"; do

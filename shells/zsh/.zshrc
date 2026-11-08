@@ -2,9 +2,17 @@
 # #               SYSTEM RC                 #
 # ############################################
 
-# Source system zshrc once per session; it re-runs all /etc/profile.d/*.sh
-# (~60ms) which only need to set up the exported env once. Children inherit it.
-[ -z "$ETC_ZSHRC_DONE" ] && [ -f /etc/zshrc ] && { . /etc/zshrc; export ETC_ZSHRC_DONE=1; }
+# Source the distro's global zsh rc once. Debian and Arch use
+# /etc/zsh/zshrc; Fedora, openSUSE and macOS use /etc/zshrc.
+for __sys_zshrc in /etc/zsh/zshrc /etc/zshrc; do
+  if [ -z "${ETC_ZSHRC_DONE:-}" ] && [ -f "$__sys_zshrc" ]; then
+    . "$__sys_zshrc"
+    ETC_ZSHRC_DONE=1
+    export ETC_ZSHRC_DONE
+    break
+  fi
+done
+unset __sys_zshrc
 
 # ############################################
 # #                 ENV VARS                #
@@ -137,12 +145,6 @@ esac
 [ -f "$HOME/.dotfiles/shells/tools/gh.sh" ] && . "$HOME/.dotfiles/shells/tools/gh.sh"
 
 # ############################################
-# #                   NVM                   #
-# ############################################
-
-nvm_lazy_init
-
-# ############################################
 # #                   PNPM                  #
 # ############################################
 
@@ -191,7 +193,6 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 
 # zsh-patina must initialize at the end of .zshrc
 command -v zsh-patina >/dev/null 2>&1 && eval "$(zsh-patina activate)"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # conda / mamba (lazy); first use initializes the shell hook.
 mamba_lazy_init zsh

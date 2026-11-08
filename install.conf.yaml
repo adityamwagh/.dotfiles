@@ -59,9 +59,14 @@
       force: false
 
 - link:
-    # Shell
-    ~/.bash_profile: shells/bash/.bash_profile
-    ~/.bashrc: shells/bash/.bashrc
+    # Shell. bash config is Linux-only: macOS defaults to zsh, and the bash
+    # options assume bash >= 4 (Apple still ships 3.2).
+    ~/.bash_profile:
+      path: shells/bash/.bash_profile
+      if: "[ $(uname) = Linux ]"
+    ~/.bashrc:
+      path: shells/bash/.bashrc
+      if: "[ $(uname) = Linux ]"
     ~/.profile: shells/.profile
     ~/.zprofile: shells/zsh/.zprofile
     ~/.zshenv: shells/zsh/.zshenv
