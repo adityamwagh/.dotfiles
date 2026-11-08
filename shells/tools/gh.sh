@@ -25,7 +25,12 @@ gh_sync_identity() {
 
 if command -v gh >/dev/null 2>&1; then
   gh() {
+    local gh_exit_status
     command gh "$@"
-    [ "$1" = "auth" ] && [ "$2" = "switch" ] && gh_sync_identity
+    gh_exit_status=$?
+    if [ "$gh_exit_status" -eq 0 ] && [ "$1" = "auth" ] && [ "$2" = "switch" ]; then
+      gh_sync_identity
+    fi
+    return "$gh_exit_status"
   }
 fi
