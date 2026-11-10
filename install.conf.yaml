@@ -300,9 +300,6 @@
     - command: "~/.dotfiles/scripts/link-brew-tools.sh"
       description: "Link Homebrew tools into /usr/local/bin"
       server: false
-    - command: "~/.dotfiles/scripts/install-codex.sh"
-      description: "Install Codex"
-      server: false
     - command: "~/.dotfiles/scripts/install-konsole.sh"
       description: "Install Konsole (macOS)"
       server: false
