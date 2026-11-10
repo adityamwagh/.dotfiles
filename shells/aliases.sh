@@ -79,10 +79,9 @@ alias update-dotfiles='~/.dotfiles/install'
 # Remote Control is omitted: it needs a claude.ai login, which the proxy replaces.
 alias claude='~/.local/bin/lithos-claude --allow-dangerously-skip-permissions'
 
-# Run mini-swe-agent with the LithosAI key injected from 1Password
-if command -v op >/dev/null 2>&1; then
-  alias mini="op run --env-file=\$HOME/.config/mini-swe-agent/lithosai.env -- mini"
-fi
+# mini-swe-agent reads provider keys from ~/.env (see ~/.config/mini-swe-agent).
+# Its default config runs LithosAI; this layers the DeepSeek official API on top.
+alias mini-deepseek='mini -c mini -c $HOME/.config/mini-swe-agent/deepseek.yaml'
 
 [ -f "$HOME/.local/shell/aliases.sh" ] && . "$HOME/.local/shell/aliases.sh"
 [ -f "$HOME/.local/shell/functions.sh" ] && . "$HOME/.local/shell/functions.sh"
